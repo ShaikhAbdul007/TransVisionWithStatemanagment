@@ -32,12 +32,12 @@ class BoldText extends StatelessWidget {
   }
 }
 
-class WeighText extends StatelessWidget {
+class WeightText extends StatelessWidget {
   final String text;
   final double size;
   final Color color;
 
-  const WeighText({Key? key, required this.text,required this.size, required this.color}) : super(key: key);
+  const WeightText({Key? key, required this.text,required this.size, required this.color}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:tranvision_customer_app/utils/component/shipper_bottom_navigation.dart';
+import 'package:tranvision_customer_app/utils/component/drawer.dart';
+import 'package:tranvision_customer_app/view/auth_screen/login_screen.dart';
+import 'package:tranvision_customer_app/view/auth_screen/reset_password.dart';
+import 'package:tranvision_customer_app/view/consignee_screen/damage_invoice.dart';
+import 'package:tranvision_customer_app/view/consignee_screen/detention_invoice.dart';
+import 'package:tranvision_customer_app/view/consignee_screen/do_slip.dart';
+import 'package:tranvision_customer_app/view/consignee_screen/import_invoice.dart';
+import 'package:tranvision_customer_app/view/consignee_screen/security_invoice.dart';
+import 'package:tranvision_customer_app/view/profile_screen/address.dart';
+import 'package:tranvision_customer_app/view/shipper_screen/bill_of_landing/bill_of_lading.dart';
+import 'package:tranvision_customer_app/view/shipper_screen/bill_of_landing/bl_details.dart';
+import 'package:tranvision_customer_app/view/shipper_screen/bill_of_landing/home.dart';
+import 'package:tranvision_customer_app/view/shipper_screen/bill_summary.dart';
+import 'package:tranvision_customer_app/view/shipper_screen/booking_report.dart';
+import 'package:tranvision_customer_app/view/shipper_screen/booking_screen/booking_page.dart';
+import 'package:tranvision_customer_app/view/shipper_screen/booking_screen/booking_second_page.dart';
+import 'package:tranvision_customer_app/view/shipper_screen/dashboard_screen.dart';
+import 'package:tranvision_customer_app/view/shipper_screen/loading_list.dart';
+import 'package:tranvision_customer_app/view/shipper_screen/shipper_do_slip.dart';
 
 void main() {
   runApp(const MyApp());
@@ -7,100 +28,38 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
+    return GetMaterialApp(
+      title: 'Transvision',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.orange,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      initialRoute: '/bs',
+      getPages: [
+        GetPage(name: "/login", page: () => const LoginPage()),
+        GetPage(name: "/reset", page: () => const ResetPassword()),
+        GetPage(name: "/address", page: () => const AddressPage()),
+        GetPage(name: "/sds", page: () => const SDoSlip()),
+        GetPage(name: "/ll", page: () => const LoadingList()),
+        GetPage(name: "/bs", page: () => const BillSummary()),
+        GetPage(name: "/br", page: () => const BookingReport()),
+        GetPage(name: "/blh", page: () => const BlHome()),
+        GetPage(name: "/bld", page: () => const BLDetails()),
+        GetPage(name: "/import", page: () => const ImportInvoice()),
+        GetPage(name: "/security", page: () => const SecurityInvoice()),
+        GetPage(name: "/detention", page: () => const DetentionInvoice()),
+        GetPage(name: "/damage", page: () => const DamageInvoice()),
+        GetPage(name: "/cds", page: () => const CDoSlip()),
+        GetPage(name: "/drawer", page: () => const MyDrawer()),
+        GetPage(name: "/dash", page: () => const DashBoard()),
+        GetPage(name: "/nav", page: () => const MyBottomNavigation()),
+        GetPage(name: "/book", page: () => const BookingPage()),
+        GetPage(name: "/booking", page: () => const BookingSecondPage()),
+        GetPage(name: "/bol", page: () => const BillOfLading()),
+      ],
+      // home: const LoginPage(),
     );
   }
 }

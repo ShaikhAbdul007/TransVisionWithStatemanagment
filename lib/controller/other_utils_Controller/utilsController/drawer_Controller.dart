@@ -1,56 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tranvision_customer_app/utils/constant/colors.dart';
+import 'package:tranvision_customer_app/view/shipper_screen/bill_of_landing/bill_of_lading.dart';
+import 'package:tranvision_customer_app/view/shipper_screen/bill_summary.dart';
+import 'package:tranvision_customer_app/view/shipper_screen/booking_report.dart';
+import 'package:tranvision_customer_app/view/shipper_screen/loading_list.dart';
+import 'package:tranvision_customer_app/view/shipper_screen/shipper_do_slip.dart';
 
 class MyDrawerController extends GetxController {
-  Map<String, dynamic> get screen => {
-        'Do Slip': {
-          'routes': '/sds',
-          'icon': Icon(
-            Icons.collections_bookmark_rounded,
-            color: AppColor.black,
-            size: 25.0,
-          )
-        },
-        'Bill Of Landing': {
-          'routes': '/bfl',
-          'icon': const Icon(
-            Icons.adf_scanner,
-            color: Colors.black,
-            size: 25.0,
-          ),
-        },
-        'Bill Summary': {
-          'routes': '/bs',
-          'icon': const Icon(
-            Icons.summarize_rounded,
-            color: Colors.black,
-            size: 25.0,
-          ),
-        },
-        'Loading List': {
-          'routes': '/ll',
-          'icon': const Icon(
-            Icons.library_books_sharp,
-            color: Colors.black,
-            size: 25.0,
-          ),
-        },
-        'Report': {
-          'routes': '/br',
-          'icon': const Icon(
-            Icons.report_rounded,
-            color: Colors.black,
-            size: 25.0,
-          ),
-        },
-        'Quotes': {
-          'routes': '/rate',
-          'icon': const Icon(
-            Icons.bookmark_added_rounded,
-            color: Colors.black,
-            size: 25.0,
-          ),
-        },
-      };
+  navigate(int index) {
+    switch (index) {
+      case 0:
+        Get.to(() => const SDoSlip());
+        break;
+      case 1:
+        Get.to(() => const BillSummary());
+        break;
+      case 2:
+        Get.to(() => const LoadingList());
+        break;
+      case 3:
+        Get.to(() => const BookingReport());
+        break;
+      case 4:
+        Get.to(()=> const BillOfLading());
+    }
+  }
+
+  buildDrawerItem(
+      {required String text,
+      required IconData icon,
+      required Color textIconColor,
+      required Color tileColor,
+      required VoidCallback onTap}) {
+    return ListTile(
+      leading: Icon(icon, color: textIconColor),
+      title: Text(text,
+          style: const TextStyle(
+              fontFamily: "poppins",
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.bold)),
+      tileColor: tileColor,
+      onTap: onTap,
+    );
+  }
 }
