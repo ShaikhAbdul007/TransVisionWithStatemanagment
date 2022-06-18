@@ -10,17 +10,17 @@ class ProfileController extends GetxController {
   final profileModel = [].obs;
   LoginController loginController = Get.put(LoginController());
 
-  Future<RxList> fetchUserDetailApi() async {
-    final response = await http.get(Uri.parse(
-        ApiServices.consigneeLoginUrl(loginController.username.text)));
-    var data = jsonDecode(response.body.toString());
-    if (response.statusCode == 200) {
-      profileModel.value = [];
-      for (Map i in data) {
-        profileModel.add(ProfileModel.fromJson(i));
-      }
-      return profileModel;
-    }
-    return profileModel;
-  }
+  // Future<RxList> fetchUserDetailApi() async {
+  //   final response = await http.get(Uri.parse(
+  //       ApiServices.consigneeLoginUrl(loginController.username.text)));
+  //   var data = jsonDecode(response.body.toString());
+  //   if (response.statusCode == 200) {
+  //     profileModel.value = [];
+  //     for (Map i in data) {
+  //       profileModel.add(ProfileModel.fromJson(i));
+  //     }
+  //     return profileModel;
+  //   }
+  //   return profileModel;
+  // }
 }

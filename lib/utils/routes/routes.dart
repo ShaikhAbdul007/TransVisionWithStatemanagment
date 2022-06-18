@@ -23,7 +23,7 @@ class MyRoutes {
   static final routes = [
     GetPage(name: "/login", page: () => const LoginPage()),
     GetPage(name: "/reset", page: () => const ResetPassword()),
-    GetPage(name: "/address", page: () => const AddressPage()),
+    // GetPage(name: "/address", page: () => const AddressPage()),
     GetPage(name: "/sds", page: () => const SDoSlip()),
     GetPage(name: "/ll", page: () => const LoadingList()),
     GetPage(name: "/bs", page: () => const BillSummary()),

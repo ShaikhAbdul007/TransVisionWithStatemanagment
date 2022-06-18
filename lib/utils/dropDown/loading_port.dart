@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 
-
 class LoadingPort extends StatelessWidget {
-  final List<dynamic>listItems;
-  const LoadingPort({Key? key, required this.listItems}) : super(key: key);
+  final List<dynamic> listItems;
+  final dynamic loadingPortValue;
+  final Function(dynamic value) notifyParent;
+  const LoadingPort({
+    Key? key,
+    required this.listItems,
+    required this.notifyParent,
+    this.loadingPortValue,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    dynamic selectedOptionList;
     return Container(
       padding: const EdgeInsets.all(10.0),
       margin: const EdgeInsets.all(10.0),
@@ -17,12 +22,12 @@ class LoadingPort extends StatelessWidget {
       child: DropdownButtonHideUnderline(
         child: DropdownButton<dynamic>(
           isExpanded: true,
-          value: selectedOptionList,
+          value: loadingPortValue,
           style: const TextStyle(color: Colors.black),
           items: listItems.map<DropdownMenuItem<dynamic>>((dynamic item) {
             return DropdownMenuItem<dynamic>(
-              value: item,
-              child: Text(item),
+              value: item.port,
+              child: Text(item.portname),
             );
           }).toList(),
           hint: const Text(
@@ -31,7 +36,7 @@ class LoadingPort extends StatelessWidget {
                 color: Colors.black, fontSize: 16, fontWeight: FontWeight.w600),
           ),
           onChanged: (value) {
-            selectedOptionList = value;
+            notifyParent(value);
           },
         ),
       ),

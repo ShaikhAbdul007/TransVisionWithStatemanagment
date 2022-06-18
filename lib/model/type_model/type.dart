@@ -1,31 +1,40 @@
-// To parse this JSON data, do
-//
-//     final type = typeFromJson(jsonString);
+/// code : "DV"
+/// containerType : "DRY VAN"
 
-import 'dart:convert';
+class TypeModel {
+  TypeModel({
+    String? code,
+    String? containerType,
+  }) {
+    _code = code;
+    _containerType = containerType;
+  }
 
-List<Type> typeFromJson(String str) =>
-    List<Type>.from(json.decode(str).map((x) => Type.fromJson(x)));
+  TypeModel.fromJson(dynamic json) {
+    _code = json['code'];
+    _containerType = json['containerType'];
+  }
+  String? _code;
+  String? _containerType;
 
-String typeToJson(List<Type> data) =>
-    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
-
-class Type {
-  Type({
-    required this.code,
-    required this.containerType,
-  });
-
-  String code;
-  String containerType;
-
-  factory Type.fromJson(Map<String, dynamic> json) => Type(
-        code: json["code"],
-        containerType: json["containerType"],
+  TypeModel copyWith({
+    String? code,
+    String? containerType,
+  }) =>
+      TypeModel(
+        code: code ?? _code,
+        containerType: containerType ?? _containerType,
       );
+  String? get code => _code;
+  String? get containerType => _containerType;
 
-  Map<String, dynamic> toJson() => {
-        "code": code,
-        "containerType": containerType,
-      };
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    map['code'] = _code;
+    map['containerType'] = _containerType;
+    return map;
+  }
+
+  @override
+  toString() => '$_containerType';
 }

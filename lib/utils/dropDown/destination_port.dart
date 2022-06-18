@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:tranvision_customer_app/controller/other_utils_Controller/dropdown_controller/loading_controller/destination_controller.dart';
 
 class DestinationPort extends StatelessWidget {
   final List<dynamic> listItems;
-  const DestinationPort({Key? key, required this.listItems}) : super(key: key);
+  final dynamic destinationValue;
+  const DestinationPort(
+      {Key? key, required this.listItems, this.destinationValue})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    dynamic selectedOptionList;
+    DestinationController destinationController =
+        Get.put(DestinationController());
     return Container(
       padding: const EdgeInsets.all(10.0),
       margin: const EdgeInsets.all(10.0),
@@ -16,12 +22,12 @@ class DestinationPort extends StatelessWidget {
       child: DropdownButtonHideUnderline(
         child: DropdownButton<dynamic>(
           isExpanded: true,
-          value: selectedOptionList,
+          value: destinationValue,
           style: const TextStyle(color: Colors.black),
           items: listItems.map<DropdownMenuItem<dynamic>>((dynamic item) {
             return DropdownMenuItem<dynamic>(
-              value: item,
-              child: Text(item),
+              value: item.port,
+              child: Text(item.portname),
             );
           }).toList(),
           hint: const Text(
@@ -30,7 +36,7 @@ class DestinationPort extends StatelessWidget {
                 color: Colors.black, fontSize: 16, fontWeight: FontWeight.w600),
           ),
           onChanged: (value) {
-            selectedOptionList = value;
+            destinationController.destinationValue = value;
           },
         ),
       ),

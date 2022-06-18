@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tranvision_customer_app/utils/constant/colors.dart';
-import 'package:tranvision_customer_app/utils/constant/text.dart';
-
 
 class CustomerBar extends StatelessWidget {
   final String myText;
@@ -9,6 +6,9 @@ class CustomerBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(title: Text(myText,));
+    return AppBar(
+        title: Text(
+      myText,
+    ));
   }
 }

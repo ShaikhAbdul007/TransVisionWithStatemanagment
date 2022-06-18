@@ -1,8 +1,18 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class CommodityController extends GetxController {
   RxBool isVisible = false.obs;
-  List<String> commodity = ['General', 'Hazardous', 'ODC'];
+  RxList<String> commodity = ['General', 'Hazardous', 'ODC'].obs;
+  dynamic commodityValue;
+
+  TextEditingController ourCassController = TextEditingController();
+  TextEditingController unController = TextEditingController();
+
+  toggle(value) {
+    commodityValue = value;
+    insertRow(value);
+  }
 
   void insertRow(dynamic value) {
     if (value == "Hazardous") {

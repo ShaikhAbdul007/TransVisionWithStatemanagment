@@ -15,7 +15,7 @@ class ConsigneeBottomNavigation extends StatelessWidget {
         Get.put(ConsigneeBottomController());
     final screen = [
       const CDoSlip(),
-      const AddressPage(),
+      // const AddressPage(),
       const ContactedPerson(),
       const ResetPassword(),
     ];

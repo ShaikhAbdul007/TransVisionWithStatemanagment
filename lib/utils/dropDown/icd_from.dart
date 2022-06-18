@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 class IcdFrom extends StatelessWidget {
   final List<dynamic> listItems;
   final Function(dynamic value) notifyParent;
-  final dynamic icdFromValue;
+  final dynamic selectedIcdFromValue;
 
   const IcdFrom(
       {Key? key,
       required this.listItems,
       required this.notifyParent,
-      this.icdFromValue})
+      required this.selectedIcdFromValue})
       : super(key: key);
 
   @override
@@ -23,7 +23,7 @@ class IcdFrom extends StatelessWidget {
       child: DropdownButtonHideUnderline(
         child: DropdownButton<dynamic>(
           isExpanded: true,
-          value: icdFromValue,
+          value: selectedIcdFromValue,
           style: const TextStyle(color: Colors.black),
           items: listItems.map<DropdownMenuItem<dynamic>>((dynamic item) {
             return DropdownMenuItem<dynamic>(

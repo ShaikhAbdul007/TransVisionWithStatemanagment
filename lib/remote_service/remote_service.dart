@@ -1,20 +1,72 @@
+// import 'package:get/get.dart';
+// import 'package:tranvision_customer_app/controller/other_utils_Controller/dropdown_controller/commodity_controller/commodity_controller.dart';
+// import 'package:tranvision_customer_app/controller/other_utils_Controller/dropdown_controller/icd_controller/newicdfrom_controller.dart';
+// import 'package:tranvision_customer_app/controller/other_utils_Controller/dropdown_controller/icd_controller/newicdto_controller.dart';
+// import 'package:tranvision_customer_app/controller/other_utils_Controller/dropdown_controller/loading_controller/destination_controller.dart';
+// import 'package:tranvision_customer_app/controller/other_utils_Controller/dropdown_controller/loading_controller/loading_controller.dart';
+// import 'package:tranvision_customer_app/controller/other_utils_Controller/dropdown_controller/size/size_controller.dart';
+// import 'package:tranvision_customer_app/controller/other_utils_Controller/dropdown_controller/type/type_controller.dart';
 
-import 'package:http/http.dart' as http;
+// import 'package:tranvision_customer_app/utils/dropDown/icd_from.dart';
+// import 'package:tranvision_customer_app/utils/dropDown/icd_to.dart';
 
+// class RemoteService {
+//   SizeController sController = Get.put(SizeController());
+//   CommodityController commodity = Get.put(CommodityController());
+//   IcdNewFromController icdController = Get.put(IcdNewFromController());
+//   IcdNewToController icdToController = Get.put(IcdNewToController());
+//   LoadingController loadingController = Get.put(LoadingController());
+//   DestinationController destinationController =
+//       Get.put(DestinationController());
 
-class RemoteService {
-  static var client = http.Client();
-  // static Future<List<SummaryOnLoad>> fetchSummaryOnLoad() async {
-  //   var response = await client.get(Uri.parse(
-  //       "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/BillSummaryOnLoad?partycode=P1210"));
-  //   List data = jsonDecode(response.body);
-  //   if (response.statusCode == 200) {
-  //     return summaryOnLoadFromJson("data");
-  //   } else {
-  //     throw "Api Failed";
-  //   }
+//   TypeController typeController = Get.put(TypeController());
 
+//   var finalData get => {
 
- 
-  }
+//     IcdFrom=  icdFromValue,
+//      IcdTo= icdToController.icdToValue,
+//       loadingController  = loadingController.loadingPortValue,
+//                         destinationController.destinationValue,
+//                         c.controller.text,
+//                         sController.selectedOption,
+//                         typeController.selectedtype,
+//                         commodity.commodityValue,
+//   };
 
+//    get icdFromValue => icdToController.icdToValue;
+// }
+
+// class finalData {
+// }
+
+class FinalData {
+  String icdFrom;
+  String icdTo;
+  String pol;
+  String pod;
+  num qauntity;
+  num size;
+  String type;
+  String commodity;
+  String ourcas;
+  String unno;
+  String freight;
+  String weight;
+  String rateagreed;
+
+  FinalData(
+    this.icdFrom,
+    this.icdTo,
+    this.freight,
+    this.weight,
+    this.size,
+    this.commodity,
+    this.ourcas,
+    this.pod,
+    this.pol,
+    this.qauntity,
+    this.rateagreed,
+    this.type,
+    this.unno,
+  );
+}

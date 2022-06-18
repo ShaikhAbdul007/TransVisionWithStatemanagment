@@ -4,13 +4,13 @@ import 'package:http/http.dart' as http;
 import 'package:tranvision_customer_app/api_services/api_services.dart';
 import 'package:tranvision_customer_app/model/icd_model/icd_to.dart';
 
-class IcdToController extends GetxController {
-  final icdToList = <Icdto>[].obs;
-  final idcToPortValue = "".obs;
+class IcdNewToController extends GetxController {
+  var icdToList = <Icdto>[].obs;
+  dynamic icdToValue;
 
-  setValue(dynamic value) {
-    idcToPortValue.value = value;
-  }
+  // setValue(dynamic value) {
+  //   icdToValue = value;
+  // }
 
   Future<RxList<Icdto>> fetchIcdToPort(dynamic icdFrom) async {
     var response = await http.get(Uri.parse(ApiServices.icdToUrl(icdFrom)));

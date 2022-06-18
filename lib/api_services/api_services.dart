@@ -10,40 +10,62 @@ class ApiServices {
   }
 
   static String loginUrl(dynamic username, dynamic password) {
-    final String loginApi =
+    final String loginApis =
         "http://portal.transvisionshipping.com:9999/TSVAPI/SqlInterface.svc/login?username=$username&password=$password";
 
-    final String loginApis =
+    final String loginApi =
         "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/login?username=$username&password=$password";
 
     return loginApis;
   }
 
+  static String icdFromUrls =
+      "http://portal.transvisionshipping.com:9999/TSVAPI/SqlInterface.svc/icdfrom/";
+
+  static String icdFromUrl =
+      "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/icdfrom/";
+
   static String icdToUrl(dynamic value) {
-    final String icdTo =
+    final String icdTos =
         "http://portal.transvisionshipping.com:9999/TSVAPI/SqlInterface.svc/icdto?icd=$value";
 
-    final String icdTos =
+    final String icdTo =
         "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/icdto?icd=$value";
 
     return icdTos;
   }
 
+  static String polUrl =
+      "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/pol/";
+
+  static String polUrls =
+      "http://portal.transvisionshipping.com:9999/TSVAPI/SqlInterface.svc/pol/";
+
+  static String destinationUrl(dynamic value) {
+    final String destinationUrl =
+        "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/pod?port=$value";
+
+    final String destinationUrls =
+        "http://portal.transvisionshipping.com:9999/TSVAPI/SqlInterface.svc/pod?port=$value";
+
+    return destinationUrls;
+  }
+
   static String typeUrl(dynamic value) {
-    final String type =
+    final String types =
         "http://portal.transvisionshipping.com:9999/TSVAPI/SqlInterface.svc/contType?contSize=$value";
 
-    final String types =
+    final String type =
         "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/contType?contSize=$value";
 
-    return type;
+    return types;
   }
 
   static String billSummaryUrl(dynamic username) {
-    final String billSummary =
+    final String billSummarys =
         "http://portal.transvisionshipping.com:9999/TSVAPI/SqlInterface.svc/BillSummaryOnLoad?partycode=$username";
 
-    final String billSummarys =
+    final String billSummary =
         "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/BillSummaryOnLoad?partycode=$username";
 
     return billSummarys;
@@ -76,7 +98,7 @@ class ApiServices {
     final String vessels =
         " http://192.168.1.143:9999/TSVAPI/sqlinterface.svc/vesselname?partycode=$username";
 
-    return vessel;
+    return vessels;
   }
 
   static String voyageUrl(dynamic username, dynamic value) {
@@ -86,7 +108,7 @@ class ApiServices {
     final String voyage =
         " http://portal.transvisionshipping.com:9999/TSVAPI/sqlinterface.svc/voyagename?partycode=$username&vesselname=$value";
 
-    return voyage;
+    return voyages;
   }
 
   static String loadingListUrl(
@@ -103,7 +125,7 @@ class ApiServices {
     final String report =
         "http://portal.transvisionshipping.com:9999/TSVAPI/sqlinterface.svc/BookingReportonload?partycode=$username";
 
-    return report;
+    return reports;
   }
 
   static String reportRefreshUrl(
@@ -114,18 +136,11 @@ class ApiServices {
     final String report =
         "http://portal.transvisionshipping.com:9999/TSVAPI/sqlinterface.svc/BookingReportonrefresh?partycode=$username&from=$reportFromDate&to=$reportToDate";
 
-    return report;
+    return reports;
   }
 
-  static String polUrl =
-      "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/pol/";
-
-  static String polUrls =
-      "http://portal.transvisionshipping.com:9999/TSVAPI/SqlInterface.svc/pol/";
-
-  static String icdFromUrl =
-      "http://portal.transvisionshipping.com:9999/TSVAPI/SqlInterface.svc/icdfrom/";
-
-  static String icdFromUrls =
-      "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/icdfrom/";
+  static String bookingApi =
+      "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/insertonlinebooking";
+  static String bookingApis =
+      "http://portal.transvisionshipping.com:9999/TSVAPI/SqlInterface.svc/insertonlinebooking";
 }

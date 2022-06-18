@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:tranvision_customer_app/controller/other_utils_Controller/dropdown_controller/type/type_controller.dart';
 
 class Type extends StatelessWidget {
   final List<dynamic> listItems;
-  const Type({Key? key, required this.listItems}) : super(key: key);
+  final dynamic selectedType;
+  const Type({Key? key, required this.listItems, this.selectedType})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    dynamic selectedOptionList;
+    TypeController typeController = Get.put(TypeController());
     return Container(
       padding: const EdgeInsets.all(10.0),
       margin: const EdgeInsets.all(10.0),
@@ -16,12 +20,12 @@ class Type extends StatelessWidget {
       child: DropdownButtonHideUnderline(
         child: DropdownButton<dynamic>(
           isExpanded: true,
-          value: selectedOptionList,
+          value: selectedType,
           style: const TextStyle(color: Colors.black),
           items: listItems.map<DropdownMenuItem<dynamic>>((dynamic item) {
             return DropdownMenuItem<dynamic>(
-              value: item,
-              child: Text(item),
+              value: item.code,
+              child: Text(item.containerType),
             );
           }).toList(),
           hint: const Text(
@@ -30,7 +34,7 @@ class Type extends StatelessWidget {
                 color: Colors.black, fontSize: 16, fontWeight: FontWeight.w600),
           ),
           onChanged: (value) {
-            selectedOptionList = value;
+            typeController.selectedtype = value;
           },
         ),
       ),
