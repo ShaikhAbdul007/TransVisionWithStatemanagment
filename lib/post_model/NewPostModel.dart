@@ -13,22 +13,23 @@
 /// pod : "AEJEA"
 /// rateagreedby : ""
 
-class NewPostModel {
-  NewPostModel({
-      String? partycode, 
-      String? qty, 
-      String? size, 
-      String? type, 
-      String? commodity, 
-      String? classs, 
-      String? unno, 
-      String? freight, 
-      String? weight, 
-      String? icdfrom, 
-      String? icdto, 
-      String? pol, 
-      String? pod, 
-      String? rateagreedby,}){
+class PostDataModel {
+  PostDataModel({
+    String? partycode,
+    String? qty,
+    String? size,
+    String? type,
+    String? commodity,
+    String? classs,
+    String? unno,
+    String? freight,
+    String? weight,
+    String? icdfrom,
+    String? icdto,
+    String? pol,
+    String? pod,
+    String? rateagreedby,
+  }) {
     _partycode = partycode;
     _qty = qty;
     _size = size;
@@ -43,9 +44,9 @@ class NewPostModel {
     _pol = pol;
     _pod = pod;
     _rateagreedby = rateagreedby;
-}
+  }
 
-  NewPostModel.fromJson(dynamic json) {
+  PostDataModel.fromJson(dynamic json) {
     _partycode = json['partycode'];
     _qty = json['qty'];
     _size = json['size'];
@@ -75,35 +76,38 @@ class NewPostModel {
   String? _pol;
   String? _pod;
   String? _rateagreedby;
-NewPostModel copyWith({  String? partycode,
-  String? qty,
-  String? size,
-  String? type,
-  String? commodity,
-  String? classs,
-  String? unno,
-  String? freight,
-  String? weight,
-  String? icdfrom,
-  String? icdto,
-  String? pol,
-  String? pod,
-  String? rateagreedby,
-}) => NewPostModel(  partycode: partycode ?? _partycode,
-  qty: qty ?? _qty,
-  size: size ?? _size,
-  type: type ?? _type,
-  commodity: commodity ?? _commodity,
-  classs: classs ?? _classs,
-  unno: unno ?? _unno,
-  freight: freight ?? _freight,
-  weight: weight ?? _weight,
-  icdfrom: icdfrom ?? _icdfrom,
-  icdto: icdto ?? _icdto,
-  pol: pol ?? _pol,
-  pod: pod ?? _pod,
-  rateagreedby: rateagreedby ?? _rateagreedby,
-);
+  PostDataModel copyWith({
+    String? partycode,
+    String? qty,
+    String? size,
+    String? type,
+    String? commodity,
+    String? classs,
+    String? unno,
+    String? freight,
+    String? weight,
+    String? icdfrom,
+    String? icdto,
+    String? pol,
+    String? pod,
+    String? rateagreedby,
+  }) =>
+      PostDataModel(
+        partycode: partycode ?? _partycode,
+        qty: qty ?? _qty,
+        size: size ?? _size,
+        type: type ?? _type,
+        commodity: commodity ?? _commodity,
+        classs: classs ?? _classs,
+        unno: unno ?? _unno,
+        freight: freight ?? _freight,
+        weight: weight ?? _weight,
+        icdfrom: icdfrom ?? _icdfrom,
+        icdto: icdto ?? _icdto,
+        pol: pol ?? _pol,
+        pod: pod ?? _pod,
+        rateagreedby: rateagreedby ?? _rateagreedby,
+      );
   String? get partycode => _partycode;
   String? get qty => _qty;
   String? get size => _size;
@@ -137,5 +141,4 @@ NewPostModel copyWith({  String? partycode,
     map['rateagreedby'] = _rateagreedby;
     return map;
   }
-
 }

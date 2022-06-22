@@ -11,12 +11,6 @@ class LoadingController extends GetxController {
   var loadingList = <Loadingport>[].obs;
   dynamic loadingPortValue;
 
-  updatedLoadingPort(dynamic value) {
-    loadingPortValue = value;
-    destinationConrtroller.destinationValue = null;
-    destinationConrtroller.getDestinationApi(value);
-  }
-
   @override
   void onInit() {
     super.onInit();

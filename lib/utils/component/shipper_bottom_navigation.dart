@@ -13,7 +13,7 @@ class MyBottomNavigation extends StatelessWidget {
   Widget build(BuildContext context) {
     final screen = [
       const DashBoard(),
-      // const AddressPage(),
+      const AddressPage(),
       const ContactedPerson(),
       const ResetPassword(),
     ];
