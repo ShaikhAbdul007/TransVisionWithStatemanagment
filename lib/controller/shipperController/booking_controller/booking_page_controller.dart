@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'dart:core';
 import 'package:flutter/material.dart';
-import 'package:get/state_manager.dart';
-import 'package:tranvision_customer_app/api_services/api_services.dart';
-import 'package:tranvision_customer_app/post_model/online_insert_post_model.dart';
+import 'package:get/get.dart';
+import 'package:tranvision_customer_app/api_services/booking_api.dart';
+import 'package:tranvision_customer_app/post_model/NewPostModel.dart';
 import 'package:http/http.dart' as http;
 
 class Controller extends GetxController {
@@ -11,51 +11,30 @@ class Controller extends GetxController {
   TextEditingController weightcon = TextEditingController();
   TextEditingController rtag = TextEditingController();
   TextEditingController ourCount = TextEditingController();
-  List<PostDataModel> postmodel = [];
-  RxBool isVisibleRecord = false.obs;
-  showAllRecord() {
-    isVisibleRecord.value = true;
+  RxList listOfModel = <PostDataModel>[].obs;
+  var data = Get.arguments;
+  addListItem(data) {
+    listOfModel.add(PostDataModel.fromJson(data));
   }
 
-  Future<List<PostDataModel>> postData(
-      dynamic partycode,
-      dynamic icd,
-      dynamic icdto,
-      dynamic pol,
-      dynamic pod,
-      dynamic qty,
-      dynamic size,
-      dynamic type,
-      dynamic commodity,
-      dynamic clas,
-      dynamic unno,
-      dynamic weight,
-      dynamic freight,
-      dynamic rateagreedby) async {
-    var response = await http.post(Uri.parse((ApiServices.bookingApis)), body: {
-      'partycode': partycode,
-      'icdfrom': icd,
-      'icdto': icdto,
-      'pol': pol,
-      'pod': pod,
-      'qty': qty,
-      'rateagreedby': rateagreedby,
-      'size': size,
-      'type': type,
-      'unno': unno,
-      'weight': weight,
-      'freight': freight,
-      'commodity ': commodity,
-      'classs': clas,
-    });
-    var data = jsonDecode(response.body);
+  removeListItem(index) {
+    listOfModel.removeWhere((data) => data.id == index);
+  }
+
+  Future<String> postData() async {
+    var body = List<Map<String, dynamic>>.from(
+        listOfModel.map((element) => element.toJson()));
+    var response = await http.post(Uri.parse((BookingApi.bookingApis)),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(body));
     if (response.statusCode == 200) {
-      for (Map i in data) {
-        postmodel.add(PostDataModel.fromJson(i));
-      }
-      return postmodel;
+      var data = jsonDecode(response.body.toString());
+      // return BookingResDataModel.fromJson(data);
+      return data[0]["result"];
     } else {
-      throw Exception('Failed to create album.');
+      throw Exception('Api Failed.');
     }
   }
 }

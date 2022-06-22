@@ -69,11 +69,14 @@ class BookingListItem extends StatelessWidget {
             ),
           ),
         ),
-        IconButton(
-            onPressed: () {
-              controller.removeListItem(item);
-            },
-            icon: const Icon(Icons.cancel_outlined))
+        Positioned(
+          left: 36 * 10,
+          child: IconButton(
+              onPressed: () {
+                controller.removeListItem(item);
+              },
+              icon: const Icon(Icons.cancel_outlined)),
+        )
       ],
     );
   }

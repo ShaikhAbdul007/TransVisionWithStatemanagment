@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:tranvision_customer_app/controller/other_utils_Controller/dropdown_controller/icd_controller/newicdto_controller.dart';
 
 class IcdTo extends StatelessWidget {
   final List<dynamic> listItems;
   final dynamic icdToValue;
-  const IcdTo({Key? key, required this.listItems, this.icdToValue})
+  final Function(dynamic value) notifyParent;
+  const IcdTo(
+      {Key? key,
+      required this.listItems,
+      this.icdToValue,
+      required this.notifyParent})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    IcdNewToController icdToController = Get.put(IcdNewToController());
-
     return Container(
       padding: const EdgeInsets.all(10.0),
       margin: const EdgeInsets.all(10.0),
@@ -35,7 +36,7 @@ class IcdTo extends StatelessWidget {
                 color: Colors.black, fontSize: 16, fontWeight: FontWeight.w600),
           ),
           onChanged: (value) {
-            icdToController.icdToValue = value;
+            notifyParent(value);
           },
         ),
       ),

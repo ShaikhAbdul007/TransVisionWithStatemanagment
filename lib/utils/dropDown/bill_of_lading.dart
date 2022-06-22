@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:tranvision_customer_app/controller/other_utils_Controller/dropdown_controller/type/type_controller.dart';
 
-class Type extends StatelessWidget {
+class BillLading extends StatelessWidget {
   final List<dynamic> listItems;
-  final dynamic selectedType;
-  final Function(dynamic value) notifyparent;
-  const Type(
-      {Key? key,
-      required this.listItems,
-      this.selectedType,
-      required this.notifyparent})
-      : super(key: key);
+  final Function(dynamic value) notifyParent;
+  final dynamic selectedValue;
+
+  const BillLading({
+    Key? key,
+    required this.listItems,
+    required this.notifyParent,
+    this.selectedValue,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    TypeController typeController = Get.put(TypeController());
     return Container(
       padding: const EdgeInsets.all(10.0),
       margin: const EdgeInsets.all(10.0),
@@ -25,12 +23,12 @@ class Type extends StatelessWidget {
       child: DropdownButtonHideUnderline(
         child: DropdownButton<dynamic>(
           isExpanded: true,
-          value: selectedType,
+          value: selectedValue,
           style: const TextStyle(color: Colors.black),
           items: listItems.map<DropdownMenuItem<dynamic>>((dynamic item) {
             return DropdownMenuItem<dynamic>(
-              value: item.code,
-              child: Text(item.containerType),
+              value: item,
+              child: Text("$item"),
             );
           }).toList(),
           hint: const Text(
@@ -39,7 +37,7 @@ class Type extends StatelessWidget {
                 color: Colors.black, fontSize: 16, fontWeight: FontWeight.w600),
           ),
           onChanged: (value) {
-            notifyparent(value);
+            notifyParent(value);
           },
         ),
       ),

@@ -1,7 +1,6 @@
 import 'dart:convert';
-
 import 'package:get/get.dart';
-import 'package:tranvision_customer_app/api_services/api_services.dart';
+import 'package:tranvision_customer_app/api_services/pols_api.dart';
 import 'package:tranvision_customer_app/model/loading_model/destination_port.dart';
 import 'package:http/http.dart' as http;
 
@@ -10,8 +9,7 @@ class DestinationController extends GetxController {
   dynamic destinationValue;
 
   Future<RxList<DestinationPort>> getDestinationApi(dynamic value) async {
-    final response =
-        await http.get(Uri.parse(ApiServices.destinationUrl(value)));
+    final response = await http.get(Uri.parse(PolApi.destinationUrl(value)));
     var data = jsonDecode(response.body);
     if (response.statusCode == 200) {
       destinationList.value = [];

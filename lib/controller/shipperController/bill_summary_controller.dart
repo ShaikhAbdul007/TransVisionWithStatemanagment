@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
-import 'package:tranvision_customer_app/model/bill_summary/summary_on_load_model.dart';
-import 'package:tranvision_customer_app/model/bill_summary/summary_with_date_model.dart';
+import 'package:tranvision_customer_app/api_services/bill_summary_api.dart';
+import 'package:tranvision_customer_app/model/bill_summary_model/summary_on_load_model.dart';
+import 'package:tranvision_customer_app/model/bill_summary_model/summary_with_date_model.dart';
 import 'package:tranvision_customer_app/shared_preferences/shared_preference.dart';
 
 class BillSummaryController extends GetxController {
@@ -20,8 +21,9 @@ class BillSummaryController extends GetxController {
   @override
   void onInit() {
     getSummaryOnLoadApi();
+    billSumFormDate.text;
+    billSumToDate.text;
     super.onInit();
-    user.retriveUserNameFromGetStrogare();
   }
 
   chooseFromDate() async {
@@ -53,8 +55,8 @@ class BillSummaryController extends GetxController {
 
   Future<List<SummaryOnLoad>> getSummaryOnLoadApi() async {
     var username = user.retriveUserNameFromGetStrogare();
-    final response = await http.get(Uri.parse(
-        "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/BillSummaryOnLoad?partycode=P1210"));
+    final response =
+        await http.get(Uri.parse(BillSummaryApi.billSummaryUrl(username)));
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       myList.value = [];
@@ -66,11 +68,11 @@ class BillSummaryController extends GetxController {
     return myList;
   }
 
-  Future<RxList<SummaryWithDate>> getSummaryOnLoadApiWithDate() async {
-    // UserLoginDetails user = UserLoginDetails();
-    // var username = user.retrieveUserName();
-    final response = await http.get(Uri.parse(
-        "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/BillSummarywithdate?partycode=P1210&fromdate=$billSumFormDate&todate=$billSumToDate"));
+  Future<List<SummaryWithDate>> getSummaryOnLoadApiWithDate(
+      dynamic username, dynamic billSumFormDate, dynamic billSumToDate) async {
+    var username = user.retriveUserNameFromGetStrogare();
+    final response = await http.get(Uri.parse(BillSummaryApi.billSummaryDateUrl(
+        username, billSumFormDate, billSumToDate)));
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       myListWithDate.value = [];

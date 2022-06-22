@@ -11,22 +11,22 @@ class ProfileController extends GetxController with UserLoginDetails {
   @override
   void onInit() {
     super.onInit();
-    userDetails = getUserApi();
+    // userDetails = getUserApi();
   }
 
-  Future<ProfileModel> getUserApi() async {
-    var username = retriveUserNameFromGetStrogare();
-    final response = await http.get(Uri.parse(
-        "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/consigneedata?username=C16"));
-    var data = jsonDecode(response.body.toString());
-    print(data);
-    if (response.statusCode == 200) {
-      isLoading.value = true;
-      return ProfileModel.fromJson(data);
-    } else {
-      throw Exception('Failed to API');
-    }
-  }
+  // Future<ProfileModel> getUserApi() async {
+  //   var username = retriveUserNameFromGetStrogare();
+  //   final response = await http.get(Uri.parse(
+  //       "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/consigneedata?username=C16"));
+  //   var data = jsonDecode(response.body.toString());
+  //   print(data);
+  //   if (response.statusCode == 200) {
+  //     isLoading.value = true;
+  //     return ProfileModel.fromJson(data);
+  //   } else {
+  //     throw Exception('Failed to API');
+  //   }
+}
 
   // Future<RxList> fetchUserDetailApi() async {
   //   final response = await http.get(Uri.parse(
@@ -41,4 +41,4 @@ class ProfileController extends GetxController with UserLoginDetails {
   //   }
   //   return profileModel;
   // }
-}
+

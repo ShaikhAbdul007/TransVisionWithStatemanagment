@@ -8,7 +8,6 @@ import 'package:tranvision_customer_app/view/consignee_screen/detention_invoice.
 import 'package:tranvision_customer_app/view/consignee_screen/do_slip.dart';
 import 'package:tranvision_customer_app/view/consignee_screen/import_invoice.dart';
 import 'package:tranvision_customer_app/view/consignee_screen/security_invoice.dart';
-import 'package:tranvision_customer_app/view/profile_screen/address.dart';
 import 'package:tranvision_customer_app/view/shipper_screen/bill_of_landing/bl_details.dart';
 import 'package:tranvision_customer_app/view/shipper_screen/bill_of_landing/home.dart';
 import 'package:tranvision_customer_app/view/shipper_screen/bill_summary.dart';

@@ -66,7 +66,6 @@ class LoginPage extends StatelessWidget {
                     SizeBox.customHeight(15),
                     Obx(
                       () => TextFormField(
-                        maxLength: 8,
                         controller: logController.password,
                         obscureText: logController.isPasswordVisible.value,
                         decoration: InputDecoration(
@@ -90,6 +89,7 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
             ),
+            SizeBox.customHeight(15),
             InkWell(
               onTap: () => logController.checkLogin(),
               child: Container(

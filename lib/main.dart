@@ -9,6 +9,7 @@ import 'package:tranvision_customer_app/view/consignee_screen/detention_invoice.
 import 'package:tranvision_customer_app/view/consignee_screen/do_slip.dart';
 import 'package:tranvision_customer_app/view/consignee_screen/import_invoice.dart';
 import 'package:tranvision_customer_app/view/consignee_screen/security_invoice.dart';
+import 'package:tranvision_customer_app/view/profile_screen/address.dart';
 import 'package:tranvision_customer_app/view/shipper_screen/bill_of_landing/bill_of_lading.dart';
 import 'package:tranvision_customer_app/view/shipper_screen/bill_of_landing/bl_details.dart';
 import 'package:tranvision_customer_app/view/shipper_screen/bill_of_landing/home.dart';
@@ -37,11 +38,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.orange,
       ),
-      initialRoute: '/nav',
+      initialRoute: '/login',
       getPages: [
         GetPage(name: "/login", page: () => const LoginPage()),
         GetPage(name: "/reset", page: () => const ResetPassword()),
-        //GetPage(name: "/address", page: () => const AddressPage()),
+        GetPage(name: "/address", page: () => const AddressPage()),
         GetPage(name: "/sds", page: () => const SDoSlip()),
         GetPage(name: "/ll", page: () => const LoadingList()),
         GetPage(name: "/bs", page: () => const BillSummary()),

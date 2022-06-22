@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:tranvision_customer_app/api_services/api_services.dart';
+import 'package:tranvision_customer_app/api_services/login_api.dart';
 import 'package:tranvision_customer_app/shared_preferences/shared_preference.dart';
 import 'package:tranvision_customer_app/utils/component/shipper_bottom_navigation.dart';
 import 'package:http/http.dart' as http;
@@ -19,7 +20,7 @@ class LoginController extends GetxController {
     final isValid = formKey.currentState;
     if (isValid!.validate()) {
       final response = await http
-          .get(Uri.parse(ApiServices.loginUrl(username.text, password.text)));
+          .get(Uri.parse(LoginApi.loginUrl(username.text, password.text)));
       if (response.statusCode == 200) {
         if (jsonDecode(response.body)["loginResult"] == "Consignee Login") {
           user.saveUserName(username.text);

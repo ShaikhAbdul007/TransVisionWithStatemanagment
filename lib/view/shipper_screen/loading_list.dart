@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tranvision_customer_app/controller/other_utils_Controller/dropdown_controller/loading_lis_controller/loading_list_controller.dart';
 import 'package:tranvision_customer_app/controller/other_utils_Controller/dropdown_controller/loading_lis_controller/vessel_lis_controller.dart';
 import 'package:tranvision_customer_app/controller/other_utils_Controller/dropdown_controller/loading_lis_controller/voyage_lis_controller.dart';
 import 'package:tranvision_customer_app/utils/constant/colors.dart';
@@ -14,6 +15,7 @@ class LoadingList extends StatelessWidget {
   Widget build(BuildContext context) {
     VoyageController contVoyage = Get.put(VoyageController());
     VesselController contVess = Get.put(VesselController());
+    LoadingListController loadController = Get.put(LoadingListController());
     return Scaffold(
       appBar: AppBar(
         title:
@@ -60,7 +62,7 @@ class LoadingList extends StatelessWidget {
                               )
                             : VoyageDown(
                                 listItems: contVoyage.voyageList,
-                                selectedValue: contVoyage.updatedSelectedValue,
+                                selectedValue: contVoyage.selectedvalue,
                               ))
                       ],
                     ),
@@ -72,9 +74,7 @@ class LoadingList extends StatelessWidget {
                       children: [
                         InkWell(
                           onTap: () {
-                            // showModalBottomSheet(
-                            //     context: context,
-                            //     builder: (context) => buildSheet());
+                            loadController.toggle();
                           },
                           child: Container(
                             height: 60,
@@ -102,6 +102,276 @@ class LoadingList extends StatelessWidget {
                         ),
                       ],
                     ),
+                    Obx(() => Visibility(
+                          visible: loadController.isVisible.value,
+                          child: loadController.loadingDataList.isNotEmpty
+                              ? Column(
+                                  children: [
+                                    if (loadController.isVisible.value)
+                                      Container(
+                                        height: 500,
+                                        padding: const EdgeInsets.all(1),
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(9),
+                                        ),
+                                        child: ListView.builder(
+                                            itemCount: loadController
+                                                .loadingDataList.length,
+                                            itemBuilder: (context, index) {
+                                              return ExpansionTile(
+                                                title: Text(
+                                                  'Port : ${loadController.loadingDataList[index].port}'
+                                                  "   "
+                                                  'Size : ${loadController.loadingDataList[index].size}',
+                                                  style: const TextStyle(
+                                                      fontSize: 18.0),
+                                                ),
+                                                subtitle: Text(
+                                                  'FPOD : ${loadController.loadingDataList[index].fpod}'
+                                                  "   "
+                                                  "   "
+                                                  'Type: ${loadController.loadingDataList[index].type}',
+                                                  style: const TextStyle(
+                                                      fontSize: 15.0),
+                                                ),
+                                                leading: IconButton(
+                                                  icon: const Icon(Icons.edit),
+                                                  onPressed: () {},
+                                                ),
+                                                controlAffinity:
+                                                    ListTileControlAffinity
+                                                        .leading,
+                                                trailing: Text(
+                                                    loadController
+                                                        .loadingDataList[index]
+                                                        .container
+                                                        .toString(),
+                                                    style: const TextStyle(
+                                                        fontSize: 15.0)),
+                                                children: [
+                                                  Padding(
+                                                    padding: const EdgeInsets
+                                                            .symmetric(
+                                                        vertical: 8.0,
+                                                        horizontal: 8),
+                                                    child: Column(
+                                                      children: [
+                                                        Row(
+                                                          children: [
+                                                            Expanded(
+                                                              child: Column(
+                                                                children: [
+                                                                  const NormalText(
+                                                                    text:
+                                                                        "Weight",
+                                                                    size: 12.0,
+                                                                    color: Colors
+                                                                        .black,
+                                                                  ),
+                                                                  TextField(
+                                                                    expands:
+                                                                        false,
+                                                                    decoration: InputDecoration(
+                                                                        hintText: loadController
+                                                                            .loadingDataList[
+                                                                                index]
+                                                                            .weight
+                                                                            .toString(),
+                                                                        border: OutlineInputBorder(
+                                                                            borderSide: const BorderSide(
+                                                                                width: 2.0,
+                                                                                style: BorderStyle.solid,
+                                                                                color: Colors.black),
+                                                                            borderRadius: BorderRadius.circular(9))),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                            const SizedBox(
+                                                              width: 5,
+                                                            ),
+                                                            Expanded(
+                                                              child: Column(
+                                                                children: [
+                                                                  const NormalText(
+                                                                    text:
+                                                                        "IMCO",
+                                                                    size: 12.0,
+                                                                    color: Colors
+                                                                        .black,
+                                                                  ),
+                                                                  TextField(
+                                                                    expands:
+                                                                        false,
+                                                                    decoration: InputDecoration(
+                                                                        hintText: loadController
+                                                                            .loadingDataList[
+                                                                                index]
+                                                                            .imco,
+                                                                        border: OutlineInputBorder(
+                                                                            borderSide: const BorderSide(
+                                                                                width: 2.0,
+                                                                                style: BorderStyle.solid,
+                                                                                color: Colors.black),
+                                                                            borderRadius: BorderRadius.circular(9))),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                            const SizedBox(
+                                                              width: 5,
+                                                            ),
+                                                            Expanded(
+                                                              child: Column(
+                                                                children: [
+                                                                  const NormalText(
+                                                                    text:
+                                                                        "Status",
+                                                                    size: 12.0,
+                                                                    color: Colors
+                                                                        .black,
+                                                                  ),
+                                                                  TextField(
+                                                                    expands:
+                                                                        false,
+                                                                    decoration: InputDecoration(
+                                                                        hintText: loadController
+                                                                            .loadingDataList[
+                                                                                index]
+                                                                            .status,
+                                                                        border: OutlineInputBorder(
+                                                                            borderSide: const BorderSide(
+                                                                                width: 2.0,
+                                                                                style: BorderStyle.solid,
+                                                                                color: Colors.black),
+                                                                            borderRadius: BorderRadius.circular(9))),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                        const SizedBox(
+                                                          height: 5,
+                                                        ),
+                                                        Row(
+                                                          children: [
+                                                            Expanded(
+                                                              child: Column(
+                                                                children: [
+                                                                  const NormalText(
+                                                                    text:
+                                                                        "STOW",
+                                                                    size: 12.0,
+                                                                    color: Colors
+                                                                        .black,
+                                                                  ),
+                                                                  TextField(
+                                                                    expands:
+                                                                        false,
+                                                                    decoration: InputDecoration(
+                                                                        hintText: loadController
+                                                                            .loadingDataList[
+                                                                                index]
+                                                                            .stow,
+                                                                        border: OutlineInputBorder(
+                                                                            borderSide: const BorderSide(
+                                                                                width: 2.0,
+                                                                                style: BorderStyle.solid,
+                                                                                color: Colors.black),
+                                                                            borderRadius: BorderRadius.circular(9))),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                            const SizedBox(
+                                                              width: 5,
+                                                            ),
+                                                            Expanded(
+                                                              child: Column(
+                                                                children: [
+                                                                  const NormalText(
+                                                                    text:
+                                                                        "Remark",
+                                                                    size: 12.0,
+                                                                    color: Colors
+                                                                        .black,
+                                                                  ),
+                                                                  TextField(
+                                                                    expands:
+                                                                        false,
+                                                                    decoration: InputDecoration(
+                                                                        hintText: loadController
+                                                                            .loadingDataList[
+                                                                                index]
+                                                                            .remark,
+                                                                        border: OutlineInputBorder(
+                                                                            borderSide: const BorderSide(
+                                                                                width: 2.0,
+                                                                                style: BorderStyle.solid,
+                                                                                color: Colors.black),
+                                                                            borderRadius: BorderRadius.circular(9))),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                            const SizedBox(
+                                                              width: 5,
+                                                            ),
+                                                            Expanded(
+                                                              child: Column(
+                                                                children: [
+                                                                  const NormalText(
+                                                                    text:
+                                                                        "Transportation",
+                                                                    size: 12.0,
+                                                                    color: Colors
+                                                                        .black,
+                                                                  ),
+                                                                  TextField(
+                                                                    expands:
+                                                                        false,
+                                                                    decoration: InputDecoration(
+                                                                        hintText: loadController
+                                                                            .loadingDataList[
+                                                                                index]
+                                                                            .trans,
+                                                                        border: OutlineInputBorder(
+                                                                            borderSide: const BorderSide(
+                                                                                width: 2.0,
+                                                                                style: BorderStyle.solid,
+                                                                                color: Colors.black),
+                                                                            borderRadius: BorderRadius.circular(9))),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  )
+                                                ],
+                                              );
+                                            }),
+                                      ),
+                                  ],
+                                )
+                              : Center(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(top: 15.0),
+                                    child: Column(
+                                      children: [
+                                        SemiWeighText(
+                                            text: "No Data Found",
+                                            size: 18.0,
+                                            color: AppColor.textColor)
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                        ))
                   ],
                 ),
               ),

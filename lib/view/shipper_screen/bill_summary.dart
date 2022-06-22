@@ -37,6 +37,7 @@ class BillSummary extends StatelessWidget {
                     child: Column(
                       children: [
                         Form(
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
                           key: bController.myOurKey,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -74,7 +75,14 @@ class BillSummary extends StatelessWidget {
                                   size: 18,
                                   color: AppColor.textColor),
                               SizeBox.customHeight(8),
-                              TextField(
+                              TextFormField(
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return "Please Select date";
+                                  } else {
+                                    return null;
+                                  }
+                                },
                                 controller: bController.billSumToDate,
                                 decoration: InputDecoration(
                                     hintText: "Select the date",
@@ -90,36 +98,20 @@ class BillSummary extends StatelessWidget {
                                     )),
                               ),
                               SizeBox.customHeight(8),
-                              WeightText(
-                                  text: "Reference No",
-                                  size: 18,
-                                  color: AppColor.textColor),
-                              SizeBox.customHeight(8),
-                              Container(
-                                  padding: const EdgeInsets.all(2.0),
-                                  margin: const EdgeInsets.all(2.0),
-                                  height: height,
-                                  width: width,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      border: Border.all(
-                                          color: AppColor.black,
-                                          style: BorderStyle.solid,
-                                          width: 1.0)),
-                                  child: const TextField(
-                                      cursorColor: Colors.black,
-                                      decoration: InputDecoration(
-                                        hintText: "Enter Quantity",
-                                        border: OutlineInputBorder(
-                                            borderSide: BorderSide.none),
-                                      ))),
                             ],
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 10.0, bottom: 10),
                           child: InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              final isValid = bController.myOurKey.currentState;
+                              if (isValid!.validate()) {
+                                showModalBottomSheet(
+                                    context: Get.context!,
+                                    builder: (context) => buildSheet());
+                              }
+                            },
                             child: Center(
                               child: Container(
                                   alignment: Alignment.center,
@@ -333,4 +325,149 @@ class BillSummary extends StatelessWidget {
       ),
     );
   }
+}
+
+buildSheet() {
+  BillSummaryController bController = Get.find();
+  return Container(
+      height: 500,
+      padding: const EdgeInsets.all(2),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(9),
+      ),
+      child: Obx(() => bController.myListWithDate.isNotEmpty
+          ? ListView.builder(
+              scrollDirection: Axis.vertical,
+              itemCount: bController.myListWithDate.length,
+              itemBuilder: (context, index) {
+                String invoiceDate =
+                    bController.myListWithDate[index].billdate.toString();
+                String billDate =
+                    bController.myListWithDate[index].bldate.toString();
+                return Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: Card(
+                    shadowColor: Colors.orange,
+                    elevation: 5,
+                    shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(15))),
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          top: 15.0, left: 10, bottom: 5.0),
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              NormalText(
+                                  text:
+                                      'Vessel : ${bController.myListWithDate[index].vesselname}',
+                                  size: 15.0,
+                                  color: Colors.black),
+                              const Icon(Icons.arrow_right_alt_outlined),
+                              NormalText(
+                                  text:
+                                      'Voyage : ${bController.myListWithDate[index].voyage}',
+                                  size: 15.0,
+                                  color: Colors.black),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              NormalText(
+                                  text:
+                                      'Invoice No : ${bController.myListWithDate[index].billno.toString()}',
+                                  size: 15.0,
+                                  color: Colors.black),
+                              const Icon(Icons.arrow_right_alt_outlined),
+                              NormalText(
+                                  text:
+                                      'Invoice Date : ${invoiceDate.substring(0, 10)}',
+                                  size: 15.0,
+                                  color: Colors.black),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              NormalText(
+                                  text:
+                                      'BL No : ${bController.myListWithDate[index].blno.toString()}',
+                                  size: 15.0,
+                                  color: Colors.black),
+                              const Icon(Icons.arrow_right_alt_outlined),
+                              NormalText(
+                                  text: 'Bl Date: ${billDate.substring(0, 10)}',
+                                  size: 15.0,
+                                  color: Colors.black),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              const NormalText(
+                                  text: 'Total Amount : ',
+                                  size: 15.0,
+                                  color: Colors.black),
+                              const Icon(Icons.arrow_right_alt_outlined),
+                              NormalText(
+                                  text:
+                                      '${bController.myListWithDate[index].billtotals}',
+                                  size: 15.0,
+                                  color: Colors.black),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              const NormalText(
+                                  text: 'Payment Amount : ',
+                                  size: 15.0,
+                                  color: Colors.black),
+                              const Icon(Icons.arrow_right_alt_outlined),
+                              NormalText(
+                                  text:
+                                      '${bController.myListWithDate[index].payamt}',
+                                  size: 15.0,
+                                  color: Colors.black),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              const NormalText(
+                                  text: 'Balance Amount : ',
+                                  size: 15.0,
+                                  color: Colors.black),
+                              const Icon(Icons.arrow_right_alt_outlined),
+                              NormalText(
+                                  text: bController.myListWithDate[index].balamt
+                                      .toString(),
+                                  size: 15.0,
+                                  color: Colors.black),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              const NormalText(
+                                  text: 'TDS Amount : ',
+                                  size: 15.0,
+                                  color: Colors.black),
+                              const Icon(Icons.arrow_right_alt_outlined),
+                              NormalText(
+                                  text: bController.myListWithDate[index].tdsamt
+                                      .toString(),
+                                  size: 15.0,
+                                  color: Colors.black),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              })
+          : Center(
+              child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: SemiWeighText(
+                  text: "No Data Found please check the date range",
+                  size: 18.0,
+                  color: AppColor.textColor),
+            ))));
 }

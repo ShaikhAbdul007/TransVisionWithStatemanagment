@@ -1,21 +1,19 @@
 import 'dart:convert';
-
 import 'package:get/get.dart';
-
 import 'package:http/http.dart' as http;
-import 'package:tranvision_customer_app/model/lading/voyage_model.dart';
+import 'package:tranvision_customer_app/model/loading_list_model/voyage_model.dart';
 
 class VoyageController extends GetxController {
   var voyageList = <Voyage>[].obs;
-  final dynamic _selectedvalue = "".obs;
-  dynamic get updatedSelectedValue => _selectedvalue.value;
+  dynamic selectedvalue;
+
   setValue(value) {
-    _selectedvalue.value = value;
+    selectedvalue = value;
   }
 
   Future<List<Voyage>> getVoyageApi(dynamic value) async {
     final response = await http.get(Uri.parse(
-        "http://192.168.1.143:9999/TSVAPI/sqlinterface.svc/voyagename?partycode=P1210&vesselname=$value"));
+        "http://portal.transvisionshipping.com:9999/TSVAPI/sqlinterface.svc/voyagename?partycode=P1210&vesselname=SUN007"));
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       voyageList.value = [];
