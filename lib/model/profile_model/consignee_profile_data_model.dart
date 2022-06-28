@@ -1,5 +1,3 @@
-//
-
 /// add1 : "160HARE STREET 1ST FLOOR "
 /// add2 : "ROOM NO 1&amp;amp;160"
 /// add3 : ""
@@ -13,7 +11,7 @@
 /// email1 : "kamalplpl10@gmail.com"
 /// email2 : ""
 /// firmno : "123"
-/// fyr : "2021-2022"
+/// fyr : "2022-2023"
 /// gstno : "07AAECP4817B1ZQ"
 /// mail : "Y"
 /// mobno : "3340056413"
@@ -27,8 +25,8 @@
 /// staxno : "AAECP4817B"
 /// username : "C16"
 
-class ProfileModel {
-  ProfileModel({
+class Userdetails {
+  Userdetails({
     String? add1,
     String? add2,
     String? add3,
@@ -84,7 +82,7 @@ class ProfileModel {
     _username = username;
   }
 
-  ProfileModel.fromJson(dynamic json) {
+  Userdetails.fromJson(dynamic json) {
     _add1 = json['add1'];
     _add2 = json['add2'];
     _add3 = json['add3'];
@@ -138,7 +136,7 @@ class ProfileModel {
   String? _statecode;
   String? _staxno;
   String? _username;
-  ProfileModel copyWith({
+  Userdetails copyWith({
     String? add1,
     String? add2,
     String? add3,
@@ -166,7 +164,7 @@ class ProfileModel {
     String? staxno,
     String? username,
   }) =>
-      ProfileModel(
+      Userdetails(
         add1: add1 ?? _add1,
         add2: add2 ?? _add2,
         add3: add3 ?? _add3,

@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:tranvision_customer_app/controller/other_utils_Controller/dropdown_controller/loading_controller/destination_controller.dart';
 
 class DestinationPort extends StatelessWidget {
   final List<dynamic> listItems;
   final dynamic destinationValue;
+  final Function(dynamic value) notifyParent;
   const DestinationPort(
-      {Key? key, required this.listItems, this.destinationValue})
+      {Key? key,
+      required this.listItems,
+      this.destinationValue,
+      required this.notifyParent})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    DestinationController destinationController =
-        Get.put(DestinationController());
     return Container(
       padding: const EdgeInsets.all(10.0),
       margin: const EdgeInsets.all(10.0),
@@ -36,7 +36,7 @@ class DestinationPort extends StatelessWidget {
                 color: Colors.black, fontSize: 16, fontWeight: FontWeight.w600),
           ),
           onChanged: (value) {
-            destinationController.destinationValue = value;
+            notifyParent(value);
           },
         ),
       ),

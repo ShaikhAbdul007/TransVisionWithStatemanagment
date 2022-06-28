@@ -1,53 +1,71 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:tranvision_customer_app/controller/myProfileController/consignee_profile_controller.dart';
+import 'package:tranvision_customer_app/utils/constant/colors.dart';
+import 'package:tranvision_customer_app/utils/constant/sized_box.dart';
 import 'package:tranvision_customer_app/utils/constant/text.dart';
 
-class ContactedPerson extends StatelessWidget {
-  const ContactedPerson({Key? key}) : super(key: key);
+class ConsigneeContactedPerson extends StatelessWidget {
+  const ConsigneeContactedPerson({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    ConsigneeController consigneeContantedPerson =
+        Get.put(ConsigneeController());
     return Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          backgroundColor: Colors.orange[300],
-          title: const WeightText(
-              text: "Contacted Person", size: 20.0, color: Colors.black),
-          centerTitle: true,
-        ),
         body: ListView(
           children: [
             Column(children: [
               Image.asset("assets/images/contact.png"),
-              const WeightText(
-                  text: "Contact Person", size: 25.0, color: Colors.black),
+              WeightText(
+                  text: "Contact Person",
+                  size: 25.0,
+                  color: AppColor.textColor),
               Padding(
                 padding:
                     const EdgeInsets.only(left: 10.0, right: 10.0, top: 15.0),
                 child: Column(
                   children: [
-                    TextField(
-                      readOnly: true,
-                      cursorColor: Colors.black,
-                      decoration: InputDecoration(
-                          // labelText: "Contacted person",
-                          hintText: "contactperson",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                          )),
-                    ),
-                    const SizedBox(
-                      height: 20.0,
-                    ),
-                    TextField(
-                      readOnly: true,
-                      cursorColor: Colors.black,
-                      decoration: InputDecoration(
-                          // labelText: "Mobile No",
-                          hintText: "contno",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                          )),
-                    ),
+                    FutureBuilder(
+                        future: consigneeContantedPerson.getuserDetailsApi(),
+                        builder:
+                            (BuildContext context, AsyncSnapshot snapshot) {
+                          if (snapshot.hasData) {
+                            return TextField(
+                              readOnly: true,
+                              cursorColor: Colors.black,
+                              decoration: InputDecoration(
+                                  // labelText: "Contacted person",
+                                  hintText: snapshot.data.contactperson,
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(15),
+                                  )),
+                            );
+                          } else {
+                            return const CircularProgressIndicator();
+                          }
+                        }),
+                    SizeBox.customHeight(20),
+                    FutureBuilder(
+                        future: consigneeContantedPerson.getuserDetailsApi(),
+                        builder:
+                            (BuildContext context, AsyncSnapshot snapshot) {
+                          if (snapshot.hasData) {
+                            return TextField(
+                              readOnly: true,
+                              cursorColor: Colors.black,
+                              decoration: InputDecoration(
+                                  // labelText: "Contacted person",
+                                  hintText: snapshot.data.contno,
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(15),
+                                  )),
+                            );
+                          } else {
+                            return const CircularProgressIndicator();
+                          }
+                        }),
                     Padding(
                       padding: const EdgeInsets.only(
                           left: 25.0, right: 25.0, bottom: 10.0, top: 50.0),

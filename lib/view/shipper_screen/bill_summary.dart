@@ -10,8 +10,8 @@ class BillSummary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height / 13;
-    final width = MediaQuery.of(context).size.width;
+    // final height = MediaQuery.of(context).size.height / 13;
+    // final width = MediaQuery.of(context).size.width;
     BillSummaryController bController = Get.put(BillSummaryController());
     return Scaffold(
       appBar: AppBar(
@@ -37,6 +37,7 @@ class BillSummary extends StatelessWidget {
                     child: Column(
                       children: [
                         Form(
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
                           key: bController.myOurKey,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -74,7 +75,14 @@ class BillSummary extends StatelessWidget {
                                   size: 18,
                                   color: AppColor.textColor),
                               SizeBox.customHeight(8),
-                              TextField(
+                              TextFormField(
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return "Please Select date";
+                                  } else {
+                                    return null;
+                                  }
+                                },
                                 controller: bController.billSumToDate,
                                 decoration: InputDecoration(
                                     hintText: "Select the date",
@@ -90,36 +98,21 @@ class BillSummary extends StatelessWidget {
                                     )),
                               ),
                               SizeBox.customHeight(8),
-                              WeightText(
-                                  text: "Reference No",
-                                  size: 18,
-                                  color: AppColor.textColor),
-                              SizeBox.customHeight(8),
-                              Container(
-                                  padding: const EdgeInsets.all(2.0),
-                                  margin: const EdgeInsets.all(2.0),
-                                  height: height,
-                                  width: width,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      border: Border.all(
-                                          color: AppColor.black,
-                                          style: BorderStyle.solid,
-                                          width: 1.0)),
-                                  child: const TextField(
-                                      cursorColor: Colors.black,
-                                      decoration: InputDecoration(
-                                        hintText: "Enter Quantity",
-                                        border: OutlineInputBorder(
-                                            borderSide: BorderSide.none),
-                                      ))),
                             ],
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 10.0, bottom: 10),
                           child: InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              final isValid = bController.myOurKey.currentState;
+                              if (isValid!.validate()) {
+                                showModalBottomSheet(
+                                    context: Get.context!,
+                                    builder: (context) =>
+                                        bController.buildSheet());
+                              }
+                            },
                             child: Center(
                               child: Container(
                                   alignment: Alignment.center,

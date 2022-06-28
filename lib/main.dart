@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tranvision_customer_app/utils/component/consignee_bottom_navigation.dart';
 import 'package:tranvision_customer_app/utils/component/shipper_bottom_navigation.dart';
-import 'package:tranvision_customer_app/utils/component/drawer.dart';
+import 'package:tranvision_customer_app/utils/component/Shipper_drawer.dart';
 import 'package:tranvision_customer_app/view/auth_screen/login_screen.dart';
-import 'package:tranvision_customer_app/view/auth_screen/reset_password.dart';
+import 'package:tranvision_customer_app/view/auth_screen/shipper_reset_password.dart';
 import 'package:tranvision_customer_app/view/consignee_screen/damage_invoice.dart';
 import 'package:tranvision_customer_app/view/consignee_screen/detention_invoice.dart';
 import 'package:tranvision_customer_app/view/consignee_screen/do_slip.dart';
 import 'package:tranvision_customer_app/view/consignee_screen/import_invoice.dart';
 import 'package:tranvision_customer_app/view/consignee_screen/security_invoice.dart';
+import 'package:tranvision_customer_app/view/profile_screen/consignee_address.dart';
 import 'package:tranvision_customer_app/view/shipper_screen/bill_of_landing/bill_of_lading.dart';
 import 'package:tranvision_customer_app/view/shipper_screen/bill_of_landing/bl_details.dart';
 import 'package:tranvision_customer_app/view/shipper_screen/bill_of_landing/home.dart';
@@ -37,11 +39,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.orange,
       ),
-      initialRoute: '/nav',
+      initialRoute: '/login',
       getPages: [
         GetPage(name: "/login", page: () => const LoginPage()),
-        GetPage(name: "/reset", page: () => const ResetPassword()),
-        //GetPage(name: "/address", page: () => const AddressPage()),
+        GetPage(name: "/reset", page: () => const ShipperResetPassword()),
+        GetPage(name: "/address", page: () => const AddressPage()),
         GetPage(name: "/sds", page: () => const SDoSlip()),
         GetPage(name: "/ll", page: () => const LoadingList()),
         GetPage(name: "/bs", page: () => const BillSummary()),
@@ -59,6 +61,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: "/book", page: () => const BookingPage()),
         GetPage(name: "/booking", page: () => const BookingSecondPage()),
         GetPage(name: "/bol", page: () => const BillOfLading()),
+        GetPage(name: "/cbn", page: () => const ConsigneeBottomNavigation()),
       ],
       // home: const LoginPage(),
     );

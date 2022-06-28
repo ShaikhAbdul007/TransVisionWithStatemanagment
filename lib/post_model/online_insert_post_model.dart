@@ -14,9 +14,9 @@
 /// unno : ""
 /// weight : "14"
 
-class PostDataModel {
-  PostDataModel({
-    String? classs,
+class BookingResDataModel {
+  BookingResDataModel({
+    num? classs,
     String? commodity,
     String? freight,
     String? icdfrom,
@@ -49,7 +49,7 @@ class PostDataModel {
     _weight = weight;
   }
 
-  PostDataModel.fromJson(dynamic json) {
+  BookingResDataModel.fromJson(dynamic json) {
     _classs = json['classs'];
     _commodity = json['commodity'];
     _freight = json['freight'];
@@ -66,7 +66,7 @@ class PostDataModel {
     _unno = json['unno'];
     _weight = json['weight'];
   }
-  String? _classs;
+  num? _classs;
   String? _commodity;
   String? _freight;
   String? _icdfrom;
@@ -81,8 +81,8 @@ class PostDataModel {
   String? _type;
   String? _unno;
   String? _weight;
-  PostDataModel copyWith({
-    String? classs,
+  BookingResDataModel copyWith({
+    num? classs,
     String? commodity,
     String? freight,
     String? icdfrom,
@@ -98,7 +98,7 @@ class PostDataModel {
     String? unno,
     String? weight,
   }) =>
-      PostDataModel(
+      BookingResDataModel(
         classs: classs ?? _classs,
         commodity: commodity ?? _commodity,
         freight: freight ?? _freight,
@@ -115,7 +115,7 @@ class PostDataModel {
         unno: unno ?? _unno,
         weight: weight ?? _weight,
       );
-  String? get classs => _classs;
+  num? get classs => _classs;
   String? get commodity => _commodity;
   String? get freight => _freight;
   String? get icdfrom => _icdfrom;

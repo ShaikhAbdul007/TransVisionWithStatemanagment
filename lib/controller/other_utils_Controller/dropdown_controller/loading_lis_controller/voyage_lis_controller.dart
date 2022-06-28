@@ -1,21 +1,25 @@
 import 'dart:convert';
-
 import 'package:get/get.dart';
-
 import 'package:http/http.dart' as http;
-import 'package:tranvision_customer_app/model/lading/voyage_model.dart';
+import 'package:tranvision_customer_app/api_services/loading_list_api.dart';
+import 'package:tranvision_customer_app/controller/other_utils_Controller/dropdown_controller/loading_lis_controller/vessel_lis_controller.dart';
+import 'package:tranvision_customer_app/model/loading_list_model/voyage_model.dart';
+import 'package:tranvision_customer_app/shared_preferences/shared_preference.dart';
 
 class VoyageController extends GetxController {
   var voyageList = <Voyage>[].obs;
-  final dynamic _selectedvalue = "".obs;
-  dynamic get updatedSelectedValue => _selectedvalue.value;
+  dynamic selectedvalue;
+  VesselController vesselController = Get.put(VesselController());
+  UserLoginDetails userLoginDetails = UserLoginDetails();
+
   setValue(value) {
-    _selectedvalue.value = value;
+    selectedvalue = value;
   }
 
   Future<List<Voyage>> getVoyageApi(dynamic value) async {
-    final response = await http.get(Uri.parse(
-        "http://192.168.1.143:9999/TSVAPI/sqlinterface.svc/voyagename?partycode=P1210&vesselname=$value"));
+    var username = userLoginDetails.retriveUserNameFromGetStrogare();
+    final response =
+        await http.get(Uri.parse(LoadingListApi.voyageUrl(username, value)));
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       voyageList.value = [];

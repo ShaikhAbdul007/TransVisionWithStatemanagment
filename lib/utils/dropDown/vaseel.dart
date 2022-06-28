@@ -3,13 +3,16 @@ import 'package:flutter/material.dart';
 class VesselDrop extends StatelessWidget {
   final List<dynamic> listItems;
   final Function(dynamic value) notifyParent;
+  final dynamic vesselNewValue;
   const VesselDrop(
-      {Key? key, required this.listItems, required this.notifyParent})
+      {Key? key,
+      required this.listItems,
+      required this.notifyParent,
+      this.vesselNewValue})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    dynamic selectedIcdFromValue;
     return Container(
       padding: const EdgeInsets.all(10.0),
       margin: const EdgeInsets.all(10.0),
@@ -19,7 +22,7 @@ class VesselDrop extends StatelessWidget {
       child: DropdownButtonHideUnderline(
         child: DropdownButton<dynamic>(
           isExpanded: true,
-          value: selectedIcdFromValue,
+          value: vesselNewValue,
           style: const TextStyle(color: Colors.black),
           items: listItems.map<DropdownMenuItem<dynamic>>((dynamic item) {
             return DropdownMenuItem<dynamic>(

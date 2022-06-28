@@ -5,7 +5,12 @@ import 'package:tranvision_customer_app/controller/other_utils_Controller/dropdo
 class Type extends StatelessWidget {
   final List<dynamic> listItems;
   final dynamic selectedType;
-  const Type({Key? key, required this.listItems, this.selectedType})
+  final Function(dynamic value) notifyparent;
+  const Type(
+      {Key? key,
+      required this.listItems,
+      this.selectedType,
+      required this.notifyparent})
       : super(key: key);
 
   @override
@@ -34,7 +39,7 @@ class Type extends StatelessWidget {
                 color: Colors.black, fontSize: 16, fontWeight: FontWeight.w600),
           ),
           onChanged: (value) {
-            typeController.selectedtype = value;
+            notifyparent(value);
           },
         ),
       ),

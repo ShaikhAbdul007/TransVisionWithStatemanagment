@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tranvision_customer_app/view/auth_screen/contacted_person.dart';
-import 'package:tranvision_customer_app/view/auth_screen/reset_password.dart';
-import 'package:tranvision_customer_app/view/profile_screen/address.dart';
+import 'package:tranvision_customer_app/view/auth_screen/shipper_contacted_person.dart';
+import 'package:tranvision_customer_app/view/auth_screen/shipper_reset_password.dart';
+import 'package:tranvision_customer_app/view/profile_screen/shipper_adress.dart';
 import 'package:tranvision_customer_app/view/shipper_screen/dashboard_screen.dart';
 import '../../controller/other_utils_Controller/utilsController/bottom_navigation_controller.dart';
 
@@ -13,9 +13,9 @@ class MyBottomNavigation extends StatelessWidget {
   Widget build(BuildContext context) {
     final screen = [
       const DashBoard(),
-      // const AddressPage(),
-      const ContactedPerson(),
-      const ResetPassword(),
+      const ShipperAddressPage(),
+      const ShipperContactedPerson(),
+      const ShipperResetPassword(),
     ];
     MyBottomController navBottomController = Get.put(MyBottomController());
     return Scaffold(

@@ -5,8 +5,8 @@ import 'package:tranvision_customer_app/utils/constant/sized_box.dart';
 import 'package:tranvision_customer_app/utils/constant/text.dart';
 import '../../controller/authController/reset_password_controller.dart';
 
-class ResetPassword extends StatelessWidget {
-  const ResetPassword({Key? key}) : super(key: key);
+class ShipperResetPassword extends StatelessWidget {
+  const ShipperResetPassword({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

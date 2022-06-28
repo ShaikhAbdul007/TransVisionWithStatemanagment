@@ -1,7 +1,8 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
-import 'package:tranvision_customer_app/api_services/api_services.dart';
+import 'package:tranvision_customer_app/api_services/shipper_api.dart';
+import 'package:tranvision_customer_app/api_services/pols_api.dart';
 import 'package:tranvision_customer_app/controller/other_utils_Controller/dropdown_controller/loading_controller/destination_controller.dart';
 import 'package:tranvision_customer_app/model/loading_model/loadingport.dart';
 
@@ -11,12 +12,6 @@ class LoadingController extends GetxController {
   var loadingList = <Loadingport>[].obs;
   dynamic loadingPortValue;
 
-  updatedLoadingPort(dynamic value) {
-    loadingPortValue = value;
-    destinationConrtroller.destinationValue = null;
-    destinationConrtroller.getDestinationApi(value);
-  }
-
   @override
   void onInit() {
     super.onInit();
@@ -24,7 +19,7 @@ class LoadingController extends GetxController {
   }
 
   Future<RxList<Loadingport>> getLoadingPortApi() async {
-    final response = await http.get(Uri.parse(ApiServices.polUrls));
+    final response = await http.get(Uri.parse(PolApi.polUrls));
     var data = jsonDecode(response.body);
     if (response.statusCode == 200) {
       loadingList.value = [];

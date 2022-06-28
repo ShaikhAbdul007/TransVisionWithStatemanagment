@@ -8,6 +8,7 @@ import 'package:tranvision_customer_app/controller/other_utils_Controller/dropdo
 import 'package:tranvision_customer_app/controller/other_utils_Controller/dropdown_controller/size/size_controller.dart';
 import 'package:tranvision_customer_app/controller/other_utils_Controller/dropdown_controller/type/type_controller.dart';
 import 'package:tranvision_customer_app/controller/shipperController/booking_controller/booking_page_controller.dart';
+import 'package:tranvision_customer_app/shared_preferences/shared_preference.dart';
 import 'package:tranvision_customer_app/utils/constant/colors.dart';
 import 'package:tranvision_customer_app/utils/constant/sized_box.dart';
 import 'package:tranvision_customer_app/utils/constant/text.dart';
@@ -20,9 +21,14 @@ import 'package:tranvision_customer_app/utils/dropDown/size.dart';
 import 'package:tranvision_customer_app/utils/dropDown/type.dart';
 import 'package:tranvision_customer_app/view/shipper_screen/booking_screen/booking_second_page.dart';
 
-class BookingPage extends StatelessWidget {
+class BookingPage extends StatefulWidget {
   const BookingPage({Key? key}) : super(key: key);
 
+  @override
+  State<BookingPage> createState() => _BookingPageState();
+}
+
+class _BookingPageState extends State<BookingPage> {
   @override
   Widget build(BuildContext context) {
     SizeController sController = Get.put(SizeController());
@@ -38,14 +44,13 @@ class BookingPage extends StatelessWidget {
     Controller c = Get.put(Controller());
 
     return Scaffold(
-      appBar: AppBar(
-        title:
-            WeightText(color: AppColor.black, text: 'Booking Page', size: 20),
-        centerTitle: true,
-        elevation: 1.0,
-      ),
-      body: ListView(
-        children: [
+        appBar: AppBar(
+          title:
+              WeightText(color: AppColor.black, text: 'Booking Page', size: 20),
+          centerTitle: true,
+          elevation: 1.0,
+        ),
+        body: ListView(children: [
           Padding(
             padding: const EdgeInsets.only(top: 8.0, left: 5, right: 5),
             child: Column(
@@ -63,7 +68,13 @@ class BookingPage extends StatelessWidget {
                     Obx(() => icdController.icdList.isNotEmpty
                         ? IcdFrom(
                             listItems: icdController.icdList,
-                            notifyParent: icdController.updatedIcdFromValue,
+                            notifyParent: (value) {
+                              setState(() {
+                                icdController.icdFromValue = value;
+                              });
+                              icdToController.icdToValue = null;
+                              icdToController.fetchIcdToPort(value);
+                            },
                             selectedIcdFromValue: icdController.icdFromValue,
                           )
                         : const Center(
@@ -79,9 +90,15 @@ class BookingPage extends StatelessWidget {
                     Obx(() => loadingController.loadingList.isNotEmpty
                         ? LoadingPort(
                             listItems: loadingController.loadingList,
-                            notifyParent: loadingController.updatedLoadingPort,
                             loadingPortValue:
                                 loadingController.loadingPortValue,
+                            notifyParent: (value) {
+                              setState(() {
+                                loadingController.loadingPortValue = value;
+                              });
+                              destinationController.destinationValue = null;
+                              destinationController.getDestinationApi(value);
+                            },
                           )
                         : const Center(
                             child: CircularProgressIndicator(),
@@ -96,9 +113,18 @@ class BookingPage extends StatelessWidget {
                     Obx(
                       () => destinationController.destinationList.isEmpty
                           ? DestinationPort(
+                              notifyParent: (value) {
+                                destinationController.destinationValue = value;
+                              },
                               listItems: destinationController.destinationList,
                             )
                           : DestinationPort(
+                              notifyParent: (value) {
+                                setState(() {
+                                  destinationController.destinationValue =
+                                      value;
+                                });
+                              },
                               listItems: destinationController.destinationList,
                               destinationValue:
                                   destinationController.destinationValue),
@@ -108,13 +134,22 @@ class BookingPage extends StatelessWidget {
                       child: BoldText(
                           text: "ICD To ", size: 18, color: AppColor.textColor),
                     ),
-                    Obx(() => icdToController.icdToList.isNotEmpty
+                    Obx(() => icdToController.icdToList.isEmpty
                         ? IcdTo(
                             listItems: icdToController.icdToList,
-                          )
+                            notifyParent: ((value) {
+                              setState(() {
+                                icdToController.icdToValue = value;
+                              });
+                            }))
                         : IcdTo(
                             listItems: icdToController.icdToList,
                             icdToValue: icdToController.icdToValue,
+                            notifyParent: ((value) {
+                              setState(() {
+                                icdToController.icdToValue = value;
+                              });
+                            }),
                           ))
                   ],
                 ),
@@ -170,7 +205,12 @@ class BookingPage extends StatelessWidget {
                           SizeDropDown(
                             selectedOption: sController.selectedOption,
                             listItems: sController.ourContainerSize,
-                            notifyParent: sController.sizeUpdated,
+                            notifyParent: (value) {
+                              setState(() {
+                                sController.selectedOption = value;
+                              });
+                              typeController.getTypeApi(value);
+                            },
                           ),
                         ],
                       ),
@@ -193,9 +233,19 @@ class BookingPage extends StatelessWidget {
                           Obx(
                             () => typeController.typeList.isNotEmpty
                                 ? Type(
+                                    notifyparent: (value) {
+                                      setState(() {
+                                        typeController.selectedtype = value;
+                                      });
+                                    },
                                     listItems: typeController.typeList,
                                     selectedType: typeController.selectedtype)
                                 : Type(
+                                    notifyparent: (value) {
+                                      setState(() {
+                                        typeController.selectedtype = value;
+                                      });
+                                    },
                                     listItems: typeController.typeList,
                                   ),
                           )
@@ -218,6 +268,9 @@ class BookingPage extends StatelessWidget {
                               listItems: commodity.commodity.value,
                               commodityValue: commodity.commodityValue,
                               notifyParent: (value) {
+                                setState(() {
+                                  commodity.commodityValue = value;
+                                });
                                 commodity.toggle(value);
                               },
                             ),
@@ -301,7 +354,7 @@ class BookingPage extends StatelessWidget {
                                             fontWeight: FontWeight.w500),
                                         border: OutlineInputBorder(
                                             borderSide: BorderSide.none),
-                                      )))
+                                      ))),
                             ],
                           ),
                         ),
@@ -309,42 +362,164 @@ class BookingPage extends StatelessWidget {
                     ),
                   ),
                 ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: BoldText(
+                                text: "Freight",
+                                size: 18,
+                                color: AppColor.textColor),
+                          ),
+                          Container(
+                              padding: const EdgeInsets.all(5.0),
+                              margin: const EdgeInsets.all(5.0),
+                              height: height,
+                              width: width,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  border: Border.all(
+                                      color: AppColor.black,
+                                      style: BorderStyle.solid,
+                                      width: 2.0)),
+                              child: TextField(
+                                  controller: c.freightcon,
+                                  cursorColor: Colors.black,
+                                  decoration: const InputDecoration(
+                                    hintText: "freight",
+                                    hintStyle: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w500),
+                                    border: OutlineInputBorder(
+                                        borderSide: BorderSide.none),
+                                  ))),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: BoldText(
+                                text: "Weight",
+                                size: 18,
+                                color: AppColor.textColor),
+                          ),
+                          Container(
+                              padding: const EdgeInsets.all(5.0),
+                              margin: const EdgeInsets.all(5.0),
+                              height: height,
+                              width: width,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  border: Border.all(
+                                      color: AppColor.black,
+                                      style: BorderStyle.solid,
+                                      width: 2.0)),
+                              child: TextField(
+                                  controller: c.weightcon,
+                                  cursorColor: Colors.black,
+                                  decoration: const InputDecoration(
+                                    hintText: "weight",
+                                    hintStyle: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w500),
+                                    border: OutlineInputBorder(
+                                        borderSide: BorderSide.none),
+                                  ))),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: BoldText(
+                                text: "Rate Agree",
+                                size: 18,
+                                color: AppColor.textColor),
+                          ),
+                          Container(
+                              padding: const EdgeInsets.all(5.0),
+                              margin: const EdgeInsets.all(5.0),
+                              height: height,
+                              width: width,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  border: Border.all(
+                                      color: AppColor.black,
+                                      style: BorderStyle.solid,
+                                      width: 2.0)),
+                              child: TextField(
+                                  controller: c.rtag,
+                                  cursorColor: Colors.black,
+                                  decoration: const InputDecoration(
+                                    hintText: "Rate",
+                                    hintStyle: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w500),
+                                    border: OutlineInputBorder(
+                                        borderSide: BorderSide.none),
+                                  ))),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                SizeBox.customHeight(12),
+                Padding(
+                  padding:
+                      const EdgeInsets.only(right: 20, left: 20, bottom: 10.0),
+                  child: Center(
+                    child: Container(
+                        padding: const EdgeInsets.all(1),
+                        height: 50,
+                        width: MediaQuery.of(context).size.width,
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(
+                                  Colors.orange[400])),
+                          onPressed: () {
+                            UserLoginDetails user = UserLoginDetails();
+                            var partycode =
+                                user.retriveUserNameFromGetStrogare();
+                            c.addListItem({
+                              "icdfrom": icdController.icdFromValue,
+                              "icdto": icdToController.icdToValue,
+                              "pol": loadingController.loadingPortValue,
+                              "pod": destinationController.destinationValue,
+                              "qty": c.ourCount.text.toString(),
+                              "size": sController.selectedOption.toString(),
+                              "type": typeController.selectedtype,
+                              "commodity": commodity.commodityValue,
+                              "classs":
+                                  commodity.ourCassController.text.toString(),
+                              "unno": commodity.unController.text.toString(),
+                              "weight": c.weightcon.text,
+                              "freight": c.freightcon.text,
+                              "rateagreedby": c.rtag.text,
+                              "partycode": partycode,
+                            });
+                            Get.to(() => const BookingSecondPage());
+                          },
+                          child: BoldText(
+                              text: "Next",
+                              size: 18,
+                              color: AppColor.textColor),
+                        )),
+                  ),
+                )
               ],
             ),
-          ),
-          SizeBox.customHeight(12),
-          Padding(
-            padding: const EdgeInsets.only(right: 20, left: 20, bottom: 10.0),
-            child: Center(
-              child: Container(
-                  padding: const EdgeInsets.all(1),
-                  height: 50,
-                  width: MediaQuery.of(context).size.width,
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(Colors.orange[400])),
-                    onPressed: () {
-                      Get.to(() => const BookingSecondPage(), arguments: [
-                        icdController.icdFromValue,
-                        icdToController.icdToValue,
-                        loadingController.loadingPortValue,
-                        destinationController.destinationValue,
-                        c.ourCount.text,
-                        sController.selectedOption,
-                        typeController.selectedtype,
-                        commodity.commodityValue,
-                        commodity.ourCassController.text,
-                        commodity.unController.text,
-                      ]);
-                    },
-                    child: BoldText(
-                        text: "Next", size: 18, color: AppColor.textColor),
-                  )),
-            ),
           )
-        ],
-      ),
-    );
+        ]));
   }
 }
