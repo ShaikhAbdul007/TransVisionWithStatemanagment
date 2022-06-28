@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:tranvision_customer_app/api_services/api_services.dart';
 import 'package:tranvision_customer_app/api_services/login_api.dart';
 import 'package:tranvision_customer_app/shared_preferences/shared_preference.dart';
+import 'package:tranvision_customer_app/utils/component/consignee_bottom_navigation.dart';
 import 'package:tranvision_customer_app/utils/component/shipper_bottom_navigation.dart';
 import 'package:http/http.dart' as http;
 import 'package:tranvision_customer_app/utils/constant/colors.dart';
@@ -42,7 +42,7 @@ class LoginController extends GetxController {
               forwardAnimationCurve: Curves.easeOutBack,
               dismissDirection: DismissDirection.vertical);
           await Future.delayed(const Duration(seconds: 3));
-          Get.to(() => const MyBottomNavigation());
+          Get.to(() => const ConsigneeBottomNavigation());
         } else if (jsonDecode(response.body)["loginResult"] ==
             "Shipper Login") {
           user.saveUserName(username.text);
