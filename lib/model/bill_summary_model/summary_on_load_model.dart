@@ -18,7 +18,7 @@ class SummaryOnLoad {
     String? bldate,
     int? blno,
     num? payamt,
-    int? tdsamt,
+    num? tdsamt,
     String? vesselname,
     String? voyage,
   }) {
@@ -53,7 +53,7 @@ class SummaryOnLoad {
   String? _bldate;
   int? _blno;
   num? _payamt;
-  int? _tdsamt;
+  num? _tdsamt;
   String? _vesselname;
   String? _voyage;
   SummaryOnLoad copyWith({
@@ -87,7 +87,7 @@ class SummaryOnLoad {
   String? get bldate => _bldate;
   int? get blno => _blno;
   num? get payamt => _payamt;
-  int? get tdsamt => _tdsamt;
+  num? get tdsamt => _tdsamt;
   String? get vesselname => _vesselname;
   String? get voyage => _voyage;
 

@@ -91,7 +91,9 @@ class LoginPage extends StatelessWidget {
             ),
             SizeBox.customHeight(15),
             InkWell(
-              onTap: () => logController.checkLogin(),
+              onTap: () {
+                logController.checkLogin();
+              },
               child: Container(
                 padding:
                     const EdgeInsets.symmetric(vertical: 10.0, horizontal: 5.0),

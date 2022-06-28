@@ -20,8 +20,6 @@ class ConsigneeDrawerController extends GetxController {
       case 3:
         Get.to(() => const ImportInvoice());
         break;
-      // case 4:
-      //   Get.to(()=> const BillOfLading());
     }
   }
 

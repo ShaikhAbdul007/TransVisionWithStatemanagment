@@ -239,8 +239,9 @@ buildSheet() {
               scrollDirection: Axis.vertical,
               itemCount: billOfLaddingHome.billOfLadingOnRefresh.length,
               itemBuilder: (context, index) {
-                String? date =
-                    billOfLaddingHome.billOfLadingOnRefresh[index].issueDate;
+                String date = billOfLaddingHome
+                    .billOfLadingOnRefresh[index].issuedate
+                    .toString();
                 String etdDate = billOfLaddingHome
                     .billOfLadingOnRefresh[index].etd
                     .toString();
@@ -259,13 +260,13 @@ buildSheet() {
                           children: [
                             NormalText(
                                 text:
-                                    'BL No :  ${billOfLaddingHome.billOfLadingOnRefresh[index].blNo.toString()}',
+                                    'BL No :  ${billOfLaddingHome.billOfLadingOnRefresh[index].blno}',
                                 size: 15.0,
                                 color: Colors.black),
                             const Icon(Icons.arrow_right_alt_outlined),
                             NormalText(
                                 text:
-                                    'Booking No :  ${billOfLaddingHome.billOfLadingOnRefresh[index].bookingNo}',
+                                    'Booking No :  ${billOfLaddingHome.billOfLadingOnRefresh[index].bookingno}',
                                 size: 15.0,
                                 color: Colors.black),
                           ],
@@ -274,7 +275,7 @@ buildSheet() {
                           children: [
                             NormalText(
                                 text:
-                                    'Issue Date:  ${date?.substring(0, 10).toString()}',
+                                    'Issue Date:  ${date.substring(0, 10).toString()}',
                                 size: 15.0,
                                 color: Colors.black),
                             const Icon(Icons.arrow_right_alt_outlined),
@@ -293,7 +294,7 @@ buildSheet() {
                             const Icon(Icons.arrow_right_alt_outlined),
                             NormalText(
                                 text:
-                                    '${billOfLaddingHome.billOfLadingOnRefresh[index].blAct}',
+                                    '${billOfLaddingHome.billOfLadingOnRefresh[index].blact}',
 
                                 //  billOfLaddingHome
                                 //     .billOfLadingOnRefresh[index].blAct
@@ -353,7 +354,7 @@ buildSheet() {
                                 color: Colors.black),
                             NormalText(
                                 text:
-                                    '${billOfLaddingHome.billOfLadingOnRefresh[index].podIs}',
+                                    '${billOfLaddingHome.billOfLadingOnRefresh[index].podis}',
                                 size: 15.0,
                                 color: Colors.black),
                           ],
