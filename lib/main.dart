@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tranvision_customer_app/utils/component/consignee_bottom_navigation.dart';
 import 'package:tranvision_customer_app/utils/component/shipper_bottom_navigation.dart';
@@ -33,37 +34,43 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: 'Transvision',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.orange,
-      ),
-      initialRoute: '/login',
-      getPages: [
-        GetPage(name: "/login", page: () => const LoginPage()),
-        GetPage(name: "/reset", page: () => const ShipperResetPassword()),
-        GetPage(name: "/address", page: () => const AddressPage()),
-        GetPage(name: "/sds", page: () => const SDoSlip()),
-        GetPage(name: "/ll", page: () => const LoadingList()),
-        GetPage(name: "/bs", page: () => const BillSummary()),
-        GetPage(name: "/br", page: () => const BookingReport()),
-        GetPage(name: "/blh", page: () => const BlHome()),
-        GetPage(name: "/bld", page: () => const BLDetails()),
-        GetPage(name: "/import", page: () => const ImportInvoice()),
-        GetPage(name: "/security", page: () => const SecurityInvoice()),
-        GetPage(name: "/detention", page: () => const DetentionInvoice()),
-        GetPage(name: "/damage", page: () => const DamageInvoice()),
-        GetPage(name: "/cds", page: () => const CDoSlip()),
-        GetPage(name: "/drawer", page: () => const MyDrawer()),
-        GetPage(name: "/dash", page: () => const DashBoard()),
-        GetPage(name: "/nav", page: () => const MyBottomNavigation()),
-        GetPage(name: "/book", page: () => const BookingPage()),
-        GetPage(name: "/booking", page: () => const BookingSecondPage()),
-        GetPage(name: "/bol", page: () => const BillOfLading()),
-        GetPage(name: "/cbn", page: () => const ConsigneeBottomNavigation()),
-      ],
-      // home: const LoginPage(),
+    return ScreenUtilInit(
+      designSize: const Size(360, 690),
+      builder: (context, child) {
+        return GetMaterialApp(
+          title: 'Transvision',
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            primarySwatch: Colors.orange,
+          ),
+          initialRoute: '/login',
+          getPages: [
+            GetPage(name: "/login", page: () => const LoginPage()),
+            GetPage(name: "/reset", page: () => const ShipperResetPassword()),
+            GetPage(name: "/address", page: () => const AddressPage()),
+            GetPage(name: "/sds", page: () => const SDoSlip()),
+            GetPage(name: "/ll", page: () => const LoadingList()),
+            GetPage(name: "/bs", page: () => const BillSummary()),
+            GetPage(name: "/br", page: () => const BookingReport()),
+            GetPage(name: "/blh", page: () => const BlHome()),
+            GetPage(name: "/bld", page: () => const BLDetails()),
+            GetPage(name: "/import", page: () => const ImportInvoice()),
+            GetPage(name: "/security", page: () => const SecurityInvoice()),
+            GetPage(name: "/detention", page: () => const DetentionInvoice()),
+            GetPage(name: "/damage", page: () => const DamageInvoice()),
+            GetPage(name: "/cds", page: () => const CDoSlip()),
+            GetPage(name: "/drawer", page: () => const MyDrawer()),
+            GetPage(name: "/dash", page: () => const DashBoard()),
+            GetPage(name: "/nav", page: () => const MyBottomNavigation()),
+            GetPage(name: "/book", page: () => const BookingPage()),
+            GetPage(name: "/booking", page: () => const BookingSecondPage()),
+            GetPage(name: "/bol", page: () => const BillOfLading()),
+            GetPage(
+                name: "/cbn", page: () => const ConsigneeBottomNavigation()),
+          ],
+          // home: const LoginPage(),
+        );
+      },
     );
   }
 }
