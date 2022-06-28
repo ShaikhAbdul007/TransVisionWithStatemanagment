@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:tranvision_customer_app/api_services/bill_of_ladding_api.dart';
@@ -11,7 +10,7 @@ import 'package:tranvision_customer_app/shared_preferences/shared_preference.dar
 class BillOfLaddingHome extends GetxController {
   BillOfLadding billofLadding = Get.find();
   var billOfLadingOnLoad = <BillOfLadingNew>[].obs;
-  var billOfLadingOnRefresh = <BlOfLadingOnRefresh>[].obs;
+  var billOfLadingOnRefresh = <BillOfLadingORefershModel>[].obs;
   UserLoginDetails userLoginDetails = UserLoginDetails();
 
   @override
@@ -36,7 +35,7 @@ class BillOfLaddingHome extends GetxController {
     return billOfLadingOnLoad;
   }
 
-  Future<List<BlOfLadingOnRefresh>> getBillOfLandingRefresh() async {
+  Future<List<BillOfLadingORefershModel>> getBillOfLandingRefresh() async {
     var username = userLoginDetails.retriveUserNameFromGetStrogare();
     final response = await http.get(Uri.parse(
         BillOfLaddingApi.billOfLaddingOnRefresh(username,
@@ -45,7 +44,7 @@ class BillOfLaddingHome extends GetxController {
     if (response.statusCode == 200) {
       billOfLadingOnRefresh.value = [];
       for (Map i in data) {
-        billOfLadingOnRefresh.add(BlOfLadingOnRefresh.fromJson(i));
+        billOfLadingOnRefresh.add(BillOfLadingORefershModel.fromJson(i));
       }
       return billOfLadingOnRefresh;
     }

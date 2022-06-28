@@ -16,12 +16,12 @@ class ReportController extends GetxController {
   var reportOnRefreshList = <ReportOnRefreshLoad>[].obs;
   final reportKey = GlobalKey<FormState>();
   UserLoginDetails userLoginDetails = UserLoginDetails();
-  var newList;
+
   @override
   void onInit() {
     super.onInit();
     getReportOnLoadApi();
-    newList = fetchreportonRefreshApi();
+    fetchreportonRefreshApi();
   }
 
   chooseFromDate() async {
