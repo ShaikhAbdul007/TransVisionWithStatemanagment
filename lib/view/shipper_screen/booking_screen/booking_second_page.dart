@@ -3,9 +3,12 @@ import 'package:get/get.dart';
 import 'package:tranvision_customer_app/controller/shipperController/booking_controller/booking_page_controller.dart';
 import 'package:tranvision_customer_app/post_model/NewPostModel.dart';
 import 'package:tranvision_customer_app/utils/component/booking_list_item.dart';
+import 'package:tranvision_customer_app/utils/component/shipper_bottom_navigation.dart';
 import 'package:tranvision_customer_app/utils/constant/colors.dart';
 import 'package:tranvision_customer_app/utils/constant/sized_box.dart';
 import 'package:tranvision_customer_app/utils/constant/text.dart';
+import 'package:tranvision_customer_app/view/shipper_screen/booking_screen/booking_page.dart';
+import 'package:tranvision_customer_app/view/shipper_screen/dashboard_screen.dart';
 
 class BookingSecondPage extends StatelessWidget {
   const BookingSecondPage({Key? key}) : super(key: key);
@@ -77,6 +80,25 @@ class BookingSecondPage extends StatelessWidget {
                     child: InkWell(
                   onTap: (() async {
                     var response = await c.postData();
+                    Get.snackbar("Welcome Consignee", "",
+                        messageText: SemiWeighText(
+                            text: "Booking Done Successfully",
+                            size: 18,
+                            color: AppColor.textColor),
+                        showProgressIndicator: true,
+                        icon:
+                            const Icon(Icons.book_rounded, color: Colors.white),
+                        snackPosition: SnackPosition.BOTTOM,
+                        backgroundColor: Colors.orangeAccent,
+                        borderRadius: 15,
+                        margin: const EdgeInsets.all(12),
+                        colorText: AppColor.textColor,
+                        duration: const Duration(seconds: 2),
+                        isDismissible: true,
+                        forwardAnimationCurve: Curves.easeOutBack,
+                        dismissDirection: DismissDirection.vertical);
+                    // await Future.delayed(const Duration(seconds: 3));
+                    // Get.to(() => const DashBoard());
                     print(response);
                   }),
                   child: Container(

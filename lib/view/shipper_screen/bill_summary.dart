@@ -10,8 +10,8 @@ class BillSummary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height / 13;
-    final width = MediaQuery.of(context).size.width;
+    // final height = MediaQuery.of(context).size.height / 13;
+    // final width = MediaQuery.of(context).size.width;
     BillSummaryController bController = Get.put(BillSummaryController());
     return Scaffold(
       appBar: AppBar(
@@ -109,7 +109,8 @@ class BillSummary extends StatelessWidget {
                               if (isValid!.validate()) {
                                 showModalBottomSheet(
                                     context: Get.context!,
-                                    builder: (context) => buildSheet());
+                                    builder: (context) =>
+                                        bController.buildSheet());
                               }
                             },
                             child: Center(
@@ -325,149 +326,4 @@ class BillSummary extends StatelessWidget {
       ),
     );
   }
-}
-
-buildSheet() {
-  BillSummaryController bController = Get.find();
-  return Container(
-      height: 500,
-      padding: const EdgeInsets.all(2),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(9),
-      ),
-      child: Obx(() => bController.myListWithDate.isNotEmpty
-          ? ListView.builder(
-              scrollDirection: Axis.vertical,
-              itemCount: bController.myListWithDate.length,
-              itemBuilder: (context, index) {
-                String invoiceDate =
-                    bController.myListWithDate[index].billdate.toString();
-                String billDate =
-                    bController.myListWithDate[index].bldate.toString();
-                return Padding(
-                  padding: const EdgeInsets.all(5.0),
-                  child: Card(
-                    shadowColor: Colors.orange,
-                    elevation: 5,
-                    shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(15))),
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                          top: 15.0, left: 10, bottom: 5.0),
-                      child: Column(
-                        children: [
-                          Row(
-                            children: [
-                              NormalText(
-                                  text:
-                                      'Vessel : ${bController.myListWithDate[index].vesselname}',
-                                  size: 15.0,
-                                  color: Colors.black),
-                              const Icon(Icons.arrow_right_alt_outlined),
-                              NormalText(
-                                  text:
-                                      'Voyage : ${bController.myListWithDate[index].voyage}',
-                                  size: 15.0,
-                                  color: Colors.black),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              NormalText(
-                                  text:
-                                      'Invoice No : ${bController.myListWithDate[index].billno.toString()}',
-                                  size: 15.0,
-                                  color: Colors.black),
-                              const Icon(Icons.arrow_right_alt_outlined),
-                              NormalText(
-                                  text:
-                                      'Invoice Date : ${invoiceDate.substring(0, 10)}',
-                                  size: 15.0,
-                                  color: Colors.black),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              NormalText(
-                                  text:
-                                      'BL No : ${bController.myListWithDate[index].blno.toString()}',
-                                  size: 15.0,
-                                  color: Colors.black),
-                              const Icon(Icons.arrow_right_alt_outlined),
-                              NormalText(
-                                  text: 'Bl Date: ${billDate.substring(0, 10)}',
-                                  size: 15.0,
-                                  color: Colors.black),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              const NormalText(
-                                  text: 'Total Amount : ',
-                                  size: 15.0,
-                                  color: Colors.black),
-                              const Icon(Icons.arrow_right_alt_outlined),
-                              NormalText(
-                                  text:
-                                      '${bController.myListWithDate[index].billtotals}',
-                                  size: 15.0,
-                                  color: Colors.black),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              const NormalText(
-                                  text: 'Payment Amount : ',
-                                  size: 15.0,
-                                  color: Colors.black),
-                              const Icon(Icons.arrow_right_alt_outlined),
-                              NormalText(
-                                  text:
-                                      '${bController.myListWithDate[index].payamt}',
-                                  size: 15.0,
-                                  color: Colors.black),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              const NormalText(
-                                  text: 'Balance Amount : ',
-                                  size: 15.0,
-                                  color: Colors.black),
-                              const Icon(Icons.arrow_right_alt_outlined),
-                              NormalText(
-                                  text: bController.myListWithDate[index].balamt
-                                      .toString(),
-                                  size: 15.0,
-                                  color: Colors.black),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              const NormalText(
-                                  text: 'TDS Amount : ',
-                                  size: 15.0,
-                                  color: Colors.black),
-                              const Icon(Icons.arrow_right_alt_outlined),
-                              NormalText(
-                                  text: bController.myListWithDate[index].tdsamt
-                                      .toString(),
-                                  size: 15.0,
-                                  color: Colors.black),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                );
-              })
-          : Center(
-              child: Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: SemiWeighText(
-                  text: "No Data Found please check the date range",
-                  size: 18.0,
-                  color: AppColor.textColor),
-            ))));
 }
