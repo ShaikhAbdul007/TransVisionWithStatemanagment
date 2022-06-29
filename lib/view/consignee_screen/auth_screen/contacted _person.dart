@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tranvision_customer_app/controller/myProfileController/consignee_profile_controller.dart';
 import 'package:tranvision_customer_app/utils/constant/colors.dart';
@@ -20,11 +21,10 @@ class ConsigneeContactedPerson extends StatelessWidget {
               Image.asset("assets/images/contact.png"),
               WeightText(
                   text: "Contact Person",
-                  size: 25.0,
+                  size: 25.sp,
                   color: AppColor.textColor),
               Padding(
-                padding:
-                    const EdgeInsets.only(left: 10.0, right: 10.0, top: 15.0),
+                padding: EdgeInsets.only(left: 10.w, right: 10.w, top: 15.h),
                 child: Column(
                   children: [
                     FutureBuilder(
@@ -39,7 +39,7 @@ class ConsigneeContactedPerson extends StatelessWidget {
                                   // labelText: "Contacted person",
                                   hintText: snapshot.data.contactperson,
                                   border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(15),
+                                    borderRadius: BorderRadius.circular(15.r),
                                   )),
                             );
                           } else {
@@ -59,7 +59,7 @@ class ConsigneeContactedPerson extends StatelessWidget {
                                   // labelText: "Contacted person",
                                   hintText: snapshot.data.contno,
                                   border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(15),
+                                    borderRadius: BorderRadius.circular(15.r),
                                   )),
                             );
                           } else {
@@ -67,8 +67,8 @@ class ConsigneeContactedPerson extends StatelessWidget {
                           }
                         }),
                     Padding(
-                      padding: const EdgeInsets.only(
-                          left: 25.0, right: 25.0, bottom: 10.0, top: 50.0),
+                      padding: EdgeInsets.only(
+                          left: 25.w, right: 25.w, bottom: 10.h, top: 50.h),
                       child: Row(
                         children: [
                           Expanded(
@@ -76,44 +76,42 @@ class ConsigneeContactedPerson extends StatelessWidget {
                             onTap: (() {}),
                             child: Container(
                               alignment: Alignment.center,
-                              height: 50,
+                              height: 50.h,
                               width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(9),
-                                  color: Colors.orange[300]),
+                                  borderRadius: BorderRadius.circular(9.r),
+                                  color: AppColor.primary),
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
-                                children: const [
-                                  Icon(Icons.system_update_alt,
+                                children: [
+                                  const Icon(Icons.system_update_alt,
                                       color: Colors.black),
                                   WeightText(
                                       text: "Update",
-                                      size: 18.0,
+                                      size: 18.sp,
                                       color: Colors.black),
                                 ],
                               ),
                             ),
                           )),
-                          const SizedBox(
-                            width: 20.0,
-                          ),
+                          SizeBox.customWidth(20.w),
                           Expanded(
                               child: InkWell(
                             onTap: () {},
                             child: Container(
                               alignment: Alignment.centerRight,
-                              height: 50,
-                              padding: const EdgeInsets.only(left: 20),
+                              height: 50.h,
+                              padding: EdgeInsets.only(left: 20.w),
                               width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(9),
-                                  color: Colors.green[400]),
+                                  borderRadius: BorderRadius.circular(9.r),
+                                  color: AppColor.editColor),
                               child: Row(
-                                children: const [
-                                  Icon(Icons.edit, color: Colors.black),
+                                children: [
+                                  const Icon(Icons.edit, color: Colors.black),
                                   WeightText(
                                       text: "Edit",
-                                      size: 18.0,
+                                      size: 18.sp,
                                       color: Colors.black),
                                 ],
                               ),

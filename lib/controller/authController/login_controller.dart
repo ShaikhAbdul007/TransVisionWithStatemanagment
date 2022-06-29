@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:tranvision_customer_app/api_services/login_api.dart';
@@ -28,14 +29,14 @@ class LoginController extends GetxController {
           Get.snackbar("Welcome Consignee", "",
               messageText: SemiWeighText(
                   text: "Please Wait While Going Ahead",
-                  size: 18,
+                  size: 18.sp,
                   color: AppColor.textColor),
               showProgressIndicator: true,
               icon: const Icon(Icons.person_outline, color: Colors.white),
               snackPosition: SnackPosition.TOP,
               backgroundColor: Colors.orangeAccent,
-              borderRadius: 15,
-              margin: const EdgeInsets.all(12),
+              borderRadius: 15.r,
+              margin: EdgeInsets.all(12.r),
               colorText: AppColor.textColor,
               duration: const Duration(seconds: 2),
               isDismissible: true,
@@ -50,13 +51,13 @@ class LoginController extends GetxController {
           Get.snackbar("Welcome Shipper", "",
               messageText: SemiWeighText(
                   text: "Please Wait While Going Ahead",
-                  size: 18,
+                  size: 18.sp,
                   color: AppColor.textColor),
               showProgressIndicator: true,
               icon: const Icon(Icons.person_outline, color: Colors.white),
               snackPosition: SnackPosition.TOP,
               backgroundColor: Colors.orangeAccent,
-              borderRadius: 15,
+              borderRadius: 15.r,
               margin: const EdgeInsets.all(12),
               colorText: AppColor.textColor,
               duration: const Duration(seconds: 2),
@@ -69,13 +70,13 @@ class LoginController extends GetxController {
           Get.snackbar("Login Failed", "",
               messageText: SemiWeighText(
                   text: "Enter the Correct Details",
-                  size: 18.0,
+                  size: 18.sp,
                   color: AppColor.textColor),
               icon: const Icon(Icons.person_add_disabled, color: Colors.white),
               snackPosition: SnackPosition.TOP,
               backgroundColor: Colors.orangeAccent,
-              borderRadius: 15,
-              margin: const EdgeInsets.all(12),
+              borderRadius: 15.r,
+              margin: EdgeInsets.all(12.r),
               colorText: AppColor.textColor,
               duration: const Duration(seconds: 2),
               isDismissible: true,

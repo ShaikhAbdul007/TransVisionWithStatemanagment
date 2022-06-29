@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tranvision_customer_app/controller/shipperController/booking_controller/booking_page_controller.dart';
 import 'package:tranvision_customer_app/post_model/NewPostModel.dart';
 import 'package:tranvision_customer_app/utils/component/booking_list_item.dart';
-import 'package:tranvision_customer_app/utils/component/shipper_bottom_navigation.dart';
 import 'package:tranvision_customer_app/utils/constant/colors.dart';
 import 'package:tranvision_customer_app/utils/constant/sized_box.dart';
 import 'package:tranvision_customer_app/utils/constant/text.dart';
-import 'package:tranvision_customer_app/view/shipper_screen/booking_screen/booking_page.dart';
-import 'package:tranvision_customer_app/view/shipper_screen/dashboard_screen.dart';
 
 class BookingSecondPage extends StatelessWidget {
   const BookingSecondPage({Key? key}) : super(key: key);
@@ -20,8 +18,8 @@ class BookingSecondPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title:
-            WeightText(color: AppColor.black, text: 'Booking Page', size: 20),
+        title: WeightText(
+            color: AppColor.black, text: 'Booking Page', size: 20.sp),
         centerTitle: true,
         elevation: 1.0,
       ),
@@ -39,21 +37,22 @@ class BookingSecondPage extends StatelessWidget {
                 ],
               ),
               Padding(
-                padding:
-                    const EdgeInsets.only(left: 15.0, right: 15.0, top: 8.0),
+                padding: EdgeInsets.only(left: 15.w, right: 15.w, top: 8.h),
                 child: Row(
                   // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     SemiWeighText(
-                        text: "Add more", size: 20, color: AppColor.textColor),
-                    SizeBox.customWidth(10 * 20),
+                        text: "Add more",
+                        size: 20.sp,
+                        color: AppColor.textColor),
+                    SizeBox.customWidth(10 * 20.sw),
                     Container(
                       // alignment: Alignment.center,
-                      height: 40,
-                      width: 50,
+                      height: 40.h,
+                      width: 50.w,
                       decoration: BoxDecoration(
                           color: AppColor.primary,
-                          borderRadius: BorderRadius.circular(15)),
+                          borderRadius: BorderRadius.circular(15.r)),
                       child: IconButton(
                         icon: const Icon(Icons.arrow_right_alt_outlined),
                         onPressed: () {},
@@ -70,10 +69,9 @@ class BookingSecondPage extends StatelessWidget {
               ),
             ],
           ),
-          SizeBox.customHeight(12),
+          SizeBox.customHeight(12.h),
           Padding(
-            padding:
-                const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 10.0),
+            padding: EdgeInsets.only(left: 10.w, right: 10.w, bottom: 10.h),
             child: Row(
               children: [
                 Expanded(
@@ -83,15 +81,15 @@ class BookingSecondPage extends StatelessWidget {
                     Get.snackbar("Welcome Consignee", "",
                         messageText: SemiWeighText(
                             text: "Booking Done Successfully",
-                            size: 18,
+                            size: 18.sp,
                             color: AppColor.textColor),
                         showProgressIndicator: true,
                         icon:
                             const Icon(Icons.book_rounded, color: Colors.white),
                         snackPosition: SnackPosition.BOTTOM,
                         backgroundColor: Colors.orangeAccent,
-                        borderRadius: 15,
-                        margin: const EdgeInsets.all(12),
+                        borderRadius: 15.r,
+                        margin: EdgeInsets.all(12.r),
                         colorText: AppColor.textColor,
                         duration: const Duration(seconds: 2),
                         isDismissible: true,
@@ -102,51 +100,45 @@ class BookingSecondPage extends StatelessWidget {
                     print(response);
                   }),
                   child: Container(
-                    padding: const EdgeInsets.only(
-                      left: 40.0,
+                    padding: EdgeInsets.only(
+                      left: 40.w,
                     ),
-                    height: 50,
+                    height: 50.h,
                     width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(9),
-                        color: Colors.green[300]),
+                        borderRadius: BorderRadius.circular(9.r),
+                        color: AppColor.submit),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
-                      children: const [
-                        Icon(Icons.check_circle, color: Colors.black),
-                        SizedBox(
-                          width: 5.0,
-                        ),
+                      children: [
+                        const Icon(Icons.check_circle, color: Colors.black),
+                        SizeBox.customWidth(5.w),
                         WeightText(
-                            text: "Submit", size: 18.0, color: Colors.black),
+                            text: "Submit", size: 18.sp, color: Colors.black),
                       ],
                     ),
                   ),
                 )),
-                const SizedBox(
-                  width: 20.0,
-                ),
+                SizeBox.customWidth(20.w),
                 Expanded(
                     child: InkWell(
                   onTap: () {},
                   child: Container(
-                    padding: const EdgeInsets.only(
-                      left: 40.0,
+                    padding: EdgeInsets.only(
+                      left: 40.w,
                     ),
-                    height: 50,
+                    height: 50.h,
                     width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(9),
-                        color: Colors.red[900]),
+                        borderRadius: BorderRadius.circular(9.r),
+                        color: AppColor.cancel),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
-                      children: const [
-                        Icon(Icons.close, color: Colors.black),
-                        SizedBox(
-                          width: 5.0,
-                        ),
+                      children: [
+                        const Icon(Icons.close, color: Colors.black),
+                        SizeBox.customWidth(20.w),
                         WeightText(
-                            text: "Cancel", size: 18.0, color: Colors.black),
+                            text: "Cancel", size: 18.sp, color: Colors.black),
                       ],
                     ),
                   ),

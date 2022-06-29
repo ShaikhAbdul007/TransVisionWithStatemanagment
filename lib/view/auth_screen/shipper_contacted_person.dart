@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:tranvision_customer_app/controller/authController/consignee_contacted_person_controller.dart';
 import 'package:tranvision_customer_app/controller/myProfileController/shipper_profile_controller.dart';
+import 'package:tranvision_customer_app/utils/constant/colors.dart';
 import 'package:tranvision_customer_app/utils/constant/sized_box.dart';
 import 'package:tranvision_customer_app/utils/constant/text.dart';
 
@@ -17,11 +18,12 @@ class ShipperContactedPerson extends StatelessWidget {
           children: [
             Column(children: [
               Image.asset("assets/images/contact.png"),
-              const WeightText(
-                  text: "Contact Person", size: 25.0, color: Colors.black),
+              WeightText(
+                  text: "Contact Person",
+                  size: 25.sp,
+                  color: AppColor.textColor),
               Padding(
-                padding:
-                    const EdgeInsets.only(left: 10.0, right: 10.0, top: 15.0),
+                padding: EdgeInsets.only(left: 10.w, right: 10.w, top: 15.h),
                 child: Column(
                   children: [
                     FutureBuilder(
@@ -36,14 +38,14 @@ class ShipperContactedPerson extends StatelessWidget {
                                   // labelText: "Contacted person",
                                   hintText: snapshot.data.contactperson,
                                   border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(15),
+                                    borderRadius: BorderRadius.circular(15.r),
                                   )),
                             );
                           } else {
                             return const CircularProgressIndicator();
                           }
                         }),
-                    SizeBox.customHeight(20),
+                    SizeBox.customHeight(20.h),
                     FutureBuilder(
                         future: consigneeContantedPerson.getuserDetailsApi(),
                         builder:
@@ -56,7 +58,7 @@ class ShipperContactedPerson extends StatelessWidget {
                                   // labelText: "Contacted person",
                                   hintText: snapshot.data.mobno,
                                   border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(15),
+                                    borderRadius: BorderRadius.circular(15.r),
                                   )),
                             );
                           } else {
@@ -64,8 +66,8 @@ class ShipperContactedPerson extends StatelessWidget {
                           }
                         }),
                     Padding(
-                      padding: const EdgeInsets.only(
-                          left: 25.0, right: 25.0, bottom: 10.0, top: 50.0),
+                      padding: EdgeInsets.only(
+                          left: 25.w, right: 25.w, bottom: 10.h, top: 50.h),
                       child: Row(
                         children: [
                           Expanded(
@@ -73,44 +75,42 @@ class ShipperContactedPerson extends StatelessWidget {
                             onTap: (() {}),
                             child: Container(
                               alignment: Alignment.center,
-                              height: 50,
+                              height: 50.h,
                               width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(9),
                                   color: Colors.orange[300]),
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
-                                children: const [
-                                  Icon(Icons.system_update_alt,
+                                children: [
+                                  const Icon(Icons.system_update_alt,
                                       color: Colors.black),
                                   WeightText(
                                       text: "Update",
-                                      size: 18.0,
+                                      size: 18.sp,
                                       color: Colors.black),
                                 ],
                               ),
                             ),
                           )),
-                          const SizedBox(
-                            width: 20.0,
-                          ),
+                          SizeBox.customWidth(20.w),
                           Expanded(
                               child: InkWell(
                             onTap: () {},
                             child: Container(
                               alignment: Alignment.centerRight,
-                              height: 50,
-                              padding: const EdgeInsets.only(left: 20),
+                              height: 50.h,
+                              padding: EdgeInsets.only(left: 20.w),
                               width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(9),
                                   color: Colors.green[400]),
                               child: Row(
-                                children: const [
-                                  Icon(Icons.edit, color: Colors.black),
+                                children: [
+                                  const Icon(Icons.edit, color: Colors.black),
                                   WeightText(
                                       text: "Edit",
-                                      size: 18.0,
+                                      size: 18.sp,
                                       color: Colors.black),
                                 ],
                               ),

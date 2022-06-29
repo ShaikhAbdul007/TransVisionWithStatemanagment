@@ -1,16 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pie_chart/pie_chart.dart';
+import 'package:tranvision_customer_app/controller/shipperController/dashboard_controller.dart';
 import 'package:tranvision_customer_app/utils/component/Shipper_drawer.dart';
 import 'package:tranvision_customer_app/utils/constant/colors.dart';
 import 'package:tranvision_customer_app/utils/constant/text.dart';
-import 'package:tranvision_customer_app/view/auth_screen/login_screen.dart';
 import 'package:tranvision_customer_app/view/shipper_screen/booking_screen/booking_page.dart';
 
-class DashBoard extends StatelessWidget {
+class DashBoard extends StatefulWidget {
   const DashBoard({Key? key}) : super(key: key);
 
   @override
+  State<DashBoard> createState() => _DashBoardState();
+}
+
+class _DashBoardState extends State<DashBoard> with TickerProviderStateMixin {
+  late final AnimationController controller =
+      AnimationController(duration: const Duration(seconds: 4), vsync: this)
+        ..repeat();
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    DashboardController dashboardController = Get.put(DashboardController());
     return Scaffold(
       appBar: AppBar(
         title: WeightText(color: AppColor.black, text: 'DashBoard', size: 20),
@@ -41,24 +57,23 @@ class DashBoard extends StatelessWidget {
         ],
       ),
       body: SafeArea(
-          child: ListView.builder(
-              itemCount: 8,
-              itemBuilder: (BuildContext context, int index) {
-                return const Card(
-                  child: ListTile(
-                    title: Text("Abdul"),
-                    leading: Icon(Icons.list),
-                    trailing: Text(
-                      "All record",
-                      style: TextStyle(color: Colors.green, fontSize: 15),
-                    ),
-                    style: ListTileStyle.list,
-                  ),
-                );
-              })),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {},
-      // ),
+          child: Column(
+        children: [
+          PieChart(
+            dataMap: const {
+              "Total Port": 15,
+              "Total Business": 20,
+              "Total Transhipment": 30
+            },
+            animationDuration: const Duration(milliseconds: 1200),
+            chartType: ChartType.disc,
+            colorList: dashboardController.colorList,
+            chartRadius: MediaQuery.of(context).size.width / 3.2,
+            legendOptions:
+                const LegendOptions(legendPosition: LegendPosition.left),
+          )
+        ],
+      )),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Get.to(() => const BookingPage());

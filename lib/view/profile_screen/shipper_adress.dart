@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tranvision_customer_app/controller/myProfileController/shipper_profile_controller.dart';
 import 'package:tranvision_customer_app/utils/component/textfield_widget%20.dart';
@@ -18,12 +19,12 @@ class ShipperAddressPage extends StatelessWidget {
         Column(
           children: [
             Image.asset("assets/images/address.png",
-                fit: BoxFit.cover, height: 150),
+                fit: BoxFit.cover, height: 250.h),
             WeightText(
-                text: "Your Address", size: 25.0, color: AppColor.textColor),
+                text: "Your Address", size: 25.sp, color: AppColor.textColor),
             Padding(
-              padding: const EdgeInsets.only(
-                  top: 15, left: 10, right: 10, bottom: 20),
+              padding: EdgeInsets.only(
+                  top: 15.h, left: 10.w, right: 10.w, bottom: 20.h),
               child: Column(
                 children: [
                   Column(
@@ -39,45 +40,31 @@ class ShipperAddressPage extends StatelessWidget {
                                   child: CircularProgressIndicator());
                             }
                           }),
-                      const SizedBox(
-                        height: 15.0,
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: FutureBuilder(
-                                future: profileController.getuserDetailsApi(),
-                                builder: (BuildContext context,
-                                    AsyncSnapshot snapshot) {
-                                  if (snapshot.hasData) {
-                                    return CustomField(
-                                        hint: snapshot.data.add2);
-                                  } else {
-                                    return const Center(
-                                        child: CircularProgressIndicator());
-                                  }
-                                }),
-                          ),
-                          SizeBox.customHeight(15),
-                          Expanded(
-                            child: FutureBuilder(
-                                future: profileController.getuserDetailsApi(),
-                                builder: (BuildContext context,
-                                    AsyncSnapshot snapshot) {
-                                  if (snapshot.hasData) {
-                                    return CustomField(
-                                        hint: snapshot.data.add3);
-                                  } else {
-                                    return const Center(
-                                        child: CircularProgressIndicator());
-                                  }
-                                }),
-                          )
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 15.0,
-                      ),
+                      SizeBox.customHeight(15.h),
+                      FutureBuilder(
+                          future: profileController.getuserDetailsApi(),
+                          builder:
+                              (BuildContext context, AsyncSnapshot snapshot) {
+                            if (snapshot.hasData) {
+                              return CustomField(hint: snapshot.data.add2);
+                            } else {
+                              return const Center(
+                                  child: CircularProgressIndicator());
+                            }
+                          }),
+                      SizeBox.customHeight(15.h),
+                      FutureBuilder(
+                          future: profileController.getuserDetailsApi(),
+                          builder:
+                              (BuildContext context, AsyncSnapshot snapshot) {
+                            if (snapshot.hasData) {
+                              return CustomField(hint: snapshot.data.add3);
+                            } else {
+                              return const Center(
+                                  child: CircularProgressIndicator());
+                            }
+                          }),
+                      SizeBox.customHeight(15.h),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -95,9 +82,7 @@ class ShipperAddressPage extends StatelessWidget {
                                   }
                                 }),
                           ),
-                          const SizedBox(
-                            width: 15.0,
-                          ),
+                          SizeBox.customWidth(15.w),
                           Expanded(
                             child: FutureBuilder(
                                 future: profileController.getuserDetailsApi(),
@@ -116,9 +101,7 @@ class ShipperAddressPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 15.0,
-                  ),
+                  SizeBox.customHeight(15.h),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -135,9 +118,7 @@ class ShipperAddressPage extends StatelessWidget {
                               }
                             }),
                       ),
-                      const SizedBox(
-                        width: 15.0,
-                      ),
+                      SizeBox.customWidth(15.w),
                       Expanded(
                         child: FutureBuilder(
                             future: profileController.getuserDetailsApi(),
@@ -153,9 +134,7 @@ class ShipperAddressPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 15.0,
-                  ),
+                  SizeBox.customHeight(15.h),
                   Row(
                     children: [
                       Expanded(
@@ -173,9 +152,7 @@ class ShipperAddressPage extends StatelessWidget {
                       )
                     ],
                   ),
-                  const SizedBox(
-                    height: 15.0,
-                  ),
+                  SizeBox.customHeight(15.h),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -194,9 +171,7 @@ class ShipperAddressPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 15.0,
-                  ),
+                  SizeBox.customHeight(15.h),
                   Row(
                     children: [
                       Expanded(
@@ -214,9 +189,7 @@ class ShipperAddressPage extends StatelessWidget {
                       )
                     ],
                   ),
-                  const SizedBox(
-                    height: 15.0,
-                  ),
+                  SizeBox.customHeight(15.h),
                   Row(
                     children: [
                       Expanded(

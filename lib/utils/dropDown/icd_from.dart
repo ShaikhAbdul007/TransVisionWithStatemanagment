@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class IcdFrom extends StatelessWidget {
   final List<dynamic> listItems;
@@ -15,11 +16,11 @@ class IcdFrom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(10.0),
-      margin: const EdgeInsets.all(10.0),
+      padding: EdgeInsets.all(10.r),
+      margin: EdgeInsets.all(10.r),
       decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(10)),
-          border: Border.all(width: 2.0, style: BorderStyle.solid)),
+          borderRadius: BorderRadius.all(Radius.circular(10.r)),
+          border: Border.all(width: 2.w, style: BorderStyle.solid)),
       child: DropdownButtonHideUnderline(
         child: DropdownButton<dynamic>(
           isExpanded: true,
@@ -31,10 +32,12 @@ class IcdFrom extends StatelessWidget {
               child: Text(item.icdname),
             );
           }).toList(),
-          hint: const Text(
+          hint: Text(
             "Select",
             style: TextStyle(
-                color: Colors.black, fontSize: 16, fontWeight: FontWeight.w600),
+                color: Colors.black,
+                fontSize: 16.sp,
+                fontWeight: FontWeight.w600),
           ),
           onChanged: (value) {
             notifyParent(value);

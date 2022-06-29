@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tranvision_customer_app/controller/myProfileController/consignee_profile_controller.dart';
 import 'package:tranvision_customer_app/controller/other_utils_Controller/utilsController/consignee_drawer_controller.dart';
+import 'package:tranvision_customer_app/utils/constant/colors.dart';
 
 class ConsigneeMyDrawer extends StatelessWidget {
   const ConsigneeMyDrawer({Key? key}) : super(key: key);
@@ -15,7 +17,7 @@ class ConsigneeMyDrawer extends StatelessWidget {
     return Drawer(
       child: Container(
         padding: EdgeInsets.zero,
-        color: Colors.orange[300],
+        color: AppColor.primary,
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
@@ -28,12 +30,13 @@ class ConsigneeMyDrawer extends StatelessWidget {
                         return UserAccountsDrawerHeader(
                           margin: EdgeInsets.zero,
                           accountName: Text(snapshot.data.name,
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 16)),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16.sp)),
                           accountEmail: Text(
                             snapshot.data.email,
-                            style: const TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 16),
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 16.sp),
                           ),
                           currentAccountPicture: const CircleAvatar(
                             backgroundImage:

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tranvision_customer_app/utils/constant/colors.dart';
 
 class CustomField extends StatelessWidget {
@@ -16,7 +17,7 @@ class CustomField extends StatelessWidget {
       decoration: InputDecoration(
           hintText: hint,
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(15.r),
           )),
     );
   }
@@ -30,9 +31,9 @@ class CustomerContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(15.r),
         border: Border.all(
-            color: AppColor.black, width: 2, style: BorderStyle.solid),
+            color: AppColor.black, width: 2.w, style: BorderStyle.solid),
       ),
       child: Text(text),
     );

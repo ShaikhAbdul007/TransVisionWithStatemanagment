@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class VoyageDown extends StatelessWidget {
   final List<dynamic> listItems;
@@ -16,10 +17,10 @@ class VoyageDown extends StatelessWidget {
   Widget build(BuildContext context) {
     dynamic;
     return Container(
-      padding: const EdgeInsets.all(10.0),
-      margin: const EdgeInsets.all(10.0),
+      padding: EdgeInsets.all(10.r),
+      margin: EdgeInsets.all(10.r),
       decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(10)),
+          borderRadius: BorderRadius.all(Radius.circular(10.r)),
           border: Border.all(width: 2.0, style: BorderStyle.solid)),
       child: DropdownButtonHideUnderline(
         child: DropdownButton<dynamic>(
@@ -32,10 +33,12 @@ class VoyageDown extends StatelessWidget {
               child: Text(item.voyage),
             );
           }).toList(),
-          hint: const Text(
+          hint: Text(
             "Select",
             style: TextStyle(
-                color: Colors.black, fontSize: 16, fontWeight: FontWeight.w600),
+                color: Colors.black,
+                fontSize: 16.sp,
+                fontWeight: FontWeight.w600),
           ),
           onChanged: (value) {
             notifyparent(value);

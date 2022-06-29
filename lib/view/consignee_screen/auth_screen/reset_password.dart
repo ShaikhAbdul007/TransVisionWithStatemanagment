@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tranvision_customer_app/controller/authController/reset_password_controller.dart';
 import 'package:tranvision_customer_app/utils/constant/colors.dart';
@@ -19,11 +20,11 @@ class ConsigneeResetPassword extends StatelessWidget {
             Image.asset("assets/images/forgetpass.png"),
             WeightText(
                 text: "Change Your Password",
-                size: 25.0,
+                size: 25.sp,
                 color: AppColor.textColor),
-            SizeBox.customHeight(15),
+            SizeBox.customHeight(15.h),
             Padding(
-              padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+              padding: EdgeInsets.only(left: 20.w, right: 20.w),
               child: Form(
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 key: pasController.rPKey,
@@ -44,10 +45,10 @@ class ConsigneeResetPassword extends StatelessWidget {
                           labelText: "New Password",
                           hintText: "Enter New Password",
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
+                            borderRadius: BorderRadius.circular(15.r),
                           )),
                     ),
-                    SizeBox.customHeight(20),
+                    SizeBox.customHeight(20.h),
                     TextFormField(
                       obscureText: !pasController.isVisible,
                       controller: pasController.cPassword,
@@ -64,17 +65,17 @@ class ConsigneeResetPassword extends StatelessWidget {
                                   ? const Icon(Icons.visibility_off)
                                   : const Icon(Icons.visibility)),
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
+                            borderRadius: BorderRadius.circular(15.r),
                           )),
                     ),
-                    SizeBox.customHeight(30),
+                    SizeBox.customHeight(30.h),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         InkWell(
                           onTap: () => pasController.checkSave(),
                           child: Container(
-                            height: 50,
+                            height: 50.h,
                             width: MediaQuery.of(context).size.width / 1.5,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -82,16 +83,16 @@ class ConsigneeResetPassword extends StatelessWidget {
                                 const Icon(
                                   Icons.restart_alt_rounded,
                                 ),
-                                SizeBox.customWidth(8),
-                                const WeightText(
+                                SizeBox.customWidth(8.w),
+                                WeightText(
                                     text: "Reset",
-                                    size: 18.0,
+                                    size: 18.sp,
                                     color: Colors.black),
                               ],
                             ),
                             decoration: BoxDecoration(
-                                color: Colors.orange[300],
-                                borderRadius: BorderRadius.circular(7)),
+                                color: AppColor.primary,
+                                borderRadius: BorderRadius.circular(7.r)),
                           ),
                         ),
                       ],

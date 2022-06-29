@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tranvision_customer_app/controller/myProfileController/shipper_profile_controller.dart';
 import 'package:tranvision_customer_app/controller/other_utils_Controller/utilsController/drawer_Controller.dart';
+import 'package:tranvision_customer_app/utils/constant/colors.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({Key? key}) : super(key: key);
@@ -13,7 +15,7 @@ class MyDrawer extends StatelessWidget {
     return Drawer(
       child: Container(
         padding: EdgeInsets.zero,
-        color: Colors.orange[300],
+        color: AppColor.primary,
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
@@ -26,12 +28,13 @@ class MyDrawer extends StatelessWidget {
                         return UserAccountsDrawerHeader(
                           margin: EdgeInsets.zero,
                           accountName: Text(snapshot.data.partyname.toString(),
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 16)),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16.sp)),
                           accountEmail: Text(
                             snapshot.data.email.toString(),
-                            style: const TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 16),
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 16.sp),
                           ),
                           currentAccountPicture: const CircleAvatar(
                             backgroundImage:

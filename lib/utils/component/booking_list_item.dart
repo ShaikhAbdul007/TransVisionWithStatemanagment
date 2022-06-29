@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tranvision_customer_app/controller/shipperController/booking_controller/booking_page_controller.dart';
 import 'package:tranvision_customer_app/post_model/NewPostModel.dart';
@@ -15,10 +16,10 @@ class BookingListItem extends StatelessWidget {
         Card(
           shadowColor: Colors.orange,
           elevation: 5,
-          shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(15))),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(15.r))),
           child: Padding(
-            padding: const EdgeInsets.only(left: 15.0, top: 10, bottom: 10),
+            padding: EdgeInsets.only(left: 15.w, top: 10.h, bottom: 10.h),
             child: Column(
               children: [
                 Row(
@@ -70,7 +71,7 @@ class BookingListItem extends StatelessWidget {
           ),
         ),
         Positioned(
-          left: 36 * 10,
+          left: 36.w * 10,
           child: IconButton(
               onPressed: () {
                 controller.removeListItem(item);

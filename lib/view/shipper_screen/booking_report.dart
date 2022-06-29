@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tranvision_customer_app/controller/shipperController/booking_report_controller.dart';
 import 'package:tranvision_customer_app/utils/constant/colors.dart';
@@ -13,8 +14,8 @@ class BookingReport extends StatelessWidget {
     ReportController reportController = Get.put(ReportController());
     return Scaffold(
       appBar: AppBar(
-        title:
-            WeightText(color: AppColor.black, text: 'Booking Report', size: 20),
+        title: WeightText(
+            color: AppColor.black, text: 'Booking Report', size: 20.sp),
         centerTitle: true,
         elevation: 1.0,
       ),
@@ -28,10 +29,10 @@ class BookingReport extends StatelessWidget {
                   Image.asset(
                     "assets/images/reports.png",
                     fit: BoxFit.fill,
-                    height: 250,
+                    height: 250.h,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                    padding: EdgeInsets.only(left: 10.w, right: 10.w),
                     child: Column(
                       children: [
                         Form(
@@ -42,9 +43,9 @@ class BookingReport extends StatelessWidget {
                             children: [
                               WeightText(
                                   text: "From Date",
-                                  size: 18,
+                                  size: 18.sp,
                                   color: AppColor.textColor),
-                              SizeBox.customHeight(8),
+                              SizeBox.customHeight(8.h),
                               TextFormField(
                                 validator: (value) {
                                   if (value!.isEmpty) {
@@ -58,7 +59,7 @@ class BookingReport extends StatelessWidget {
                                 decoration: InputDecoration(
                                     hintText: "Select the date",
                                     border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(20),
+                                      borderRadius: BorderRadius.circular(20.r),
                                     ),
                                     suffixIcon: IconButton(
                                       onPressed: () {
@@ -68,12 +69,12 @@ class BookingReport extends StatelessWidget {
                                           Icons.calendar_month_outlined),
                                     )),
                               ),
-                              SizeBox.customHeight(10),
+                              SizeBox.customHeight(10.h),
                               WeightText(
                                   text: "To Date",
-                                  size: 18,
+                                  size: 18.sp,
                                   color: AppColor.textColor),
-                              SizeBox.customHeight(8),
+                              SizeBox.customHeight(8.h),
                               TextFormField(
                                 validator: (value) {
                                   if (value!.isEmpty) {
@@ -87,7 +88,7 @@ class BookingReport extends StatelessWidget {
                                 decoration: InputDecoration(
                                     hintText: "Select the date",
                                     border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(20),
+                                      borderRadius: BorderRadius.circular(20.r),
                                     ),
                                     suffixIcon: IconButton(
                                       onPressed: () {
@@ -100,7 +101,7 @@ class BookingReport extends StatelessWidget {
                             ],
                           ),
                         ),
-                        SizeBox.customHeight(20),
+                        SizeBox.customHeight(20.h),
                         InkWell(
                           onTap: () {
                             final isValid =
@@ -117,22 +118,22 @@ class BookingReport extends StatelessWidget {
                             child: Container(
                                 alignment: Alignment.center,
                                 width: MediaQuery.of(context).size.width / 2,
-                                height: 50,
+                                height: 50.h,
                                 decoration: BoxDecoration(
                                   color: AppColor.primary,
-                                  borderRadius: BorderRadius.circular(20),
+                                  borderRadius: BorderRadius.circular(20.r),
                                 ),
                                 child: BoldText(
                                   color: AppColor.black,
                                   text: 'Refresh',
-                                  size: 18.0,
+                                  size: 18.sp,
                                 )),
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(5.0),
+                          padding: EdgeInsets.all(5.r),
                           child: SizedBox(
-                              height: 500,
+                              height: 500.h,
                               child: Obx(() => reportController
                                       .reportOnLoadList.isNotEmpty
                                   ? ListView.builder(
@@ -146,14 +147,14 @@ class BookingReport extends StatelessWidget {
                                         return Card(
                                           shadowColor: Colors.orange,
                                           elevation: 5,
-                                          shape: const RoundedRectangleBorder(
+                                          shape: RoundedRectangleBorder(
                                               borderRadius: BorderRadius.all(
-                                                  Radius.circular(15))),
+                                                  Radius.circular(15.r))),
                                           child: Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 20.0,
-                                                bottom: 15.0,
-                                                left: 15.0),
+                                            padding: EdgeInsets.only(
+                                                top: 20.h,
+                                                bottom: 15.h,
+                                                left: 15.w),
                                             child: Column(
                                               children: [
                                                 Row(
@@ -161,17 +162,15 @@ class BookingReport extends StatelessWidget {
                                                     NormalText(
                                                         text:
                                                             'Reference No : ${reportController.reportOnLoadList[index].refno}',
-                                                        size: 15.0,
+                                                        size: 15.sp,
                                                         color: Colors.black),
-                                                    const SizedBox(
-                                                      width: 5,
-                                                    ),
+                                                    SizeBox.customWidth(5.w),
                                                     const Icon(Icons
                                                         .arrow_right_alt_outlined),
                                                     NormalText(
                                                         text:
                                                             'Bar Code : ${reportController.reportOnLoadList[index].brcode}',
-                                                        size: 15.0,
+                                                        size: 15.sp,
                                                         color: Colors.black),
                                                   ],
                                                 ),
@@ -180,17 +179,15 @@ class BookingReport extends StatelessWidget {
                                                     NormalText(
                                                         text:
                                                             'Booking No : ${reportController.reportOnLoadList[index].bookingno}',
-                                                        size: 15.0,
+                                                        size: 15.sp,
                                                         color: Colors.black),
-                                                    const SizedBox(
-                                                      width: 5,
-                                                    ),
+                                                    SizeBox.customWidth(5.w),
                                                     const Icon(Icons
                                                         .arrow_right_alt_outlined),
                                                     NormalText(
                                                         text:
                                                             'Booking Date : ${bDate.substring(0, 10)}',
-                                                        size: 15.0,
+                                                        size: 15.sp,
                                                         color: Colors.black),
                                                   ],
                                                 ),
@@ -199,30 +196,24 @@ class BookingReport extends StatelessWidget {
                                                     NormalText(
                                                         text:
                                                             'DO No : ${reportController.reportOnLoadList[index].doNo}',
-                                                        size: 15.0,
+                                                        size: 15.sp,
                                                         color: Colors.black),
-                                                    const SizedBox(
-                                                      width: 5,
-                                                    ),
+                                                    SizeBox.customWidth(5.w),
                                                     const Icon(Icons
                                                         .arrow_right_alt_outlined),
-                                                    const SizedBox(
-                                                      width: 5,
-                                                    ),
+                                                    SizeBox.customWidth(5.w),
                                                     NormalText(
                                                         text:
                                                             'Quantity : ${reportController.reportOnLoadList[index].qty}',
-                                                        size: 15.0,
+                                                        size: 15.sp,
                                                         color: Colors.black),
-                                                    const SizedBox(
-                                                      width: 5,
-                                                    ),
+                                                    SizeBox.customWidth(5.w),
                                                     const Icon(Icons
                                                         .arrow_right_alt_outlined),
                                                     NormalText(
                                                         text:
                                                             'Size : ${reportController.reportOnLoadList[index].size}',
-                                                        size: 15.0,
+                                                        size: 15.sp,
                                                         color: Colors.black),
                                                   ],
                                                 ),
@@ -231,27 +222,17 @@ class BookingReport extends StatelessWidget {
                                                     NormalText(
                                                         text:
                                                             'Type : ${reportController.reportOnLoadList[index].type}',
-                                                        size: 15.0,
+                                                        size: 15.sp,
                                                         color: Colors.black),
-                                                    const SizedBox(
-                                                      width: 5,
-                                                    ),
+                                                    SizeBox.customWidth(5.w),
                                                     const Icon(Icons
                                                         .arrow_right_alt_outlined),
-                                                    const SizedBox(
-                                                      width: 5,
-                                                    ),
+                                                    SizeBox.customWidth(5.w),
                                                     NormalText(
                                                         text:
                                                             'Freight : ${reportController.reportOnLoadList[index].freight}',
-                                                        size: 15.0,
+                                                        size: 15.sp,
                                                         color: Colors.black),
-                                                    const SizedBox(
-                                                      width: 5,
-                                                    ),
-                                                    const SizedBox(
-                                                      width: 5,
-                                                    ),
                                                   ],
                                                 ),
                                                 Row(
@@ -259,21 +240,17 @@ class BookingReport extends StatelessWidget {
                                                     NormalText(
                                                         text:
                                                             'POL : ${reportController.reportOnLoadList[index].pol}',
-                                                        size: 15.0,
+                                                        size: 15.sp,
                                                         color: Colors.black),
-                                                    const SizedBox(
-                                                      width: 5,
-                                                    ),
+                                                    SizeBox.customWidth(5.w),
                                                     const Icon(Icons
                                                         .arrow_right_alt_outlined),
                                                     NormalText(
                                                         text:
                                                             'POD : ${reportController.reportOnLoadList[index].pod}',
-                                                        size: 15.0,
+                                                        size: 15.sp,
                                                         color: Colors.black),
-                                                    const SizedBox(
-                                                      width: 5,
-                                                    ),
+                                                    SizeBox.customWidth(5.w),
                                                   ],
                                                 ),
                                                 Row(
@@ -281,14 +258,14 @@ class BookingReport extends StatelessWidget {
                                                     NormalText(
                                                         text:
                                                             'Commodity: ${reportController.reportOnLoadList[index].commodity}',
-                                                        size: 15.0,
+                                                        size: 15.sp,
                                                         color: Colors.black),
                                                     const Icon(Icons
                                                         .arrow_right_alt_outlined),
                                                     NormalText(
                                                         text:
                                                             'Weight : ${reportController.reportOnLoadList[index].weight}',
-                                                        size: 15.0,
+                                                        size: 15.sp,
                                                         color: Colors.black),
                                                   ],
                                                 ),
@@ -297,17 +274,15 @@ class BookingReport extends StatelessWidget {
                                                     NormalText(
                                                         text:
                                                             'ICD From : ${reportController.reportOnLoadList[index].icdfrom}',
-                                                        size: 15.0,
+                                                        size: 15.sp,
                                                         color: Colors.black),
-                                                    const SizedBox(
-                                                      width: 5,
-                                                    ),
+                                                    SizeBox.customWidth(5.w),
                                                     const Icon(Icons
                                                         .arrow_right_alt_outlined),
                                                     NormalText(
                                                         text:
                                                             'ICD To : ${reportController.reportOnLoadList[index].icdto}',
-                                                        size: 15.0,
+                                                        size: 15.sp,
                                                         color: Colors.black),
                                                   ],
                                                 ),
@@ -319,7 +294,7 @@ class BookingReport extends StatelessWidget {
                                   : Center(
                                       child: SemiWeighText(
                                           text: "No Data Found",
-                                          size: 18.0,
+                                          size: 18.sp,
                                           color: AppColor.textColor),
                                     ))),
                         ),
@@ -339,9 +314,9 @@ class BookingReport extends StatelessWidget {
 buildRefreshOnLoadSheet() {
   ReportController reportController = Get.find();
   return Padding(
-    padding: const EdgeInsets.all(10.0),
+    padding: EdgeInsets.all(10.r),
     child: SizedBox(
-        height: 500,
+        height: 500.h,
         child: FutureBuilder(
             future: reportController.fetchreportonRefreshApi(),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -354,12 +329,12 @@ buildRefreshOnLoadSheet() {
                       return Card(
                         shadowColor: Colors.orange,
                         elevation: 5,
-                        shape: const RoundedRectangleBorder(
+                        shape: RoundedRectangleBorder(
                             borderRadius:
-                                BorderRadius.all(Radius.circular(15))),
+                                BorderRadius.all(Radius.circular(15.r))),
                         child: Padding(
-                          padding: const EdgeInsets.only(
-                              top: 20.0, bottom: 15.0, left: 15.0),
+                          padding: EdgeInsets.only(
+                              top: 20.h, bottom: 15.h, left: 15.w),
                           child: Column(
                             children: [
                               Row(
@@ -367,16 +342,14 @@ buildRefreshOnLoadSheet() {
                                   NormalText(
                                       text:
                                           'Booking No : ${snapshot.data[index].bookingno}',
-                                      size: 15.0,
+                                      size: 15.sp,
                                       color: Colors.black),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
+                                  SizeBox.customWidth(5.w),
                                   const Icon(Icons.arrow_right_alt_outlined),
                                   NormalText(
                                       text:
                                           'Booking Date : ${bDate.substring(0, 10)}',
-                                      size: 15.0,
+                                      size: 15.sp,
                                       color: Colors.black),
                                 ],
                               ),
@@ -385,28 +358,22 @@ buildRefreshOnLoadSheet() {
                                   NormalText(
                                       text:
                                           'DO No : ${snapshot.data[index].doNo}',
-                                      size: 15.0,
+                                      size: 15.sp,
                                       color: Colors.black),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
+                                  SizeBox.customWidth(5.w),
                                   const Icon(Icons.arrow_right_alt_outlined),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
+                                  SizeBox.customWidth(5.w),
                                   NormalText(
                                       text:
                                           'Quantity : ${snapshot.data[index].qty}',
-                                      size: 15.0,
+                                      size: 15.sp,
                                       color: Colors.black),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
+                                  SizeBox.customWidth(5.w),
                                   const Icon(Icons.arrow_right_alt_outlined),
                                   NormalText(
                                       text:
                                           'Size : ${snapshot.data[index].size}',
-                                      size: 15.0,
+                                      size: 15.sp,
                                       color: Colors.black),
                                 ],
                               ),
@@ -415,31 +382,23 @@ buildRefreshOnLoadSheet() {
                                   NormalText(
                                       text:
                                           'Type : ${snapshot.data[index].type}',
-                                      size: 15.0,
+                                      size: 15.sp,
                                       color: Colors.black),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
+                                  SizeBox.customWidth(5.w),
                                   const Icon(Icons.arrow_right_alt_outlined),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
+                                  SizeBox.customWidth(5.w),
                                   NormalText(
                                       text:
                                           'Freight : ${snapshot.data[index].freight}',
-                                      size: 15.0,
+                                      size: 15.sp,
                                       color: Colors.black),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
+                                  SizeBox.customWidth(5.w),
                                   const Icon(Icons.arrow_right_alt_outlined),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
+                                  SizeBox.customWidth(5.w),
                                   NormalText(
                                       text:
                                           'Weight : ${snapshot.data[index].weight}',
-                                      size: 15.0,
+                                      size: 15.sp,
                                       color: Colors.black),
                                 ],
                               ),
@@ -447,35 +406,29 @@ buildRefreshOnLoadSheet() {
                                 NormalText(
                                     text:
                                         'Reference No : ${snapshot.data[index].refno}',
-                                    size: 15.0,
+                                    size: 15.sp,
                                     color: Colors.black),
-                                const SizedBox(
-                                  width: 5,
-                                ),
+                                SizeBox.customWidth(5.w),
                                 const Icon(Icons.arrow_right_alt_outlined),
                                 NormalText(
                                     text:
                                         'Commodity: ${snapshot.data[index].commodity}',
-                                    size: 15.0,
+                                    size: 15.sp,
                                     color: Colors.black),
                               ]),
                               Row(
                                 children: [
                                   NormalText(
                                       text: 'POL : ${snapshot.data[index].pol}',
-                                      size: 15.0,
+                                      size: 15.sp,
                                       color: Colors.black),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
+                                  SizeBox.customWidth(5.w),
                                   const Icon(Icons.arrow_right_alt_outlined),
                                   NormalText(
                                       text: 'POD : ${snapshot.data[index].pod}',
-                                      size: 15.0,
+                                      size: 15.sp,
                                       color: Colors.black),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
+                                  SizeBox.customWidth(5.w),
                                 ],
                               ),
                               Row(
@@ -483,16 +436,14 @@ buildRefreshOnLoadSheet() {
                                   NormalText(
                                       text:
                                           'ICD From : ${snapshot.data[index].icdfrom}',
-                                      size: 15.0,
+                                      size: 15.sp,
                                       color: Colors.black),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
+                                  SizeBox.customWidth(5.w),
                                   const Icon(Icons.arrow_right_alt_outlined),
                                   NormalText(
                                       text:
                                           '	ICD To : ${snapshot.data[index].icdto}',
-                                      size: 15.0,
+                                      size: 15.sp,
                                       color: Colors.black),
                                 ],
                               ),
@@ -529,7 +480,7 @@ buildRefreshOnLoadSheet() {
 //                         borderRadius: BorderRadius.all(Radius.circular(15))),
 //                     child: Padding(
 //                       padding: const EdgeInsets.only(
-//                           top: 20.0, bottom: 15.0, left: 15.0),
+//                           top: 20.0, bottom: 15.sp, left: 15.sp),
 //                       child: Column(
 //                         children: [
 //                           Row(
@@ -537,7 +488,7 @@ buildRefreshOnLoadSheet() {
 //                               NormalText(
 //                                   text:
 //                                       'Reference No : ${reportController.reportOnRefreshList[index].refno}',
-//                                   size: 15.0,
+//                                   size: 15.sp,
 //                                   color: Colors.black),
 //                               const SizedBox(
 //                                 width: 5,
@@ -546,7 +497,7 @@ buildRefreshOnLoadSheet() {
 //                               NormalText(
 //                                   text:
 //                                       'Bar Code : ${reportController.reportOnRefreshList[index].brcode}',
-//                                   size: 15.0,
+//                                   size: 15.sp,
 //                                   color: Colors.black),
 //                             ],
 //                           ),
@@ -555,7 +506,7 @@ buildRefreshOnLoadSheet() {
 //                               NormalText(
 //                                   text:
 //                                       'Booking No : ${reportController.reportOnRefreshList[index].bookingno}',
-//                                   size: 15.0,
+//                                   size: 15.sp,
 //                                   color: Colors.black),
 //                               const SizedBox(
 //                                 width: 5,
@@ -564,7 +515,7 @@ buildRefreshOnLoadSheet() {
 //                               NormalText(
 //                                   text:
 //                                       'Booking Date : ${bDate.substring(0, 10)}',
-//                                   size: 15.0,
+//                                   size: 15.sp,
 //                                   color: Colors.black),
 //                             ],
 //                           ),
@@ -573,7 +524,7 @@ buildRefreshOnLoadSheet() {
 //                               NormalText(
 //                                   text:
 //                                       'DO No : ${reportController.reportOnRefreshList[index].doNo}',
-//                                   size: 15.0,
+//                                   size: 15.sp,
 //                                   color: Colors.black),
 //                               const SizedBox(
 //                                 width: 5,
@@ -585,7 +536,7 @@ buildRefreshOnLoadSheet() {
 //                               NormalText(
 //                                   text:
 //                                       'Quantity : ${reportController.reportOnRefreshList[index].qty}',
-//                                   size: 15.0,
+//                                   size: 15.sp,
 //                                   color: Colors.black),
 //                               const SizedBox(
 //                                 width: 5,
@@ -594,7 +545,7 @@ buildRefreshOnLoadSheet() {
 //                               NormalText(
 //                                   text:
 //                                       'Size : ${reportController.reportOnRefreshList[index].size}',
-//                                   size: 15.0,
+//                                   size: 15.sp,
 //                                   color: Colors.black),
 //                             ],
 //                           ),
@@ -603,7 +554,7 @@ buildRefreshOnLoadSheet() {
 //                               NormalText(
 //                                   text:
 //                                       'Type : ${reportController.reportOnRefreshList[index].type}',
-//                                   size: 15.0,
+//                                   size: 15.sp,
 //                                   color: Colors.black),
 //                               const SizedBox(
 //                                 width: 5,
@@ -615,7 +566,7 @@ buildRefreshOnLoadSheet() {
 //                               NormalText(
 //                                   text:
 //                                       'Freight : ${reportController.reportOnRefreshList[index].freight}',
-//                                   size: 15.0,
+//                                   size: 15.sp,
 //                                   color: Colors.black),
 //                               const SizedBox(
 //                                 width: 5,
@@ -627,7 +578,7 @@ buildRefreshOnLoadSheet() {
 //                               NormalText(
 //                                   text:
 //                                       'Freight : ${reportController.reportOnRefreshList[index].freight}',
-//                                   size: 15.0,
+//                                   size: 15.sp,
 //                                   color: Colors.black),
 //                             ],
 //                           ),
@@ -636,7 +587,7 @@ buildRefreshOnLoadSheet() {
 //                               NormalText(
 //                                   text:
 //                                       'POL : ${reportController.reportOnRefreshList[index].pol}',
-//                                   size: 15.0,
+//                                   size: 15.sp,
 //                                   color: Colors.black),
 //                               const SizedBox(
 //                                 width: 5,
@@ -645,7 +596,7 @@ buildRefreshOnLoadSheet() {
 //                               NormalText(
 //                                   text:
 //                                       'POD : ${reportController.reportOnRefreshList[index].pod}',
-//                                   size: 15.0,
+//                                   size: 15.sp,
 //                                   color: Colors.black),
 //                               const SizedBox(
 //                                 width: 5,
@@ -654,7 +605,7 @@ buildRefreshOnLoadSheet() {
 //                               NormalText(
 //                                   text:
 //                                       'Commodity: ${reportController.reportOnRefreshList[index].commodity}',
-//                                   size: 15.0,
+//                                   size: 15.sp,
 //                                   color: Colors.black),
 //                             ],
 //                           ),
@@ -663,7 +614,7 @@ buildRefreshOnLoadSheet() {
 //                               NormalText(
 //                                   text:
 //                                       'ICD From : ${reportController.reportOnRefreshList[index].icdfrom}',
-//                                   size: 15.0,
+//                                   size: 15.sp,
 //                                   color: Colors.black),
 //                               const SizedBox(
 //                                 width: 5,
@@ -672,7 +623,7 @@ buildRefreshOnLoadSheet() {
 //                               NormalText(
 //                                   text:
 //                                       '	ICD To : ${reportController.reportOnRefreshList[index].icdto}',
-//                                   size: 15.0,
+//                                   size: 15.sp,
 //                                   color: Colors.black),
 //                             ],
 //                           ),
@@ -682,7 +633,7 @@ buildRefreshOnLoadSheet() {
 //                   );
 //                 })
 //             : Padding(
-//                 padding: const EdgeInsets.all(15.0),
+//                 padding: const EdgeInsets.all(15.sp),
 //                 child: Center(
 //                   child: SemiWeighText(
 //                       text: "No Data Found Please Check the Date range",

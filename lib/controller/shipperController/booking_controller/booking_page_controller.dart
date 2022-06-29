@@ -34,7 +34,7 @@ class Controller extends GetxController {
       // return BookingResDataModel.fromJson(data);
       return data[0]["result"];
     } else {
-      throw Exception('Api Failed.');
+      throw Exception('Api Failed');
     }
   }
 }

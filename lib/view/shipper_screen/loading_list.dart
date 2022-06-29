@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tranvision_customer_app/controller/other_utils_Controller/dropdown_controller/loading_lis_controller/loading_list_controller.dart';
 import 'package:tranvision_customer_app/controller/other_utils_Controller/dropdown_controller/loading_lis_controller/vessel_lis_controller.dart';
@@ -24,8 +25,8 @@ class _LoadingListState extends State<LoadingList> {
     LoadingListController loadController = Get.put(LoadingListController());
     return Scaffold(
       appBar: AppBar(
-        title:
-            WeightText(color: AppColor.black, text: 'Loading List', size: 20),
+        title: WeightText(
+            color: AppColor.black, text: 'Loading List', size: 20.sp),
         centerTitle: true,
         elevation: 1.0,
       ),
@@ -38,17 +39,16 @@ class _LoadingListState extends State<LoadingList> {
               Image.asset(
                 "assets/images/vassel.png",
                 fit: BoxFit.cover,
-                height: 250.0,
+                height: 250.h,
               ),
               Padding(
-                padding:
-                    const EdgeInsets.only(left: 10.0, right: 10.0, top: 5.0),
+                padding: EdgeInsets.only(left: 10.w, right: 10.w, top: 5.h),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     WeightText(
-                        text: "Vessel", size: 18.0, color: AppColor.textColor),
+                        text: "Vessel", size: 18.sp, color: AppColor.textColor),
                     Obx(() => contVess.vesselList.isNotEmpty
                         ? VesselDrop(
                             listItems: contVess.vesselList,
@@ -68,7 +68,7 @@ class _LoadingListState extends State<LoadingList> {
                       children: [
                         WeightText(
                             text: "Voyage",
-                            size: 18.0,
+                            size: 18.sp,
                             color: AppColor.textColor),
                         Obx(() => contVoyage.voyageList.isEmpty
                             ? VoyageDown(
@@ -90,9 +90,7 @@ class _LoadingListState extends State<LoadingList> {
                               ))
                       ],
                     ),
-                    const SizedBox(
-                      height: 20.0,
-                    ),
+                    SizeBox.customHeight(20.h),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
@@ -101,41 +99,39 @@ class _LoadingListState extends State<LoadingList> {
                             loadController.toggle();
                           },
                           child: Container(
-                            height: 60,
-                            width: MediaQuery.of(context).size.width * 0.75,
+                            height: 60.h,
+                            width: MediaQuery.of(context).size.width * 0.75.sw,
                             alignment: Alignment.center,
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
-                              children: const [
-                                Icon(
+                              children: [
+                                const Icon(
                                   Icons.refresh_outlined,
                                 ),
-                                SizedBox(
-                                  width: 10.0,
-                                ),
+                                SizeBox.customWidth(5.w),
                                 WeightText(
                                     text: "Refresh",
-                                    size: 18,
+                                    size: 18.sp,
                                     color: Colors.black),
                               ],
                             ),
                             decoration: BoxDecoration(
-                                color: Colors.orange,
-                                borderRadius: BorderRadius.circular(9)),
+                                color: AppColor.primary,
+                                borderRadius: BorderRadius.circular(9.r)),
                           ),
                         ),
                       ],
                     ),
-                    SizeBox.customHeight(10),
+                    SizeBox.customHeight(10.h),
                     Obx(
                       () => Visibility(
                           visible: loadController.isVisible.value,
                           child: Container(
-                              padding: const EdgeInsets.all(5),
+                              padding: EdgeInsets.all(5.r),
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(9),
+                                borderRadius: BorderRadius.circular(9.r.r),
                               ),
-                              height: 400,
+                              height: 400.h,
                               child: Column(
                                 children: [
                                   if (loadController.isVisible.value)
@@ -154,25 +150,25 @@ class _LoadingListState extends State<LoadingList> {
                                                   return Card(
                                                     shadowColor: Colors.orange,
                                                     elevation: 5,
-                                                    shape: const RoundedRectangleBorder(
+                                                    shape: RoundedRectangleBorder(
                                                         borderRadius:
                                                             BorderRadius.all(
                                                                 Radius.circular(
-                                                                    15))),
+                                                                    15.r))),
                                                     child: ExpansionTile(
                                                       title: Text(
                                                         'Port : ${snapshot.data[index].port}'
                                                         "   "
                                                         'Size : ${snapshot.data[index].size}',
-                                                        style: const TextStyle(
-                                                            fontSize: 15.0),
+                                                        style: TextStyle(
+                                                            fontSize: 15.sp),
                                                       ),
                                                       subtitle: Text(
                                                         'FPOD : ${snapshot.data[index].fpod}'
                                                         "   "
                                                         'Type: ${snapshot.data[index].type}',
-                                                        style: const TextStyle(
-                                                            fontSize: 15.0),
+                                                        style: TextStyle(
+                                                            fontSize: 15.sp),
                                                       ),
                                                       leading: IconButton(
                                                         icon: const Icon(
@@ -185,18 +181,15 @@ class _LoadingListState extends State<LoadingList> {
                                                       trailing: Text(
                                                           snapshot.data[index]
                                                               .container,
-                                                          style:
-                                                              const TextStyle(
-                                                                  fontSize:
-                                                                      15.0)),
+                                                          style: TextStyle(
+                                                              fontSize: 15.sp)),
                                                       children: [
                                                         Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .symmetric(
-                                                                  vertical: 8.0,
+                                                          padding: EdgeInsets
+                                                              .symmetric(
+                                                                  vertical: 8.h,
                                                                   horizontal:
-                                                                      8),
+                                                                      8.w),
                                                           child: Column(
                                                             children: [
                                                               Row(
@@ -205,11 +198,11 @@ class _LoadingListState extends State<LoadingList> {
                                                                     child:
                                                                         Column(
                                                                       children: [
-                                                                        const SemiWeighText(
+                                                                        SemiWeighText(
                                                                           text:
                                                                               "Weight",
                                                                           size:
-                                                                              12.0,
+                                                                              12.sp,
                                                                           color:
                                                                               Colors.black,
                                                                         ),
@@ -218,23 +211,23 @@ class _LoadingListState extends State<LoadingList> {
                                                                               false,
                                                                           decoration: InputDecoration(
                                                                               hintText: snapshot.data[index].weight.toString(),
-                                                                              border: OutlineInputBorder(borderSide: const BorderSide(width: 2.0, style: BorderStyle.solid, color: Colors.black), borderRadius: BorderRadius.circular(9))),
+                                                                              border: OutlineInputBorder(borderSide: const BorderSide(width: 2.0, style: BorderStyle.solid, color: Colors.black), borderRadius: BorderRadius.circular(9.r))),
                                                                         ),
                                                                       ],
                                                                     ),
                                                                   ),
-                                                                  const SizedBox(
-                                                                    width: 5,
-                                                                  ),
+                                                                  SizeBox
+                                                                      .customWidth(
+                                                                          5.w),
                                                                   Expanded(
                                                                     child:
                                                                         Column(
                                                                       children: [
-                                                                        const SemiWeighText(
+                                                                        SemiWeighText(
                                                                           text:
                                                                               "IMCO",
                                                                           size:
-                                                                              12.0,
+                                                                              12.sp,
                                                                           color:
                                                                               Colors.black,
                                                                         ),
@@ -243,23 +236,23 @@ class _LoadingListState extends State<LoadingList> {
                                                                               false,
                                                                           decoration: InputDecoration(
                                                                               hintText: snapshot.data[index].imco,
-                                                                              border: OutlineInputBorder(borderSide: const BorderSide(width: 2.0, style: BorderStyle.solid, color: Colors.black), borderRadius: BorderRadius.circular(9))),
+                                                                              border: OutlineInputBorder(borderSide: const BorderSide(width: 2.0, style: BorderStyle.solid, color: Colors.black), borderRadius: BorderRadius.circular(9.r))),
                                                                         ),
                                                                       ],
                                                                     ),
                                                                   ),
-                                                                  const SizedBox(
-                                                                    width: 5,
-                                                                  ),
+                                                                  SizeBox
+                                                                      .customWidth(
+                                                                          5.w),
                                                                   Expanded(
                                                                     child:
                                                                         Column(
                                                                       children: [
-                                                                        const SemiWeighText(
+                                                                        SemiWeighText(
                                                                           text:
                                                                               "Status",
                                                                           size:
-                                                                              12.0,
+                                                                              12.sp,
                                                                           color:
                                                                               Colors.black,
                                                                         ),
@@ -268,27 +261,27 @@ class _LoadingListState extends State<LoadingList> {
                                                                               false,
                                                                           decoration: InputDecoration(
                                                                               hintText: snapshot.data[index].status,
-                                                                              border: OutlineInputBorder(borderSide: const BorderSide(width: 2.0, style: BorderStyle.solid, color: Colors.black), borderRadius: BorderRadius.circular(9))),
+                                                                              border: OutlineInputBorder(borderSide: const BorderSide(width: 2.0, style: BorderStyle.solid, color: Colors.black), borderRadius: BorderRadius.circular(9.r))),
                                                                         ),
                                                                       ],
                                                                     ),
                                                                   ),
                                                                 ],
                                                               ),
-                                                              const SizedBox(
-                                                                height: 10,
-                                                              ),
+                                                              SizeBox
+                                                                  .customWidth(
+                                                                      5.w),
                                                               Row(
                                                                 children: [
                                                                   Expanded(
                                                                     child:
                                                                         Column(
                                                                       children: [
-                                                                        const SemiWeighText(
+                                                                        SemiWeighText(
                                                                           text:
                                                                               "STOW",
                                                                           size:
-                                                                              12.0,
+                                                                              12.sp,
                                                                           color:
                                                                               Colors.black,
                                                                         ),
@@ -297,23 +290,23 @@ class _LoadingListState extends State<LoadingList> {
                                                                               false,
                                                                           decoration: InputDecoration(
                                                                               hintText: snapshot.data[index].stow,
-                                                                              border: OutlineInputBorder(borderSide: const BorderSide(width: 2.0, style: BorderStyle.solid, color: Colors.black), borderRadius: BorderRadius.circular(9))),
+                                                                              border: OutlineInputBorder(borderSide: const BorderSide(width: 2.0, style: BorderStyle.solid, color: Colors.black), borderRadius: BorderRadius.circular(9.r))),
                                                                         ),
                                                                       ],
                                                                     ),
                                                                   ),
-                                                                  const SizedBox(
-                                                                    width: 5,
-                                                                  ),
+                                                                  SizeBox
+                                                                      .customWidth(
+                                                                          5.w),
                                                                   Expanded(
                                                                     child:
                                                                         Column(
                                                                       children: [
-                                                                        const SemiWeighText(
+                                                                        SemiWeighText(
                                                                           text:
                                                                               "Remark",
                                                                           size:
-                                                                              12.0,
+                                                                              12.sp,
                                                                           color:
                                                                               Colors.black,
                                                                         ),
@@ -322,23 +315,23 @@ class _LoadingListState extends State<LoadingList> {
                                                                               false,
                                                                           decoration: InputDecoration(
                                                                               hintText: snapshot.data[index].remark,
-                                                                              border: OutlineInputBorder(borderSide: const BorderSide(width: 2.0, style: BorderStyle.solid, color: Colors.black), borderRadius: BorderRadius.circular(9))),
+                                                                              border: OutlineInputBorder(borderSide: const BorderSide(width: 2.0, style: BorderStyle.solid, color: Colors.black), borderRadius: BorderRadius.circular(9.r))),
                                                                         ),
                                                                       ],
                                                                     ),
                                                                   ),
-                                                                  const SizedBox(
-                                                                    width: 5,
-                                                                  ),
+                                                                  SizeBox
+                                                                      .customWidth(
+                                                                          5.w),
                                                                   Expanded(
                                                                     child:
                                                                         Column(
                                                                       children: [
-                                                                        const SemiWeighText(
+                                                                        SemiWeighText(
                                                                           text:
                                                                               "Transportation",
                                                                           size:
-                                                                              12.0,
+                                                                              12.sp,
                                                                           color:
                                                                               Colors.black,
                                                                         ),
@@ -347,7 +340,7 @@ class _LoadingListState extends State<LoadingList> {
                                                                               false,
                                                                           decoration: InputDecoration(
                                                                               hintText: snapshot.data[index].trans,
-                                                                              border: OutlineInputBorder(borderSide: const BorderSide(width: 2.0, style: BorderStyle.solid, color: Colors.black), borderRadius: BorderRadius.circular(9))),
+                                                                              border: OutlineInputBorder(borderSide: const BorderSide(width: 2.0, style: BorderStyle.solid, color: Colors.black), borderRadius: BorderRadius.circular(9.r))),
                                                                         ),
                                                                       ],
                                                                     ),
@@ -391,7 +384,7 @@ class _LoadingListState extends State<LoadingList> {
                     //                     padding: const EdgeInsets.all(1),
                     //                     decoration: BoxDecoration(
                     //                       borderRadius:
-                    //                           BorderRadius.circular(9),
+                    //                           BorderRadius.circular(9.r),
                     //                     ),
                     //                     child: ListView.builder(
                     //                         itemCount: loadController
@@ -411,7 +404,7 @@ class _LoadingListState extends State<LoadingList> {
                     //                               "   "
                     //                               'Type: ${loadController.loadingDataList[index].type}',
                     //                               style: const TextStyle(
-                    //                                   fontSize: 15.0),
+                    //                                   fontSize: 15.sp),
                     //                             ),
                     //                             leading: IconButton(
                     //                               icon: const Icon(Icons.edit),
@@ -426,7 +419,7 @@ class _LoadingListState extends State<LoadingList> {
                     //                                     .container
                     //                                     .toString(),
                     //                                 style: const TextStyle(
-                    //                                     fontSize: 15.0)),
+                    //                                     fontSize: 15.sp)),
                     //                             children: [
                     //                               Padding(
                     //                                 padding: const EdgeInsets
@@ -461,7 +454,7 @@ class _LoadingListState extends State<LoadingList> {
                     //                                                             width: 2.0,
                     //                                                             style: BorderStyle.solid,
                     //                                                             color: Colors.black),
-                    //                                                         borderRadius: BorderRadius.circular(9))),
+                    //                                                         borderRadius: BorderRadius.circular(9.r))),
                     //                                               ),
                     //                                             ],
                     //                                           ),
@@ -492,7 +485,7 @@ class _LoadingListState extends State<LoadingList> {
                     //                                                             width: 2.0,
                     //                                                             style: BorderStyle.solid,
                     //                                                             color: Colors.black),
-                    //                                                         borderRadius: BorderRadius.circular(9))),
+                    //                                                         borderRadius: BorderRadius.circular(9.r))),
                     //                                               ),
                     //                                             ],
                     //                                           ),
@@ -523,7 +516,7 @@ class _LoadingListState extends State<LoadingList> {
                     //                                                             width: 2.0,
                     //                                                             style: BorderStyle.solid,
                     //                                                             color: Colors.black),
-                    //                                                         borderRadius: BorderRadius.circular(9))),
+                    //                                                         borderRadius: BorderRadius.circular(9.r))),
                     //                                               ),
                     //                                             ],
                     //                                           ),
@@ -558,7 +551,7 @@ class _LoadingListState extends State<LoadingList> {
                     //                                                             width: 2.0,
                     //                                                             style: BorderStyle.solid,
                     //                                                             color: Colors.black),
-                    //                                                         borderRadius: BorderRadius.circular(9))),
+                    //                                                         borderRadius: BorderRadius.circular(9.r))),
                     //                                               ),
                     //                                             ],
                     //                                           ),
@@ -589,7 +582,7 @@ class _LoadingListState extends State<LoadingList> {
                     //                                                             width: 2.0,
                     //                                                             style: BorderStyle.solid,
                     //                                                             color: Colors.black),
-                    //                                                         borderRadius: BorderRadius.circular(9))),
+                    //                                                         borderRadius: BorderRadius.circular(9.r))),
                     //                                               ),
                     //                                             ],
                     //                                           ),
@@ -620,7 +613,7 @@ class _LoadingListState extends State<LoadingList> {
                     //                                                             width: 2.0,
                     //                                                             style: BorderStyle.solid,
                     //                                                             color: Colors.black),
-                    //                                                         borderRadius: BorderRadius.circular(9))),
+                    //                                                         borderRadius: BorderRadius.circular(9.r))),
                     //                                               ),
                     //                                             ],
                     //                                           ),
@@ -638,7 +631,7 @@ class _LoadingListState extends State<LoadingList> {
                     //             )
                     //           : Center(
                     //               child: Padding(
-                    //                 padding: const EdgeInsets.only(top: 15.0),
+                    //                 padding: const EdgeInsets.only(top: 15.sp),
                     //                 child: Column(
                     //                   children: [
                     //                     SemiWeighText(

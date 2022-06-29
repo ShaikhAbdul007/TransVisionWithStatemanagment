@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tranvision_customer_app/controller/other_utils_Controller/dropdown_controller/commodity_controller/commodity_controller.dart';
 import 'package:tranvision_customer_app/controller/other_utils_Controller/dropdown_controller/icd_controller/newicdfrom_controller.dart';
@@ -45,24 +46,24 @@ class _BookingPageState extends State<BookingPage> {
 
     return Scaffold(
         appBar: AppBar(
-          title:
-              WeightText(color: AppColor.black, text: 'Booking Page', size: 20),
+          title: WeightText(
+              color: AppColor.black, text: 'Booking Page', size: 20.sp),
           centerTitle: true,
           elevation: 1.0,
         ),
         body: ListView(children: [
           Padding(
-            padding: const EdgeInsets.only(top: 8.0, left: 5, right: 5),
+            padding: EdgeInsets.only(top: 8.h, left: 5.w, right: 5.w),
             child: Column(
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
+                      padding: EdgeInsets.only(left: 8.w),
                       child: BoldText(
                           text: "ICD From",
-                          size: 18,
+                          size: 15.sp.sp,
                           color: AppColor.textColor),
                     ),
                     Obx(() => icdController.icdList.isNotEmpty
@@ -81,10 +82,10 @@ class _BookingPageState extends State<BookingPage> {
                             child: CircularProgressIndicator(),
                           )),
                     Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
+                      padding: EdgeInsets.only(left: 8.w),
                       child: BoldText(
                           text: "Port Of Loading",
-                          size: 18,
+                          size: 15.sp.sp,
                           color: AppColor.textColor),
                     ),
                     Obx(() => loadingController.loadingList.isNotEmpty
@@ -104,10 +105,10 @@ class _BookingPageState extends State<BookingPage> {
                             child: CircularProgressIndicator(),
                           )),
                     Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
+                      padding: EdgeInsets.only(left: 8.w),
                       child: BoldText(
                           text: "Port Of Destination ",
-                          size: 18,
+                          size: 15.sp,
                           color: AppColor.textColor),
                     ),
                     Obx(
@@ -130,9 +131,11 @@ class _BookingPageState extends State<BookingPage> {
                                   destinationController.destinationValue),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
+                      padding: EdgeInsets.only(left: 8.w),
                       child: BoldText(
-                          text: "ICD To ", size: 18, color: AppColor.textColor),
+                          text: "ICD To ",
+                          size: 15.sp,
+                          color: AppColor.textColor),
                     ),
                     Obx(() => icdToController.icdToList.isEmpty
                         ? IcdTo(
@@ -160,23 +163,23 @@ class _BookingPageState extends State<BookingPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
+                            padding: EdgeInsets.only(left: 8.w),
                             child: BoldText(
                                 text: "Quantity ",
-                                size: 18,
+                                size: 15.sp,
                                 color: AppColor.textColor),
                           ),
                           Container(
-                              padding: const EdgeInsets.all(5.0),
-                              margin: const EdgeInsets.all(5.0),
-                              height: height,
-                              width: width,
+                              padding: EdgeInsets.all(5.r),
+                              margin: EdgeInsets.all(5.r),
+                              height: 55.h,
+                              width: 500.w,
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
+                                  borderRadius: BorderRadius.circular(15.r),
                                   border: Border.all(
                                       color: AppColor.black,
                                       style: BorderStyle.solid,
-                                      width: 2.0)),
+                                      width: 2.w)),
                               child: TextField(
                                   controller: c.ourCount,
                                   cursorColor: Colors.black,
@@ -196,10 +199,10 @@ class _BookingPageState extends State<BookingPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
+                            padding: EdgeInsets.only(left: 8.w),
                             child: BoldText(
                                 text: "Size",
-                                size: 18,
+                                size: 15.sp,
                                 color: AppColor.textColor),
                           ),
                           SizeDropDown(
@@ -224,10 +227,10 @@ class _BookingPageState extends State<BookingPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
+                            padding: EdgeInsets.only(left: 8.w),
                             child: BoldText(
                                 text: "Type ",
-                                size: 18,
+                                size: 15.sp,
                                 color: AppColor.textColor),
                           ),
                           Obx(
@@ -257,10 +260,10 @@ class _BookingPageState extends State<BookingPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
+                            padding: EdgeInsets.only(left: 8.w),
                             child: BoldText(
                                 text: "Commodity",
-                                size: 18,
+                                size: 15.sp,
                                 color: AppColor.textColor),
                           ),
                           Obx(
@@ -291,23 +294,24 @@ class _BookingPageState extends State<BookingPage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 8.0),
+                                  padding: EdgeInsets.only(left: 8.w),
                                   child: BoldText(
                                       text: "Class",
-                                      size: 18,
+                                      size: 15.sp,
                                       color: AppColor.textColor),
                                 ),
                                 Container(
-                                    padding: const EdgeInsets.all(5.0),
-                                    margin: const EdgeInsets.all(5.0),
-                                    height: height,
-                                    width: width,
+                                    padding: EdgeInsets.all(5.r),
+                                    margin: EdgeInsets.all(5.r),
+                                    height: 55.h,
+                                    width: 500.w,
                                     decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(15),
+                                        borderRadius:
+                                            BorderRadius.circular(15.r),
                                         border: Border.all(
                                             color: AppColor.black,
                                             style: BorderStyle.solid,
-                                            width: 2.0)),
+                                            width: 2.w)),
                                     child: TextField(
                                         controller: commodity.ourCassController,
                                         cursorColor: Colors.black,
@@ -330,20 +334,20 @@ class _BookingPageState extends State<BookingPage> {
                                 padding: const EdgeInsets.only(left: 8.0),
                                 child: BoldText(
                                     text: "UN No",
-                                    size: 18,
+                                    size: 15.sp,
                                     color: AppColor.textColor),
                               ),
                               Container(
-                                  padding: const EdgeInsets.all(5.0),
-                                  margin: const EdgeInsets.all(5.0),
-                                  height: height,
-                                  width: width,
+                                  padding: EdgeInsets.all(5.r),
+                                  margin: EdgeInsets.all(5.r),
+                                  height: 55.h,
+                                  width: 500.w,
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(15),
+                                      borderRadius: BorderRadius.circular(15.r),
                                       border: Border.all(
                                           color: AppColor.black,
                                           style: BorderStyle.solid,
-                                          width: 2.0)),
+                                          width: 2.w)),
                                   child: TextField(
                                       controller: commodity.unController,
                                       cursorColor: Colors.black,
@@ -363,29 +367,30 @@ class _BookingPageState extends State<BookingPage> {
                   ),
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
+                            padding: EdgeInsets.only(left: 8.w),
                             child: BoldText(
                                 text: "Freight",
-                                size: 18,
+                                size: 15.sp,
                                 color: AppColor.textColor),
                           ),
                           Container(
-                              padding: const EdgeInsets.all(5.0),
-                              margin: const EdgeInsets.all(5.0),
-                              height: height,
-                              width: width,
+                              padding: EdgeInsets.all(5.r),
+                              margin: EdgeInsets.all(5.r),
+                              height: 55.h,
+                              width: 500.w,
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
+                                  borderRadius: BorderRadius.circular(15.r),
                                   border: Border.all(
                                       color: AppColor.black,
                                       style: BorderStyle.solid,
-                                      width: 2.0)),
+                                      width: 2.w)),
                               child: TextField(
                                   controller: c.freightcon,
                                   cursorColor: Colors.black,
@@ -405,23 +410,23 @@ class _BookingPageState extends State<BookingPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
+                            padding: EdgeInsets.only(left: 8.w),
                             child: BoldText(
                                 text: "Weight",
-                                size: 18,
+                                size: 15.sp,
                                 color: AppColor.textColor),
                           ),
                           Container(
-                              padding: const EdgeInsets.all(5.0),
-                              margin: const EdgeInsets.all(5.0),
-                              height: height,
-                              width: width,
+                              padding: EdgeInsets.all(5.r),
+                              margin: EdgeInsets.all(5.r),
+                              height: 55.h,
+                              width: 500.w,
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
+                                  borderRadius: BorderRadius.circular(15.r),
                                   border: Border.all(
                                       color: AppColor.black,
                                       style: BorderStyle.solid,
-                                      width: 2.0)),
+                                      width: 2.w)),
                               child: TextField(
                                   controller: c.weightcon,
                                   cursorColor: Colors.black,
@@ -441,23 +446,23 @@ class _BookingPageState extends State<BookingPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
+                            padding: EdgeInsets.only(left: 8.w),
                             child: BoldText(
                                 text: "Rate Agree",
-                                size: 18,
+                                size: 15.sp,
                                 color: AppColor.textColor),
                           ),
                           Container(
-                              padding: const EdgeInsets.all(5.0),
-                              margin: const EdgeInsets.all(5.0),
-                              height: height,
-                              width: width,
+                              padding: EdgeInsets.all(5.r),
+                              margin: EdgeInsets.all(5.r),
+                              height: 55.h,
+                              width: 500.w,
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
+                                  borderRadius: BorderRadius.circular(15.r),
                                   border: Border.all(
                                       color: AppColor.black,
                                       style: BorderStyle.solid,
-                                      width: 2.0)),
+                                      width: 2.w)),
                               child: TextField(
                                   controller: c.rtag,
                                   cursorColor: Colors.black,
@@ -474,14 +479,14 @@ class _BookingPageState extends State<BookingPage> {
                     ),
                   ],
                 ),
-                SizeBox.customHeight(12),
+                SizeBox.customHeight(12.h),
                 Padding(
                   padding:
-                      const EdgeInsets.only(right: 20, left: 20, bottom: 10.0),
+                      EdgeInsets.only(right: 20.w, left: 20.w, bottom: 10.h),
                   child: Center(
                     child: Container(
-                        padding: const EdgeInsets.all(1),
-                        height: 50,
+                        padding: EdgeInsets.all(1.r),
+                        height: 50.h,
                         width: MediaQuery.of(context).size.width,
                         child: ElevatedButton(
                           style: ButtonStyle(
@@ -512,7 +517,7 @@ class _BookingPageState extends State<BookingPage> {
                           },
                           child: BoldText(
                               text: "Next",
-                              size: 18,
+                              size: 15.sp,
                               color: AppColor.textColor),
                         )),
                   ),

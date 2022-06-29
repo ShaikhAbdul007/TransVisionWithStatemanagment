@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tranvision_customer_app/controller/authController/login_controller.dart';
 import 'package:tranvision_customer_app/utils/constant/colors.dart';
@@ -17,24 +18,24 @@ class LoginPage extends StatelessWidget {
         Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(
-                  top: 10.0, bottom: 0.0, left: 16.0, right: 0.0),
+              padding: EdgeInsets.only(
+                top: 10.h,
+                left: 16.w,
+              ),
               child: Image.asset(
                 'assets/images/loginpage.png',
                 fit: BoxFit.cover,
-                height: 350,
+                height: 350.h,
               ),
             ),
-            SizeBox.customHeight(15),
+            SizeBox.customHeight(15.h),
             BoldText(
                 text: "Welcome To TransVision",
-                size: 20,
+                size: 20.sp,
                 color: AppColor.textColor),
-            const SizedBox(
-              height: 15.0,
-            ),
+            SizeBox.customHeight(15.h),
             Padding(
-              padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+              padding: EdgeInsets.only(left: 8.w, right: 8.w),
               child: Form(
                 key: logController.formKey,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -46,11 +47,11 @@ class LoginPage extends StatelessWidget {
                           value!.isEmpty ? "User Name Cannot be Empty" : null,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15)),
+                            borderRadius: BorderRadius.circular(15.r)),
                         prefixIcon: const Icon(CupertinoIcons.person_2_fill),
                         suffixIcon: logController.username.text.isEmpty
                             ? Container(
-                                width: 0,
+                                width: 0.w,
                               )
                             : IconButton(
                                 onPressed: () {
@@ -63,7 +64,7 @@ class LoginPage extends StatelessWidget {
                         //     TextStyle(decorationColor: Colors.orange[800])
                       ),
                     ),
-                    SizeBox.customHeight(15),
+                    SizeBox.customHeight(15.h),
                     Obx(
                       () => TextFormField(
                         controller: logController.password,
@@ -76,7 +77,7 @@ class LoginPage extends StatelessWidget {
                                   : const Icon(Icons.visibility),
                               onPressed: () => logController.toggle())),
                           border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15)),
+                              borderRadius: BorderRadius.circular(15.r)),
                           hintText: "Enter Password",
                           labelText: "Password",
                         ),
@@ -89,23 +90,23 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
             ),
-            SizeBox.customHeight(15),
+            SizeBox.customHeight(15.h),
             InkWell(
               onTap: () {
                 logController.checkLogin();
               },
               child: Container(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 10.0, horizontal: 5.0),
-                height: 50,
-                width: 200,
+                padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 5.w),
+                height: 50.h,
+                width: 200.w,
                 decoration: BoxDecoration(
                     color: AppColor.primary,
-                    borderRadius: BorderRadius.circular(15)),
-                child: const Text(
+                    borderRadius: BorderRadius.circular(15.r)),
+                child: Text(
                   "Login",
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                  style:
+                      TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),
                 ),
               ),
             ),

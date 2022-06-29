@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tranvision_customer_app/utils/constant/colors.dart';
 import 'package:tranvision_customer_app/utils/constant/sized_box.dart';
@@ -19,11 +20,11 @@ class ShipperResetPassword extends StatelessWidget {
             Image.asset("assets/images/forgetpass.png"),
             WeightText(
                 text: "Change Your Password",
-                size: 25.0,
+                size: 25.sp,
                 color: AppColor.textColor),
-            SizeBox.customHeight(15),
+            SizeBox.customHeight(15.h),
             Padding(
-              padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+              padding: EdgeInsets.only(left: 20.w, right: 20.h),
               child: Form(
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 key: pasController.rPKey,
@@ -44,10 +45,10 @@ class ShipperResetPassword extends StatelessWidget {
                           labelText: "New Password",
                           hintText: "Enter New Password",
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
+                            borderRadius: BorderRadius.circular(15.r),
                           )),
                     ),
-                    SizeBox.customHeight(20),
+                    SizeBox.customHeight(20.h),
                     TextFormField(
                       obscureText: !pasController.isVisible,
                       controller: pasController.cPassword,
@@ -64,7 +65,7 @@ class ShipperResetPassword extends StatelessWidget {
                                   ? const Icon(Icons.visibility_off)
                                   : const Icon(Icons.visibility)),
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
+                            borderRadius: BorderRadius.circular(15.r),
                           )),
                     ),
                     SizeBox.customHeight(30),
@@ -82,16 +83,16 @@ class ShipperResetPassword extends StatelessWidget {
                                 const Icon(
                                   Icons.restart_alt_rounded,
                                 ),
-                                SizeBox.customWidth(8),
-                                const WeightText(
+                                SizeBox.customWidth(8.w),
+                                WeightText(
                                     text: "Reset",
-                                    size: 18.0,
+                                    size: 18.sp,
                                     color: Colors.black),
                               ],
                             ),
                             decoration: BoxDecoration(
-                                color: Colors.orange[300],
-                                borderRadius: BorderRadius.circular(7)),
+                                color: AppColor.primary!,
+                                borderRadius: BorderRadius.circular(7.r)),
                           ),
                         ),
                       ],

@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tranvision_customer_app/utils/constant/colors.dart';
 import 'package:tranvision_customer_app/utils/constant/text.dart';
 import 'package:tranvision_customer_app/view/shipper_screen/bill_of_landing/bl_details.dart';
@@ -17,7 +18,7 @@ class BillOfLading extends StatelessWidget {
             backgroundColor: Colors.white,
             appBar: AppBar(
               title: WeightText(
-                  color: AppColor.black, text: 'Bill Of Lading', size: 20),
+                  color: AppColor.black, text: 'Bill Of Lading', size: 20.sp),
               centerTitle: true,
               elevation: 1.0,
               bottom: const TabBar(

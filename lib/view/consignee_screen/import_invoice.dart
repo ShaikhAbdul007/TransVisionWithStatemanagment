@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tranvision_customer_app/controller/consigneController/import_controller.dart';
 import 'package:tranvision_customer_app/utils/constant/colors.dart';
@@ -13,8 +14,8 @@ class ImportInvoice extends StatelessWidget {
     ImportController importController = Get.put(ImportController());
     return Scaffold(
       appBar: AppBar(
-        title:
-            WeightText(color: AppColor.black, text: 'Import Invoice', size: 20),
+        title: WeightText(
+            color: AppColor.black, text: 'Import Invoice', size: 20.sp),
         centerTitle: true,
         elevation: 1.0,
       ),
@@ -28,24 +29,24 @@ class ImportInvoice extends StatelessWidget {
                   Image.asset(
                     "assets/images/do.png",
                     fit: BoxFit.fill,
-                    height: 250,
+                    height: 250.h,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                    padding: EdgeInsets.only(left: 10.w, right: 10.w),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         WeightText(
                             text: "From Date",
-                            size: 18,
+                            size: 18.sp,
                             color: AppColor.textColor),
-                        SizeBox.customHeight(8),
+                        SizeBox.customHeight(8.h),
                         TextField(
                           controller: importController.importFromDate,
                           decoration: InputDecoration(
                               hintText: "Select the date",
                               border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
+                                borderRadius: BorderRadius.circular(20.r),
                               ),
                               suffixIcon: IconButton(
                                 onPressed: () {
@@ -54,18 +55,18 @@ class ImportInvoice extends StatelessWidget {
                                 icon: const Icon(Icons.calendar_month_outlined),
                               )),
                         ),
-                        SizeBox.customHeight(10),
+                        SizeBox.customHeight(10.h),
                         WeightText(
                             text: "To Date",
-                            size: 18,
+                            size: 18.sp,
                             color: AppColor.textColor),
-                        SizeBox.customHeight(8),
+                        SizeBox.customHeight(8.h),
                         TextField(
                           controller: importController.importToDate,
                           decoration: InputDecoration(
                               hintText: "Select the date",
                               border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
+                                borderRadius: BorderRadius.circular(20.r),
                               ),
                               suffixIcon: IconButton(
                                 onPressed: () {
@@ -74,38 +75,38 @@ class ImportInvoice extends StatelessWidget {
                                 icon: const Icon(Icons.calendar_month_outlined),
                               )),
                         ),
-                        SizeBox.customHeight(8),
+                        SizeBox.customHeight(8.h),
                         WeightText(
                             text: "Reference No",
-                            size: 18,
+                            size: 18.sp,
                             color: AppColor.textColor),
-                        SizeBox.customHeight(8),
+                        SizeBox.customHeight(8.h),
                         TextFormField(
                           controller: importController.importReference,
                           cursorColor: AppColor.black,
                           decoration: InputDecoration(
                               hintText: "Enter the Detials",
                               border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(15),
+                                borderRadius: BorderRadius.circular(15.r),
                               )),
                         ),
                         SizeBox.customHeight(20),
                         Center(
                           child: Container(
                               alignment: Alignment.center,
-                              width: MediaQuery.of(context).size.width / 2,
-                              height: 50,
+                              width: MediaQuery.of(context).size.width / 2.sw,
+                              height: 50.h,
                               decoration: BoxDecoration(
                                 color: AppColor.primary,
-                                borderRadius: BorderRadius.circular(20),
+                                borderRadius: BorderRadius.circular(20.r),
                               ),
                               child: BoldText(
                                 color: AppColor.black,
                                 text: 'Refresh',
-                                size: 18.0,
+                                size: 18.sp,
                               )),
                         ),
-                        SizeBox.customHeight(20),
+                        SizeBox.customHeight(20.h),
                         // SizedBox(
                         //     height: 500,
                         //     child: Obx(
