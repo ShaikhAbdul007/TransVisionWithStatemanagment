@@ -8,6 +8,12 @@ class TypeController extends GetxController {
   var typeList = <TypeModel>[].obs;
   dynamic selectedtype;
 
+
+  @override
+  void dispose() {
+    super.dispose();
+    selectedtype.dispose();
+  }
   Future<RxList<TypeModel>> getTypeApi(dynamic value) async {
     final response = await http.get(Uri.parse(TypeApi.typeUrl(value)));
     var data = jsonDecode(response.body);

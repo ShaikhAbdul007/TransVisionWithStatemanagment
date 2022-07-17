@@ -30,30 +30,37 @@ class BookingPage extends StatefulWidget {
 }
 
 class _BookingPageState extends State<BookingPage> {
+  SizeController sController = Get.put(SizeController());
+  CommodityController commodity = Get.put(CommodityController());
+  IcdNewFromController icdController = Get.put(IcdNewFromController());
+  IcdNewToController icdToController = Get.put(IcdNewToController());
+  LoadingController loadingController = Get.put(LoadingController());
+  DestinationController destinationController =
+      Get.put(DestinationController());
+  TypeController typeController = Get.put(TypeController());
+  Controller c = Get.put(Controller());
+
+  @override
+  void dispose() {
+    Get.delete<Controller>();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    SizeController sController = Get.put(SizeController());
-    CommodityController commodity = Get.put(CommodityController());
-    IcdNewFromController icdController = Get.put(IcdNewFromController());
-    IcdNewToController icdToController = Get.put(IcdNewToController());
-    LoadingController loadingController = Get.put(LoadingController());
-    DestinationController destinationController =
-        Get.put(DestinationController());
-    final height = MediaQuery.of(context).size.height / 9.5;
-    final width = MediaQuery.of(context).size.width;
-    TypeController typeController = Get.put(TypeController());
-    Controller c = Get.put(Controller());
-
     return Scaffold(
-        appBar: AppBar(
-          title: WeightText(
-              color: AppColor.black, text: 'Booking Page', size: 20.sp),
-          centerTitle: true,
-          elevation: 1.0,
-        ),
-        body: ListView(children: [
-          Padding(
-            padding: EdgeInsets.only(top: 8.h, left: 5.w, right: 5.w),
+      appBar: AppBar(
+        title: WeightText(
+            color: AppColor.black, text: 'Booking Page', size: 20.sp),
+        centerTitle: true,
+        elevation: 1.0,
+      ),
+      body: ListView(children: [
+        Padding(
+          padding: EdgeInsets.only(top: 8.h, left: 5.w, right: 5.w),
+          child: Form(
+            key: c.bookingFromKey,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             child: Column(
               children: [
                 Column(
@@ -63,7 +70,7 @@ class _BookingPageState extends State<BookingPage> {
                       padding: EdgeInsets.only(left: 8.w),
                       child: BoldText(
                           text: "ICD From",
-                          size: 15.sp.sp,
+                          size: 15.sp,
                           color: AppColor.textColor),
                     ),
                     Obx(() => icdController.icdList.isNotEmpty
@@ -78,14 +85,20 @@ class _BookingPageState extends State<BookingPage> {
                             },
                             selectedIcdFromValue: icdController.icdFromValue,
                           )
-                        : const Center(
-                            child: CircularProgressIndicator(),
+                        : IcdFrom(
+                            listItems: icdController.icdList,
+                            notifyParent: (value) {
+                              setState(() {
+                                icdController.icdFromValue = value;
+                              });
+                            },
+                            selectedIcdFromValue: icdController.icdFromValue,
                           )),
                     Padding(
-                      padding: EdgeInsets.only(left: 8.w),
+                      padding: EdgeInsets.only(left: 8.w, top: 5.h),
                       child: BoldText(
                           text: "Port Of Loading",
-                          size: 15.sp.sp,
+                          size: 15.sp,
                           color: AppColor.textColor),
                     ),
                     Obx(() => loadingController.loadingList.isNotEmpty
@@ -101,11 +114,18 @@ class _BookingPageState extends State<BookingPage> {
                               destinationController.getDestinationApi(value);
                             },
                           )
-                        : const Center(
-                            child: CircularProgressIndicator(),
+                        : LoadingPort(
+                            listItems: loadingController.loadingList,
+                            loadingPortValue:
+                                loadingController.loadingPortValue,
+                            notifyParent: (value) {
+                              setState(() {
+                                loadingController.loadingPortValue = value;
+                              });
+                            },
                           )),
                     Padding(
-                      padding: EdgeInsets.only(left: 8.w),
+                      padding: EdgeInsets.only(left: 8.w, top: 5.h),
                       child: BoldText(
                           text: "Port Of Destination ",
                           size: 15.sp,
@@ -141,9 +161,9 @@ class _BookingPageState extends State<BookingPage> {
                         ? IcdTo(
                             listItems: icdToController.icdToList,
                             notifyParent: ((value) {
-                              setState(() {
-                                icdToController.icdToValue = value;
-                              });
+                              // setState(() {
+                              //   icdToController.icdToValue = value;
+                              // });
                             }))
                         : IcdTo(
                             listItems: icdToController.icdToList,
@@ -156,44 +176,9 @@ class _BookingPageState extends State<BookingPage> {
                           ))
                   ],
                 ),
+                SizeBox.customHeight(5.h),
                 Row(
                   children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(left: 8.w),
-                            child: BoldText(
-                                text: "Quantity ",
-                                size: 15.sp,
-                                color: AppColor.textColor),
-                          ),
-                          Container(
-                              padding: EdgeInsets.all(5.r),
-                              margin: EdgeInsets.all(5.r),
-                              height: 55.h,
-                              width: 500.w,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15.r),
-                                  border: Border.all(
-                                      color: AppColor.black,
-                                      style: BorderStyle.solid,
-                                      width: 2.w)),
-                              child: TextField(
-                                  controller: c.ourCount,
-                                  cursorColor: Colors.black,
-                                  decoration: const InputDecoration(
-                                    hintText: "Enter Quantity",
-                                    hintStyle: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w500),
-                                    border: OutlineInputBorder(
-                                        borderSide: BorderSide.none),
-                                  )))
-                        ],
-                      ),
-                    ),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -212,6 +197,7 @@ class _BookingPageState extends State<BookingPage> {
                               setState(() {
                                 sController.selectedOption = value;
                               });
+                              typeController.selectedtype = null;
                               typeController.getTypeApi(value);
                             },
                           ),
@@ -255,6 +241,7 @@ class _BookingPageState extends State<BookingPage> {
                         ],
                       ),
                     ),
+                    SizeBox.customWidth(5.w),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -301,9 +288,7 @@ class _BookingPageState extends State<BookingPage> {
                                       color: AppColor.textColor),
                                 ),
                                 Container(
-                                    padding: EdgeInsets.all(5.r),
-                                    margin: EdgeInsets.all(5.r),
-                                    height: 55.h,
+                                    height: 50.h,
                                     width: 500.w,
                                     decoration: BoxDecoration(
                                         borderRadius:
@@ -311,8 +296,11 @@ class _BookingPageState extends State<BookingPage> {
                                         border: Border.all(
                                             color: AppColor.black,
                                             style: BorderStyle.solid,
-                                            width: 2.w)),
-                                    child: TextField(
+                                            width: 0.5.w)),
+                                    child: TextFormField(
+                                        validator: (value) => value!.isEmpty
+                                            ? "Enter class"
+                                            : null,
                                         controller: commodity.ourCassController,
                                         cursorColor: Colors.black,
                                         decoration: const InputDecoration(
@@ -331,24 +319,26 @@ class _BookingPageState extends State<BookingPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(left: 8.0),
+                                padding: EdgeInsets.only(left: 8.w),
                                 child: BoldText(
                                     text: "UN No",
                                     size: 15.sp,
                                     color: AppColor.textColor),
                               ),
                               Container(
-                                  padding: EdgeInsets.all(5.r),
+                                  padding: EdgeInsets.all(1.r),
                                   margin: EdgeInsets.all(5.r),
-                                  height: 55.h,
+                                  height: 50.h,
                                   width: 500.w,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(15.r),
                                       border: Border.all(
                                           color: AppColor.black,
                                           style: BorderStyle.solid,
-                                          width: 2.w)),
-                                  child: TextField(
+                                          width: 0.5.w)),
+                                  child: TextFormField(
+                                      validator: (value) =>
+                                          value!.isEmpty ? "Enter UnNo" : null,
                                       controller: commodity.unController,
                                       cursorColor: Colors.black,
                                       decoration: const InputDecoration(
@@ -376,22 +366,59 @@ class _BookingPageState extends State<BookingPage> {
                           Padding(
                             padding: EdgeInsets.only(left: 8.w),
                             child: BoldText(
-                                text: "Freight",
+                                text: "Quantity ",
                                 size: 15.sp,
                                 color: AppColor.textColor),
                           ),
                           Container(
-                              padding: EdgeInsets.all(5.r),
-                              margin: EdgeInsets.all(5.r),
-                              height: 55.h,
-                              width: 500.w,
+                              height: 50.h,
+                              // width: 500.w,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(15.r),
                                   border: Border.all(
                                       color: AppColor.black,
                                       style: BorderStyle.solid,
-                                      width: 2.w)),
-                              child: TextField(
+                                      width: 0.5.w)),
+                              child: TextFormField(
+                                  validator: (value) =>
+                                      value!.isEmpty ? "Enter Quantity" : null,
+                                  controller: c.ourCount,
+                                  cursorColor: Colors.black,
+                                  decoration: const InputDecoration(
+                                    hintText: "Enter Quantity",
+                                    hintStyle: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w500),
+                                    border: OutlineInputBorder(
+                                        borderSide: BorderSide.none),
+                                  )))
+                        ],
+                      ),
+                    ),
+                    SizeBox.customWidth(5.w),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(left: 8.w),
+                            child: BoldText(
+                                text: "Freight",
+                                size: 15.sp,
+                                color: AppColor.textColor),
+                          ),
+                          Container(
+                              height: 50.h,
+                              // width: 500.w,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15.r),
+                                  border: Border.all(
+                                      color: AppColor.black,
+                                      style: BorderStyle.solid,
+                                      width: 0.5.w)),
+                              child: TextFormField(
+                                  validator: (value) =>
+                                      value!.isEmpty ? "Enter Freight" : null,
                                   controller: c.freightcon,
                                   cursorColor: Colors.black,
                                   decoration: const InputDecoration(
@@ -405,6 +432,10 @@ class _BookingPageState extends State<BookingPage> {
                         ],
                       ),
                     ),
+                  ],
+                ),
+                Row(
+                  children: [
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -417,21 +448,21 @@ class _BookingPageState extends State<BookingPage> {
                                 color: AppColor.textColor),
                           ),
                           Container(
-                              padding: EdgeInsets.all(5.r),
-                              margin: EdgeInsets.all(5.r),
-                              height: 55.h,
-                              width: 500.w,
+                              height: 50.h,
+                              // width: 500.w,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(15.r),
                                   border: Border.all(
                                       color: AppColor.black,
                                       style: BorderStyle.solid,
-                                      width: 2.w)),
-                              child: TextField(
+                                      width: 0.5.w)),
+                              child: TextFormField(
+                                  validator: (value) =>
+                                      value!.isEmpty ? "Enter Weight" : null,
                                   controller: c.weightcon,
                                   cursorColor: Colors.black,
                                   decoration: const InputDecoration(
-                                    hintText: "weight",
+                                    hintText: "Weight",
                                     hintStyle: TextStyle(
                                         color: Colors.black,
                                         fontWeight: FontWeight.w500),
@@ -441,6 +472,7 @@ class _BookingPageState extends State<BookingPage> {
                         ],
                       ),
                     ),
+                    SizeBox.customWidth(5.w),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -453,21 +485,21 @@ class _BookingPageState extends State<BookingPage> {
                                 color: AppColor.textColor),
                           ),
                           Container(
-                              padding: EdgeInsets.all(5.r),
-                              margin: EdgeInsets.all(5.r),
-                              height: 55.h,
-                              width: 500.w,
+                              height: 50.h,
+                              // width: 500.w,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(15.r),
                                   border: Border.all(
                                       color: AppColor.black,
                                       style: BorderStyle.solid,
-                                      width: 2.w)),
-                              child: TextField(
+                                      width: 0.5.w)),
+                              child: TextFormField(
+                                  validator: (value) =>
+                                      value!.isEmpty ? "Enter Rateagree" : null,
                                   controller: c.rtag,
                                   cursorColor: Colors.black,
                                   decoration: const InputDecoration(
-                                    hintText: "Rate",
+                                    hintText: "Rateagree",
                                     hintStyle: TextStyle(
                                         color: Colors.black,
                                         fontWeight: FontWeight.w500),
@@ -493,27 +525,33 @@ class _BookingPageState extends State<BookingPage> {
                               backgroundColor: MaterialStateProperty.all(
                                   Colors.orange[400])),
                           onPressed: () {
-                            UserLoginDetails user = UserLoginDetails();
-                            var partycode =
-                                user.retriveUserNameFromGetStrogare();
-                            c.addListItem({
-                              "icdfrom": icdController.icdFromValue,
-                              "icdto": icdToController.icdToValue,
-                              "pol": loadingController.loadingPortValue,
-                              "pod": destinationController.destinationValue,
-                              "qty": c.ourCount.text.toString(),
-                              "size": sController.selectedOption.toString(),
-                              "type": typeController.selectedtype,
-                              "commodity": commodity.commodityValue,
-                              "classs":
-                                  commodity.ourCassController.text.toString(),
-                              "unno": commodity.unController.text.toString(),
-                              "weight": c.weightcon.text,
-                              "freight": c.freightcon.text,
-                              "rateagreedby": c.rtag.text,
-                              "partycode": partycode,
-                            });
-                            Get.to(() => const BookingSecondPage());
+                            final isValid = c.bookingFromKey.currentState;
+                            if (isValid!.validate()) {
+                              UserLoginDetails user = UserLoginDetails();
+                              var partycode =
+                                  user.retriveUserNameFromGetStrogare();
+                              c.addListItem({
+                                "icdfrom": icdController.icdFromValue,
+                                "icdto": icdToController.icdToValue,
+                                "pol": loadingController.loadingPortValue,
+                                "pod": destinationController.destinationValue,
+                                "qty": c.ourCount.text.toString(),
+                                "size": sController.selectedOption.toString(),
+                                "type": typeController.selectedtype,
+                                "commodity": commodity.commodityValue,
+                                "classs":
+                                    commodity.ourCassController.text.toString(),
+                                "unno": commodity.unController.text.toString(),
+                                "weight": c.weightcon.text,
+                                "freight": c.freightcon.text,
+                                "rateagreedby": c.rtag.text,
+                                "partycode": partycode,
+                              });
+                              Get.to(
+                                () => const BookingSecondPage(),
+                                transition: Transition.leftToRightWithFade,
+                              );
+                            }
                           },
                           child: BoldText(
                               text: "Next",
@@ -524,7 +562,9 @@ class _BookingPageState extends State<BookingPage> {
                 )
               ],
             ),
-          )
-        ]));
+          ),
+        )
+      ]),
+    );
   }
 }

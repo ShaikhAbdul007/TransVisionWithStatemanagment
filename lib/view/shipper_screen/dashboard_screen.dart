@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:tranvision_customer_app/controller/shipperController/dashboard_controller.dart';
+import 'package:tranvision_customer_app/shared_preferences/shared_preference.dart';
 import 'package:tranvision_customer_app/utils/component/Shipper_drawer.dart';
 import 'package:tranvision_customer_app/utils/constant/colors.dart';
 import 'package:tranvision_customer_app/utils/constant/text.dart';
+import 'package:tranvision_customer_app/view/auth_screen/login_screen.dart';
 import 'package:tranvision_customer_app/view/shipper_screen/booking_screen/booking_page.dart';
 
 class DashBoard extends StatefulWidget {
@@ -15,18 +17,27 @@ class DashBoard extends StatefulWidget {
 }
 
 class _DashBoardState extends State<DashBoard> with TickerProviderStateMixin {
-  late final AnimationController controller =
-      AnimationController(duration: const Duration(seconds: 4), vsync: this)
-        ..repeat();
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
+  // late final AnimationController controller =
+  //     AnimationController(duration: const Duration(seconds: 4), vsync: this)
+  //       ..repeat();
+  // @override
+  // void dispose() {
+  //   controller.dispose();
+  //   super.dispose();
+  // }
+
+  // @override
+  // void initState() {
+  //   super.initState();
+
+  //   // WidgetsBinding.instance.addPostFrameCallback(
+  //   //     (_) => ShowCaseWidget.of(context).startShowCase([]));
+  // }
 
   @override
   Widget build(BuildContext context) {
     DashboardController dashboardController = Get.put(DashboardController());
+    UserLoginDetails userLoginDetails = UserLoginDetails();
     return Scaffold(
       appBar: AppBar(
         title: WeightText(color: AppColor.black, text: 'DashBoard', size: 20),
@@ -45,13 +56,17 @@ class _DashBoardState extends State<DashBoard> with TickerProviderStateMixin {
                     snackPosition: SnackPosition.TOP,
                     backgroundColor: Colors.orangeAccent,
                     borderRadius: 15,
-                    margin: const EdgeInsets.all(12),
                     colorText: AppColor.textColor,
                     duration: const Duration(seconds: 1),
                     isDismissible: true,
                     forwardAnimationCurve: Curves.easeOutBack,
                     dismissDirection: DismissDirection.horizontal);
                 await Future.delayed(const Duration(seconds: 2));
+                userLoginDetails.removeUsername();
+                Get.off(() => const LoginPage());
+                // Get.offNamed(
+                //   '/login',
+                // );
               },
               icon: const Icon(Icons.logout_rounded))
         ],

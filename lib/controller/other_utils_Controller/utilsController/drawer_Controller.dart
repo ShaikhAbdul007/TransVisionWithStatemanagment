@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:tranvision_customer_app/view/shipper_screen/bill_of_landing/bill_of_lading.dart';
 import 'package:tranvision_customer_app/view/shipper_screen/bill_summary.dart';
 import 'package:tranvision_customer_app/view/shipper_screen/booking_report.dart';
-import 'package:tranvision_customer_app/view/shipper_screen/loading_list.dart';
+import 'package:tranvision_customer_app/view/shipper_screen/loading_list/loading_list.dart';
 import 'package:tranvision_customer_app/view/shipper_screen/shipper_do_slip.dart';
 
 class MyDrawerController extends GetxController {

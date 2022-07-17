@@ -4,10 +4,15 @@ import 'package:get/get.dart';
 import 'package:tranvision_customer_app/controller/shipperController/booking_controller/booking_page_controller.dart';
 import 'package:tranvision_customer_app/post_model/NewPostModel.dart';
 
-class BookingListItem extends StatelessWidget {
+class BookingListItem extends StatefulWidget {
   final PostDataModel item;
   const BookingListItem({Key? key, required this.item}) : super(key: key);
 
+  @override
+  State<BookingListItem> createState() => _BookingListItemState();
+}
+
+class _BookingListItemState extends State<BookingListItem> {
   @override
   Widget build(BuildContext context) {
     Controller controller = Get.find();
@@ -24,46 +29,47 @@ class BookingListItem extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Text("Icd From :" + item.icdfrom.toString()),
+                    Text("Icd From : " + widget.item.icdfrom.toString()),
                     const Icon(Icons.arrow_right_alt_outlined),
-                    Text("Icd To :" + item.icdto.toString())
+                    Text("Icd To : " + widget.item.icdto.toString())
                   ],
                 ),
                 Row(
                   children: [
-                    Text("Loading Port :" + item.pol.toString()),
+                    Text("Loading Port :" + widget.item.pol.toString()),
                     const Icon(Icons.arrow_right_alt_outlined),
-                    Text("Destination Port :" + item.pod.toString()),
+                    Text("Destination Port :" + widget.item.pod.toString()),
                   ],
                 ),
                 Row(
                   children: [
-                    Text("Quantity:" + item.qty.toString()),
+                    Text("Quantity: " + widget.item.qty.toString()),
                     const Icon(Icons.arrow_right_alt_outlined),
-                    Text("Size :" + item.size.toString()),
+                    Text("Size : " + widget.item.size.toString()),
                     const Icon(Icons.arrow_right_alt_outlined),
-                    Text("Type :" + item.type.toString()),
+                    Text("Type : " + widget.item.type.toString()),
                   ],
                 ),
                 Row(
                   children: [
-                    Text("Commodity :" + item.commodity.toString()),
+                    Text("Commodity : " + widget.item.commodity.toString()),
                     const Icon(Icons.arrow_right_alt_outlined),
-                    Text("Class :" + item.classs.toString()),
+                    Text("Class : " + widget.item.classs.toString()),
                   ],
                 ),
                 Row(
                   children: [
-                    Text("Un No :" + item.unno.toString()),
+                    Text("Un No : " + widget.item.unno.toString()),
                     const Icon(Icons.arrow_right_alt_outlined),
-                    Text("Freight :" + item.freight.toString()),
+                    Text("Freight : " + widget.item.freight.toString()),
                   ],
                 ),
                 Row(
                   children: [
-                    Text("Weight :" + item.weight.toString()),
+                    Text("Weight : " + widget.item.weight.toString()),
                     const Icon(Icons.arrow_right_alt_outlined),
-                    Text("Rate Agreed :" + item.rateagreedby.toString()),
+                    Text(
+                        "Rate Agreed : " + widget.item.rateagreedby.toString()),
                   ],
                 ),
               ],
@@ -71,12 +77,23 @@ class BookingListItem extends StatelessWidget {
           ),
         ),
         Positioned(
-          left: 36.w * 10,
-          child: IconButton(
-              onPressed: () {
-                controller.removeListItem(item);
-              },
-              icon: const Icon(Icons.cancel_outlined)),
+          right: 10,
+          top: 5.0,
+          child: Container(
+              decoration: const BoxDecoration(
+                  color: Colors.transparent,
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(15),
+                    bottomRight: Radius.circular(15),
+                    topLeft: Radius.circular(15),
+                    topRight: Radius.circular(15),
+                  )),
+              child: IconButton(
+                onPressed: () {
+                  controller.removeListItem(widget.item);
+                },
+                icon: const Icon(Icons.delete_forever_outlined, size: 30.0),
+              )),
         )
       ],
     );

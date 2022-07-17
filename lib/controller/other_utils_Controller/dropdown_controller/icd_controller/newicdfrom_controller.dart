@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:get/get.dart';
-import 'package:tranvision_customer_app/api_services/shipper_api.dart';
 import 'package:http/http.dart' as http;
 import 'package:tranvision_customer_app/api_services/icd_api.dart';
 import 'package:tranvision_customer_app/controller/other_utils_Controller/dropdown_controller/icd_controller/newicdto_controller.dart';
@@ -24,7 +23,9 @@ class IcdNewFromController extends GetxController {
   }
 
   Future<List<Icdfrom>> fetchIcdFromPort() async {
-    var response = await http.get(Uri.parse(IcdApi.icdFromUrls));
+    var response = await http
+        .get(Uri.parse(IcdApi.icdFromUrls))
+        .timeout(const Duration(seconds: 15));
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       icdList.value = [];
@@ -36,4 +37,13 @@ class IcdNewFromController extends GetxController {
     }
     return icdList;
   }
+
+  @override
+  void dispose() {
+    super.dispose();
+    icdFromValue.dispose();
+  }
+
+
+
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tranvision_customer_app/controller/authController/login_controller.dart';
+import 'package:tranvision_customer_app/controller/authController/new_login_controller.dart';
 import 'package:tranvision_customer_app/utils/constant/colors.dart';
 import 'package:tranvision_customer_app/utils/constant/sized_box.dart';
 import 'package:tranvision_customer_app/utils/constant/text.dart';
@@ -12,8 +13,10 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isloading = false;
     LoginController logController = Get.put(LoginController());
     return Scaffold(
+      backgroundColor: Colors.white,
       body: ListView(children: [
         Column(
           children: [
@@ -60,8 +63,6 @@ class LoginPage extends StatelessWidget {
                                 icon: const Icon(Icons.close)),
                         hintText: "Enter UserName",
                         labelText: "User Name",
-                        // labelStyle:
-                        //     TextStyle(decorationColor: Colors.orange[800])
                       ),
                     ),
                     SizeBox.customHeight(15.h),
@@ -102,12 +103,14 @@ class LoginPage extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: AppColor.primary,
                     borderRadius: BorderRadius.circular(15.r)),
-                child: Text(
-                  "Login",
-                  textAlign: TextAlign.center,
-                  style:
-                      TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),
-                ),
+                child: isloading
+                    ? CircularProgressIndicator()
+                    : Text(
+                        "Login",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
               ),
             ),
           ],

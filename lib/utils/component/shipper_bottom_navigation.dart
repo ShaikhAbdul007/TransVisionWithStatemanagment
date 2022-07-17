@@ -55,9 +55,10 @@ class MyBottomNavigation extends StatelessWidget {
               fontStyle: FontStyle.normal,
               fontWeight: FontWeight.bold),
           unselectedLabelStyle: const TextStyle(
-              fontFamily: "poppins",
-              fontStyle: FontStyle.normal,
-              fontWeight: FontWeight.bold),
+            fontFamily: "poppins",
+            fontStyle: FontStyle.normal,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
     );

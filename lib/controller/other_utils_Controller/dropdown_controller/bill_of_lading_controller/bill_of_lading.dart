@@ -13,4 +13,9 @@ class BillOfLadding extends GetxController {
 
   var billController = TextEditingController();
   dynamic selectedValue;
+
+  void dispose() {
+    billController.dispose();
+    super.dispose();
+  }
 }

@@ -325,4 +325,8 @@ class MyLoadingList {
     map['weight'] = _weight;
     return map;
   }
+
+  void setWeight(value) {
+    _weight = value;
+  }
 }

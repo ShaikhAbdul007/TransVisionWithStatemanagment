@@ -20,9 +20,11 @@ import 'package:tranvision_customer_app/view/shipper_screen/booking_report.dart'
 import 'package:tranvision_customer_app/view/shipper_screen/booking_screen/booking_page.dart';
 import 'package:tranvision_customer_app/view/shipper_screen/booking_screen/booking_second_page.dart';
 import 'package:tranvision_customer_app/view/shipper_screen/dashboard_screen.dart';
-import 'package:tranvision_customer_app/view/shipper_screen/loading_list.dart';
+import 'package:tranvision_customer_app/view/shipper_screen/loading_list/loading_list.dart';
+import 'package:tranvision_customer_app/view/shipper_screen/loading_list/loading_list_review_screen.dart';
 import 'package:tranvision_customer_app/view/shipper_screen/shipper_do_slip.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:tranvision_customer_app/view/unknownpage.dart';
 
 void main() async {
   await GetStorage.init();
@@ -65,9 +67,12 @@ class MyApp extends StatelessWidget {
             GetPage(name: "/book", page: () => const BookingPage()),
             GetPage(name: "/booking", page: () => const BookingSecondPage()),
             GetPage(name: "/bol", page: () => const BillOfLading()),
+            GetPage(name: "/llus", page: () => const LoadingListUpdateScreen()),
             GetPage(
                 name: "/cbn", page: () => const ConsigneeBottomNavigation()),
           ],
+          unknownRoute:
+              GetPage(name: '/notFound', page: () => const UnknownRoutes()),
           // home: const LoginPage(),
         );
       },

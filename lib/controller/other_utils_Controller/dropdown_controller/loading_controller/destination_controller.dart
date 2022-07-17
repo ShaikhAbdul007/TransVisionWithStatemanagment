@@ -8,8 +8,16 @@ class DestinationController extends GetxController {
   var destinationList = <DestinationPort>[].obs;
   dynamic destinationValue;
 
+  @override
+  void dispose() {
+    super.dispose();
+    destinationValue.dispose();
+  }
+
   Future<RxList<DestinationPort>> getDestinationApi(dynamic value) async {
-    final response = await http.get(Uri.parse(PolApi.destinationUrl(value)));
+    final response = await http
+        .get(Uri.parse(PolApi.destinationUrl(value)))
+        .timeout(const Duration(seconds: 15));
     var data = jsonDecode(response.body);
     if (response.statusCode == 200) {
       destinationList.value = [];

@@ -9,6 +9,13 @@ class CommodityController extends GetxController {
   TextEditingController ourCassController = TextEditingController();
   TextEditingController unController = TextEditingController();
 
+  @override
+  void dispose() {
+    ourCassController.dispose();
+    unController.dispose();
+    super.dispose();
+  }
+
   toggle(value) {
     commodityValue = value;
     insertRow(value);

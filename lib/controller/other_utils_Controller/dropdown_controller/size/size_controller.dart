@@ -11,6 +11,11 @@ class SizeController extends GetxController {
     selectedOption = value;
     typeController.getTypeApi(value);
   }
+  @override
+  void dispose() {
+    super.dispose();
+    selectedOption.dispose();
+  }
 
   // @override
   // void onInit() {

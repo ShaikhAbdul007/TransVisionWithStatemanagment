@@ -11,14 +11,24 @@ class Controller extends GetxController {
   TextEditingController weightcon = TextEditingController();
   TextEditingController rtag = TextEditingController();
   TextEditingController ourCount = TextEditingController();
+  GlobalKey<FormState> bookingFromKey = GlobalKey<FormState>();
   RxList listOfModel = <PostDataModel>[].obs;
-  var data = Get.arguments;
+
   addListItem(data) {
     listOfModel.add(PostDataModel.fromJson(data));
   }
 
-  removeListItem(index) {
-    listOfModel.removeWhere((data) => data.id == index);
+  removeListItem(data) {
+    listOfModel.removeWhere((item) => item.hashCode == data.hashCode);
+  }
+
+  @override
+  void dispose() {
+    freightcon.dispose();
+    weightcon.dispose();
+    rtag.dispose();
+    ourCount.dispose();
+    super.dispose();
   }
 
   Future<String> postData() async {

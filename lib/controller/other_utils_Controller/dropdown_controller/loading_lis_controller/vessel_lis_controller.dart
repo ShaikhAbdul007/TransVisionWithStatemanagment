@@ -18,8 +18,9 @@ class VesselController extends GetxController {
 
   Future<List<Newvessel>> getVesselApi() async {
     var username = userLoginDetails.retriveUserNameFromGetStrogare();
-    final response =
-        await http.get(Uri.parse(LoadingListApi.vesselUrl(username)));
+    final response = await http
+        .get(Uri.parse(LoadingListApi.vesselUrl(username)))
+        .timeout(const Duration(seconds: 15));
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       vesselList.value = [];

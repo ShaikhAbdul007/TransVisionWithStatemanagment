@@ -18,8 +18,9 @@ class VoyageController extends GetxController {
 
   Future<List<Voyage>> getVoyageApi(dynamic value) async {
     var username = userLoginDetails.retriveUserNameFromGetStrogare();
-    final response =
-        await http.get(Uri.parse(LoadingListApi.voyageUrl(username, value)));
+    final response = await http
+        .get(Uri.parse(LoadingListApi.voyageUrl(username, value)))
+        .timeout(const Duration(seconds: 15));
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       voyageList.value = [];

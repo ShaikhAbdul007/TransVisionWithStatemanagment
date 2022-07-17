@@ -14,7 +14,7 @@ class BLDetails extends StatelessWidget {
       ExpansionTile(
         title: NormalText(
             text: "Enter Shipper/Consignee details",
-            size: 18.sp,
+            size: 15.sp,
             color: Colors.black),
         children: [
           Padding(
@@ -27,7 +27,7 @@ class BLDetails extends StatelessWidget {
                     children: [
                       Text(
                         "Shipper",
-                        style: TextStyle(fontSize: 18.sp, color: Colors.black),
+                        style: TextStyle(fontSize: 15.sp, color: Colors.black),
                       ),
                       SizeBox.customHeight(10.h),
                       TextField(
@@ -52,14 +52,14 @@ class BLDetails extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizeBox.customHeight(10.h),
+                SizeBox.customWidth(10.w),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         "Consignee",
-                        style: TextStyle(fontSize: 18.sp, color: Colors.black),
+                        style: TextStyle(fontSize: 15.sp, color: Colors.black),
                       ),
                       SizeBox.customHeight(10.h),
                       TextField(
@@ -92,7 +92,7 @@ class BLDetails extends StatelessWidget {
       ExpansionTile(
           title: NormalText(
               text: "Enter the Notify/Marks No Details",
-              size: 18.sp,
+              size: 15.sp,
               color: Colors.black),
           children: [
             Padding(
@@ -106,7 +106,7 @@ class BLDetails extends StatelessWidget {
                         Text(
                           "Notify",
                           style:
-                              TextStyle(fontSize: 18.sp, color: Colors.black),
+                              TextStyle(fontSize: 15.sp, color: Colors.black),
                         ),
                         SizeBox.customHeight(10.h),
                         TextField(
@@ -121,7 +121,7 @@ class BLDetails extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizeBox.customHeight(10.h),
+                  SizeBox.customWidth(10.w),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -129,7 +129,7 @@ class BLDetails extends StatelessWidget {
                         Text(
                           "Marks No",
                           style:
-                              TextStyle(fontSize: 18.sp, color: Colors.black),
+                              TextStyle(fontSize: 15.sp, color: Colors.black),
                         ),
                         SizeBox.customHeight(10.h),
                         TextField(
@@ -151,7 +151,7 @@ class BLDetails extends StatelessWidget {
       ExpansionTile(
         title: NormalText(
             text: "Enter the Emails of Shipper/Notify",
-            size: 18.sp,
+            size: 15.sp,
             color: Colors.black),
         iconColor: Colors.blueAccent,
         children: [
@@ -165,7 +165,7 @@ class BLDetails extends StatelessWidget {
                     children: [
                       Text(
                         "Consignee Email",
-                        style: TextStyle(fontSize: 18.sp, color: Colors.black),
+                        style: TextStyle(fontSize: 15.sp, color: Colors.black),
                       ),
                       SizeBox.customHeight(10.h),
                       TextField(
@@ -180,14 +180,14 @@ class BLDetails extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizeBox.customHeight(10.h),
+                SizeBox.customWidth(10.w),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         "Notify Email",
-                        style: TextStyle(fontSize: 18.sp, color: Colors.black),
+                        style: TextStyle(fontSize: 15.sp, color: Colors.black),
                       ),
                       SizeBox.customHeight(10.h),
                       TextField(
@@ -210,7 +210,7 @@ class BLDetails extends StatelessWidget {
       ExpansionTile(
         title: NormalText(
             text: "Enter the Details of Port/Place",
-            size: 18.sp,
+            size: 15.sp,
             color: Colors.black),
         children: [
           Padding(
@@ -223,7 +223,7 @@ class BLDetails extends StatelessWidget {
                     children: [
                       Text(
                         "Place Of Acceptance",
-                        style: TextStyle(fontSize: 18.sp, color: Colors.black),
+                        style: TextStyle(fontSize: 15.sp, color: Colors.black),
                       ),
                       SizeBox.customHeight(10.h),
                       TextField(
@@ -235,14 +235,14 @@ class BLDetails extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizeBox.customHeight(10.h),
+                SizeBox.customWidth(10.w),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         "Place Of Discharge",
-                        style: TextStyle(fontSize: 18.sp, color: Colors.black),
+                        style: TextStyle(fontSize: 15.sp, color: Colors.black),
                       ),
                       SizeBox.customHeight(10.h),
                       TextField(
@@ -268,7 +268,7 @@ class BLDetails extends StatelessWidget {
                     children: [
                       Text(
                         "Port Of Loading",
-                        style: TextStyle(fontSize: 18.sp, color: Colors.black),
+                        style: TextStyle(fontSize: 15.sp, color: Colors.black),
                       ),
                       SizeBox.customHeight(10.h),
                       TextField(
@@ -280,14 +280,14 @@ class BLDetails extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizeBox.customHeight(10.h),
+                SizeBox.customWidth(10.w),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         "Port Of Delivery",
-                        style: TextStyle(fontSize: 18.sp, color: Colors.black),
+                        style: TextStyle(fontSize: 15.sp, color: Colors.black),
                       ),
                       SizeBox.customHeight(10.h),
                       TextField(
@@ -307,7 +307,7 @@ class BLDetails extends StatelessWidget {
       ExpansionTile(
         title: NormalText(
             text: "Enter the Details of Vessel/Routes",
-            size: 18.sp,
+            size: 15.sp,
             color: Colors.black),
         children: [
           Padding(
@@ -320,7 +320,7 @@ class BLDetails extends StatelessWidget {
                     children: [
                       Text(
                         "Vessel & Voyage",
-                        style: TextStyle(fontSize: 18.sp, color: Colors.black),
+                        style: TextStyle(fontSize: 15.sp, color: Colors.black),
                       ),
                       SizeBox.customHeight(10.h),
                       TextField(
@@ -332,14 +332,14 @@ class BLDetails extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizeBox.customHeight(10.h),
+                SizeBox.customWidth(10.w),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         "Route/Transhipment",
-                        style: TextStyle(fontSize: 18.sp, color: Colors.black),
+                        style: TextStyle(fontSize: 15.sp, color: Colors.black),
                       ),
                       SizeBox.customHeight(10.h),
                       TextField(
@@ -359,7 +359,7 @@ class BLDetails extends StatelessWidget {
       ExpansionTile(
         title: NormalText(
             text: "Enter the Details of Mode/Package/Weight",
-            size: 18.sp,
+            size: 15.sp,
             color: Colors.black),
         children: [
           Padding(
@@ -372,7 +372,7 @@ class BLDetails extends StatelessWidget {
                     children: [
                       Text(
                         "Mode/Means Of",
-                        style: TextStyle(fontSize: 18.sp, color: Colors.black),
+                        style: TextStyle(fontSize: 15.sp, color: Colors.black),
                       ),
                       SizeBox.customHeight(10.h),
                       TextField(
@@ -384,14 +384,14 @@ class BLDetails extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizeBox.customHeight(10.h),
+                SizeBox.customWidth(10.w),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         "Packages",
-                        style: TextStyle(fontSize: 18.sp, color: Colors.black),
+                        style: TextStyle(fontSize: 15.sp, color: Colors.black),
                       ),
                       SizeBox.customHeight(10.h),
                       TextField(
@@ -417,7 +417,7 @@ class BLDetails extends StatelessWidget {
                     children: [
                       Text(
                         "Net Weight",
-                        style: TextStyle(fontSize: 18.sp, color: Colors.black),
+                        style: TextStyle(fontSize: 15.sp, color: Colors.black),
                       ),
                       SizeBox.customHeight(10.h),
                       TextField(
@@ -429,14 +429,14 @@ class BLDetails extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizeBox.customHeight(10.h),
+                SizeBox.customWidth(10.w),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         "Gross Weight",
-                        style: TextStyle(fontSize: 18.sp, color: Colors.black),
+                        style: TextStyle(fontSize: 15.sp, color: Colors.black),
                       ),
                       SizeBox.customHeight(10.h),
                       TextField(
@@ -456,7 +456,7 @@ class BLDetails extends StatelessWidget {
       ExpansionTile(
         title: NormalText(
             text: "Enter the Details of Measurement",
-            size: 18.sp,
+            size: 15.sp,
             color: Colors.black),
         subtitle: NormalText(
             text: "BL's Qty/Freight Payable", size: 15.sp, color: Colors.black),
@@ -471,7 +471,7 @@ class BLDetails extends StatelessWidget {
                     children: [
                       Text(
                         "Measurement",
-                        style: TextStyle(fontSize: 18.sp, color: Colors.black),
+                        style: TextStyle(fontSize: 15.sp, color: Colors.black),
                       ),
                       SizeBox.customHeight(10),
                       TextField(
@@ -483,14 +483,14 @@ class BLDetails extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizeBox.customHeight(10.h),
+                SizeBox.customWidth(10.w),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         "Freight Pay",
-                        style: TextStyle(fontSize: 18.sp, color: Colors.black),
+                        style: TextStyle(fontSize: 15.sp, color: Colors.black),
                       ),
                       SizeBox.customHeight(10.h),
                       TextField(
@@ -502,14 +502,14 @@ class BLDetails extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizeBox.customHeight(10.h),
+                SizeBox.customWidth(10.w),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         "BL's Qty",
-                        style: TextStyle(fontSize: 18.sp, color: Colors.black),
+                        style: TextStyle(fontSize: 15.sp, color: Colors.black),
                       ),
                       SizeBox.customHeight(10.h),
                       TextField(
@@ -529,10 +529,10 @@ class BLDetails extends StatelessWidget {
       ExpansionTile(
         title: NormalText(
             text: "Enter the Details of FreeDay",
-            size: 18.sp,
+            size: 15.sp,
             color: Colors.black),
         subtitle: NormalText(
-            text: "Place/Freight Amount", size: 15.sp, color: Colors.black),
+            text: "Place/Freight Amount", size: 13.sp, color: Colors.black),
         children: [
           Padding(
             padding: EdgeInsets.only(left: 10.w, right: 10.w, bottom: 8.h),
@@ -544,7 +544,7 @@ class BLDetails extends StatelessWidget {
                     children: [
                       Text(
                         "FreeDays Agree",
-                        style: TextStyle(fontSize: 18.sp, color: Colors.black),
+                        style: TextStyle(fontSize: 15.sp, color: Colors.black),
                       ),
                       SizeBox.customHeight(10.h),
                       TextField(
@@ -556,14 +556,14 @@ class BLDetails extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizeBox.customHeight(10.h),
+                SizeBox.customWidth(10.w),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         "Freight Amount",
-                        style: TextStyle(fontSize: 18.sp, color: Colors.black),
+                        style: TextStyle(fontSize: 15.sp, color: Colors.black),
                       ),
                       SizeBox.customHeight(10.h),
                       TextField(
@@ -575,14 +575,14 @@ class BLDetails extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizeBox.customHeight(10.h),
+                SizeBox.customWidth(10.w),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Place\n",
-                        style: TextStyle(fontSize: 18.sp, color: Colors.black),
+                        "Place",
+                        style: TextStyle(fontSize: 15.sp, color: Colors.black),
                       ),
                       SizeBox.customHeight(10.h),
                       TextField(
@@ -602,7 +602,7 @@ class BLDetails extends StatelessWidget {
       ExpansionTile(
         title: NormalText(
             text: "Enter the Details of Date of Issue",
-            size: 18.sp,
+            size: 15.sp,
             color: Colors.black),
         subtitle:
             NormalText(text: "Date/Type", size: 15.sp, color: Colors.black),
@@ -617,7 +617,7 @@ class BLDetails extends StatelessWidget {
                     children: [
                       Text(
                         "Date",
-                        style: TextStyle(fontSize: 18.sp, color: Colors.black),
+                        style: TextStyle(fontSize: 15.sp, color: Colors.black),
                       ),
                       SizeBox.customHeight(10.h),
                       TextField(
@@ -629,14 +629,14 @@ class BLDetails extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizeBox.customHeight(10.h),
+                SizeBox.customWidth(10.w),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         "Date Of Issue",
-                        style: TextStyle(fontSize: 18.sp, color: Colors.black),
+                        style: TextStyle(fontSize: 15.sp, color: Colors.black),
                       ),
                       SizeBox.customHeight(10.h),
                       TextField(
@@ -648,14 +648,14 @@ class BLDetails extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizeBox.customHeight(10.h),
+                SizeBox.customWidth(10.w),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         "Type",
-                        style: TextStyle(fontSize: 18.sp, color: Colors.black),
+                        style: TextStyle(fontSize: 15.sp, color: Colors.black),
                       ),
                       SizeBox.customHeight(10.h),
                       TextField(
@@ -675,7 +675,7 @@ class BLDetails extends StatelessWidget {
       ExpansionTile(
         title: NormalText(
             text: "Enter the Description of Good",
-            size: 18.sp,
+            size: 15.sp,
             color: Colors.black),
         children: [
           Padding(
@@ -688,7 +688,7 @@ class BLDetails extends StatelessWidget {
                     children: [
                       Text(
                         "Description of Good",
-                        style: TextStyle(fontSize: 18.sp, color: Colors.black),
+                        style: TextStyle(fontSize: 15.sp, color: Colors.black),
                       ),
                       SizeBox.customHeight(10.h),
                       TextField(
@@ -796,7 +796,7 @@ class BLDetails extends StatelessWidget {
                     ElevatedButton(
                       onPressed: () {},
                       child: NormalText(
-                          text: "Save", size: 18.sp, color: Colors.black),
+                          text: "Save", size: 15.sp, color: Colors.black),
                     )
                   ],
                 )
@@ -819,5 +819,5 @@ void pickFile() async {
 }
 
 void viewFile(PlatformFile file) {
-  OpenFile.open(file.path);
+  OpenFile.open(file.path.toString());
 }

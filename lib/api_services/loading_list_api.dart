@@ -1,4 +1,14 @@
 class LoadingListApi {
+  static String loadingListUpdateUrl() {
+    const  String loadingListUpdate =
+        "http://192.168.1.143:9999/TSVAPI/SqlInterface.svc/updateloadinglist";
+
+    const String loadingListUpdates =
+        "http://portal.transvisionshipping.com:9999/TSVAPI/SqlInterface.svc/updateloadinglist";
+
+    return loadingListUpdates;
+  }
+
   static String voyageUrl(dynamic username, dynamic value) {
     final String voyage =
         "http://192.168.1.143:9999/TSVAPI/sqlinterface.svc/voyagename?partycode=$username&vesselname=$value";

@@ -5,6 +5,7 @@ class AppColor {
   static Color? primary = Colors.orange[300];
   static Color? editColor = Colors.green[400];
   static Color? submit = Colors.green[400];
+  static Color? error = Colors.red[900];
   static Color? cancel = Colors.red[900];
   static Color textColor = const Color(0xff223263);
   static Color subTextColor = const Color(0xff1F2123);

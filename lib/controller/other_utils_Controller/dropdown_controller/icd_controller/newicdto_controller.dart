@@ -13,7 +13,9 @@ class IcdNewToController extends GetxController {
   // }
 
   Future<RxList<Icdto>> fetchIcdToPort(dynamic icdFrom) async {
-    var response = await http.get(Uri.parse(IcdApi.icdToUrl(icdFrom)));
+    var response = await http
+        .get(Uri.parse(IcdApi.icdToUrl(icdFrom)))
+        .timeout(const Duration(seconds: 15));
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       icdToList.value = [];
@@ -23,5 +25,11 @@ class IcdNewToController extends GetxController {
       return icdToList;
     }
     return icdToList;
+  }
+
+  @override
+  void dispose() {
+    icdToValue.dispose();
+    super.dispose();
   }
 }

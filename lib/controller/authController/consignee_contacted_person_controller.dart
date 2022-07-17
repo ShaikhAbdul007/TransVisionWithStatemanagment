@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:tranvision_customer_app/api_services/consignee_api.dart';

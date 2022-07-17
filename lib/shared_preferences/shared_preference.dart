@@ -10,6 +10,12 @@ class UserLoginDetails {
     final box = GetStorage();
     return box.read('saveuser');
   }
+
+  removeUsername() {
+    final box = GetStorage();
+    box.erase();
+    // box.remove('saveuser');
+  }
 }
 
   // late SharedPreferences prefs;

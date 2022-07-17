@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
@@ -7,6 +8,7 @@ import 'package:tranvision_customer_app/api_services/bill_summary_api.dart';
 import 'package:tranvision_customer_app/model/bill_summary_model/summary_on_load_model.dart';
 import 'package:tranvision_customer_app/model/bill_summary_model/summarywithnewdate.dart';
 import 'package:tranvision_customer_app/shared_preferences/shared_preference.dart';
+import 'package:tranvision_customer_app/utils/constant/colors.dart';
 import 'package:tranvision_customer_app/utils/constant/text.dart';
 
 class BillSummaryController extends GetxController {
@@ -70,165 +72,30 @@ class BillSummaryController extends GetxController {
 
   Future<RxList<BillSummaryRefreshWithDate>>
       fetchSummaryOnLoadWithDate() async {
-    var username = user.retriveUserNameFromGetStrogare();
-    final response = await http.get(Uri.parse(BillSummaryApi.billSummaryDateUrl(
-        username, billSumFormDate.text, billSumToDate.text)));
-    var data = jsonDecode(response.body.toString());
-    if (response.statusCode == 200) {
-      newListWithDate.value = [];
-      for (Map i in data) {
-        newListWithDate.add(BillSummaryRefreshWithDate.fromJson(i));
+    try {
+      var username = user.retriveUserNameFromGetStrogare();
+      final response = await http.get(Uri.parse(
+          BillSummaryApi.billSummaryDateUrl(
+              username, billSumFormDate.text, billSumToDate.text)));
+      var data = jsonDecode(response.body.toString());
+      if (response.statusCode == 200) {
+        newListWithDate.value = [];
+        for (Map i in data) {
+          newListWithDate.add(BillSummaryRefreshWithDate.fromJson(i));
+        }
       }
+      return newListWithDate;
+    } catch (e) {
+      throw e;
     }
-    return newListWithDate;
   }
-
-  // ourBuildSheet() {
-  //   return Container(
-  //       height: 500,
-  //       padding: const EdgeInsets.all(2),
-  //       decoration: BoxDecoration(
-  //         borderRadius: BorderRadius.circular(9),
-  //       ),
-  //       child: Obx(() => newListWithDate.isNotEmpty
-  //           ? ListView.builder(
-  //               scrollDirection: Axis.vertical,
-  //               itemCount: newListWithDate.length,
-  //               itemBuilder: (context, index) {
-  //                 String newBilldate =
-  //                     newListWithDate[index].billdate.toString();
-  //                 String newBlDate = newListWithDate[index].bldate.toString();
-  //                 return Padding(
-  //                   padding: const EdgeInsets.all(5.0),
-  //                   child: Card(
-  //                     shadowColor: Colors.orange,
-  //                     elevation: 5,
-  //                     shape: const RoundedRectangleBorder(
-  //                         borderRadius: BorderRadius.all(Radius.circular(15))),
-  //                     child: Padding(
-  //                       padding: const EdgeInsets.only(
-  //                           top: 15.0, left: 10, bottom: 5.0),
-  //                       child: Column(
-  //                         children: [
-  //                           Row(
-  //                             children: [
-  //                               NormalText(
-  //                                   text:
-  //                                       'Vessel : ${newListWithDate[index].vesselname}',
-  //                                   size: 15.0,
-  //                                   color: Colors.black),
-  //                               const Icon(Icons.arrow_right_alt_outlined),
-  //                               NormalText(
-  //                                   text:
-  //                                       'Voyage : ${newListWithDate[index].voyage}',
-  //                                   size: 15.0,
-  //                                   color: Colors.black),
-  //                             ],
-  //                           ),
-  //                           Row(
-  //                             children: [
-  //                               NormalText(
-  //                                   text:
-  //                                       'Invoice No : ${newListWithDate[index].billno}',
-  //                                   size: 15.0,
-  //                                   color: Colors.black),
-  //                               const Icon(Icons.arrow_right_alt_outlined),
-  //                               NormalText(
-  //                                   text:
-  //                                       'Invoice Date : ${newBilldate.substring(0, 10)}',
-  //                                   size: 15.0,
-  //                                   color: Colors.black),
-  //                             ],
-  //                           ),
-  //                           Row(
-  //                             children: [
-  //                               NormalText(
-  //                                   text:
-  //                                       'BL No :  ${myList[index].blno.toString()}',
-  //                                   size: 15.0,
-  //                                   color: Colors.black),
-  //                               const Icon(Icons.arrow_right_alt_outlined),
-  //                               NormalText(
-  //                                   text:
-  //                                       'Bl Date: ${newBlDate.substring(0, 10)}',
-  //                                   size: 15.0,
-  //                                   color: Colors.black),
-  //                             ],
-  //                           ),
-  //                           Row(
-  //                             children: [
-  //                               const NormalText(
-  //                                   text: 'Total Amount : ',
-  //                                   size: 15.0,
-  //                                   color: Colors.black),
-  //                               const Icon(Icons.arrow_right_alt_outlined),
-  //                               NormalText(
-  //                                   text:
-  //                                       '${newListWithDate[index].billtotals}',
-  //                                   size: 15.0,
-  //                                   color: Colors.black),
-  //                             ],
-  //                           ),
-  //                           Row(
-  //                             children: [
-  //                               const NormalText(
-  //                                   text: 'Payment Amount : ',
-  //                                   size: 15.0,
-  //                                   color: Colors.black),
-  //                               const Icon(Icons.arrow_right_alt_outlined),
-  //                               NormalText(
-  //                                   text: '${newListWithDate[index].payamt}',
-  //                                   size: 15.0,
-  //                                   color: Colors.black),
-  //                             ],
-  //                           ),
-  //                           Row(
-  //                             children: [
-  //                               const NormalText(
-  //                                   text: 'Balance Amount : ',
-  //                                   size: 15.0,
-  //                                   color: Colors.black),
-  //                               const Icon(Icons.arrow_right_alt_outlined),
-  //                               NormalText(
-  //                                   text: '${newListWithDate[index].balamt}',
-  //                                   size: 15.0,
-  //                                   color: Colors.black),
-  //                             ],
-  //                           ),
-  //                           Row(
-  //                             children: [
-  //                               const NormalText(
-  //                                   text: 'TDS Amount : ',
-  //                                   size: 15.0,
-  //                                   color: Colors.black),
-  //                               const Icon(Icons.arrow_right_alt_outlined),
-  //                               NormalText(
-  //                                   text: '${newListWithDate[index].tdsamt}',
-  //                                   size: 15.0,
-  //                                   color: Colors.black),
-  //                             ],
-  //                           ),
-  //                         ],
-  //                       ),
-  //                     ),
-  //                   ),
-  //                 );
-  //               })
-  //           : Center(
-  //               child: Padding(
-  //               padding: const EdgeInsets.all(15.0),
-  //               child: SemiWeighText(
-  //                   text: "No Data Found please check the date range",
-  //                   size: 18.0,
-  //                   color: AppColor.textColor),
-  //             ))));
-  // }
 
   buildSheet() {
     return Container(
         height: 500,
         padding: const EdgeInsets.all(2),
         decoration: BoxDecoration(
+          color: Colors.white,
           borderRadius: BorderRadius.circular(9),
         ),
         child: FutureBuilder(
@@ -361,6 +228,20 @@ class BillSummaryController extends GetxController {
                         ),
                       );
                     });
+              } else if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(
+                    child: SemiWeighText(
+                  text: "Waiting...",
+                  color: AppColor.textColor,
+                  size: 13.sp,
+                ));
+              } else if (snapshot.connectionState == ConnectionState.none) {
+                return Center(
+                    child: SemiWeighText(
+                  text: "Can't Connect to Server...",
+                  color: AppColor.textColor,
+                  size: 13.sp,
+                ));
               } else {
                 return const Center(
                   child: NormalText(
@@ -401,4 +282,145 @@ class BillSummaryController extends GetxController {
   //     }
   //   }
   //   return newListWithDate;
+  // }
+
+   // ourBuildSheet() {
+  //   return Container(
+  //       height: 500,
+  //       padding: const EdgeInsets.all(2),
+  //       decoration: BoxDecoration(
+  //         borderRadius: BorderRadius.circular(9),
+  //       ),
+  //       child: Obx(() => newListWithDate.isNotEmpty
+  //           ? ListView.builder(
+  //               scrollDirection: Axis.vertical,
+  //               itemCount: newListWithDate.length,
+  //               itemBuilder: (context, index) {
+  //                 String newBilldate =
+  //                     newListWithDate[index].billdate.toString();
+  //                 String newBlDate = newListWithDate[index].bldate.toString();
+  //                 return Padding(
+  //                   padding: const EdgeInsets.all(5.0),
+  //                   child: Card(
+  //                     shadowColor: Colors.orange,
+  //                     elevation: 5,
+  //                     shape: const RoundedRectangleBorder(
+  //                         borderRadius: BorderRadius.all(Radius.circular(15))),
+  //                     child: Padding(
+  //                       padding: const EdgeInsets.only(
+  //                           top: 13.sp, left: 10, bottom: 5.0),
+  //                       child: Column(
+  //                         children: [
+  //                           Row(
+  //                             children: [
+  //                               NormalText(
+  //                                   text:
+  //                                       'Vessel : ${newListWithDate[index].vesselname}',
+  //                                   size: 13.sp,
+  //                                   color: Colors.black),
+  //                               const Icon(Icons.arrow_right_alt_outlined),
+  //                               NormalText(
+  //                                   text:
+  //                                       'Voyage : ${newListWithDate[index].voyage}',
+  //                                   size: 13.sp,
+  //                                   color: Colors.black),
+  //                             ],
+  //                           ),
+  //                           Row(
+  //                             children: [
+  //                               NormalText(
+  //                                   text:
+  //                                       'Invoice No : ${newListWithDate[index].billno}',
+  //                                   size: 13.sp,
+  //                                   color: Colors.black),
+  //                               const Icon(Icons.arrow_right_alt_outlined),
+  //                               NormalText(
+  //                                   text:
+  //                                       'Invoice Date : ${newBilldate.substring(0, 10)}',
+  //                                   size: 13.sp,
+  //                                   color: Colors.black),
+  //                             ],
+  //                           ),
+  //                           Row(
+  //                             children: [
+  //                               NormalText(
+  //                                   text:
+  //                                       'BL No :  ${myList[index].blno.toString()}',
+  //                                   size: 13.sp,
+  //                                   color: Colors.black),
+  //                               const Icon(Icons.arrow_right_alt_outlined),
+  //                               NormalText(
+  //                                   text:
+  //                                       'Bl Date: ${newBlDate.substring(0, 10)}',
+  //                                   size: 13.sp,
+  //                                   color: Colors.black),
+  //                             ],
+  //                           ),
+  //                           Row(
+  //                             children: [
+  //                               const NormalText(
+  //                                   text: 'Total Amount : ',
+  //                                   size: 13.sp,
+  //                                   color: Colors.black),
+  //                               const Icon(Icons.arrow_right_alt_outlined),
+  //                               NormalText(
+  //                                   text:
+  //                                       '${newListWithDate[index].billtotals}',
+  //                                   size: 13.sp,
+  //                                   color: Colors.black),
+  //                             ],
+  //                           ),
+  //                           Row(
+  //                             children: [
+  //                               const NormalText(
+  //                                   text: 'Payment Amount : ',
+  //                                   size: 13.sp,
+  //                                   color: Colors.black),
+  //                               const Icon(Icons.arrow_right_alt_outlined),
+  //                               NormalText(
+  //                                   text: '${newListWithDate[index].payamt}',
+  //                                   size: 13.sp,
+  //                                   color: Colors.black),
+  //                             ],
+  //                           ),
+  //                           Row(
+  //                             children: [
+  //                               const NormalText(
+  //                                   text: 'Balance Amount : ',
+  //                                   size: 13.sp,
+  //                                   color: Colors.black),
+  //                               const Icon(Icons.arrow_right_alt_outlined),
+  //                               NormalText(
+  //                                   text: '${newListWithDate[index].balamt}',
+  //                                   size: 13.sp,
+  //                                   color: Colors.black),
+  //                             ],
+  //                           ),
+  //                           Row(
+  //                             children: [
+  //                               const NormalText(
+  //                                   text: 'TDS Amount : ',
+  //                                   size: 13.sp,
+  //                                   color: Colors.black),
+  //                               const Icon(Icons.arrow_right_alt_outlined),
+  //                               NormalText(
+  //                                   text: '${newListWithDate[index].tdsamt}',
+  //                                   size: 13.sp,
+  //                                   color: Colors.black),
+  //                             ],
+  //                           ),
+  //                         ],
+  //                       ),
+  //                     ),
+  //                   ),
+  //                 );
+  //               })
+  //           : Center(
+  //               child: Padding(
+  //               padding: const EdgeInsets.all(13.sp),
+  //               child: SemiWeighText(
+  //                   text: "No Data Found please check the date range",
+  //                   size: 18.0,
+  //                   color: AppColor.textColor),
+  //             ))));
   // }
